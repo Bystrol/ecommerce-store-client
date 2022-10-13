@@ -12,11 +12,10 @@ const Header = (props) => {
       <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
       <div className={classes.payment}>
         <p>
-          $<FontAwesomeIcon icon="angle-down" className={classes.down} />
+          <FontAwesomeIcon icon="fa-dollar-sign" className={classes.dollar} />
+          <FontAwesomeIcon icon="angle-down" className={classes.down} />
         </p>
-        <p>
-          <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
-        </p>
+        <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </div>
     </div>
   );

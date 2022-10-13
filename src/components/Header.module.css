@@ -20,8 +20,19 @@
 
 .header .categories p {
   text-transform: uppercase;
+  font-family: "Raleway", sans-serif;
   font-size: 1.4vh;
   margin-right: 2vw;
+}
+
+.header .categories p:hover {
+  color: #52d67a;
+  cursor: pointer;
+}
+
+.header .logo {
+  font-size: 2vh;
+  color: #52d67a;
 }
 
 .header .payment {
@@ -30,8 +41,30 @@
   align-items: center;
   width: 15vw;
   margin-right: 5vw;
+  line-height: 5vh;
+  text-align: center;
 }
 
-.header .payment p {
-  margin-left: 2vw;
+.header .payment .dollar {
+  font-size: 1.4vh;
+}
+
+.header .payment .down {
+  font-size: 1vh;
+  margin-left: 0.3vw;
+}
+
+.header .payment .cart {
+  font-size: 1.4vh;
+  margin-left: 1vw;
+}
+
+.header .payment p:hover {
+  color: #52d67a;
+  cursor: pointer;
+}
+
+.header .payment .cart:hover {
+  color: #52d67a;
+  cursor: pointer;
 }
