@@ -1,0 +1,58 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18vw;
+  height: 18vw;
+  padding: 1.4vh;
+  margin-bottom: 4vh;
+  box-sizing: border-box;
+  transition: scale 0.2s;
+}
+
+.item:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  scale: 1.01;
+}
+
+.item .image {
+  width: 100%;
+  height: 85%;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+}
+
+.item .button {
+  align-self: flex-end;
+  transform: translate(-30%, -50%);
+  background-color: #52d67a;
+  width: 4vh;
+  height: 4vh;
+  color: white;
+  text-align: center;
+  line-height: 4vh;
+  border-radius: 50%;
+  transition: scale 0.2s;
+}
+
+.item .button:hover {
+  scale: 1.2;
+}
+
+.item .name {
+  align-self: flex-start;
+  font-size: 1.6vh;
+
+  margin: 0;
+}
+
+.item .price {
+  align-self: flex-start;
+  font-size: 1.4vh;
+  font-weight: 600;
+  margin: 0;
+}
