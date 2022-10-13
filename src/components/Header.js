@@ -1,13 +1,35 @@
 import classes from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
   return (
     <div className={classes.header}>
       <div className={classes.categories}>
-        <p>women</p>
-        <p>men</p>
-        <p>kids</p>
+        <NavLink
+          to="/women"
+          className={(navData) =>
+            navData.isActive ? classes.active : classes.link
+          }
+        >
+          women
+        </NavLink>
+        <NavLink
+          to="/men"
+          className={(navData) =>
+            navData.isActive ? classes.active : classes.link
+          }
+        >
+          men
+        </NavLink>
+        <NavLink
+          to="/kids"
+          className={(navData) =>
+            navData.isActive ? classes.active : classes.link
+          }
+        >
+          kids
+        </NavLink>
       </div>
       <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
       <div className={classes.payment}>
@@ -17,6 +39,7 @@ const Header = (props) => {
         </p>
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </div>
+      {props.children}
     </div>
   );
 };
