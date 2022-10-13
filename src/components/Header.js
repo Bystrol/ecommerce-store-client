@@ -5,16 +5,18 @@ const Header = (props) => {
   return (
     <div className={classes.header}>
       <div className={classes.categories}>
-        <h2>WOMEN</h2>
-        <h2>MEN</h2>
-        <h2>KIDS</h2>
+        <p>women</p>
+        <p>men</p>
+        <p>kids</p>
       </div>
-      <img src="" className={classes.logo} />
+      <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
       <div className={classes.payment}>
         <p>
-          $<FontAwesomeIcon icon="angle-down" />
+          $<FontAwesomeIcon icon="angle-down" className={classes.down} />
         </p>
-        <FontAwesomeIcon icon="cart-shopping" />
+        <p>
+          <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
+        </p>
       </div>
     </div>
   );
