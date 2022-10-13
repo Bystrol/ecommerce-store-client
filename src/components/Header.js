@@ -12,9 +12,9 @@ const Header = (props) => {
       <img src="" className={classes.logo} />
       <div className={classes.payment}>
         <p>
-          $<FontAwesomeIcon icon="fa-light fa-angle-down" />
+          $<FontAwesomeIcon icon="angle-down" />
         </p>
-        <FontAwesomeIcon icon="fa-light fa-cart-shopping" />
+        <FontAwesomeIcon icon="cart-shopping" />
       </div>
     </div>
   );
