@@ -1,4 +1,5 @@
 import classes from "./Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = (props) => {
   return (
@@ -10,8 +11,10 @@ const Header = (props) => {
       </div>
       <img src="" className={classes.logo} />
       <div className={classes.payment}>
-        <p>$</p>
-        <p>Koszyk</p>
+        <p>
+          $<FontAwesomeIcon icon="fa-light fa-angle-down" />
+        </p>
+        <FontAwesomeIcon icon="fa-light fa-cart-shopping" />
       </div>
     </div>
   );
