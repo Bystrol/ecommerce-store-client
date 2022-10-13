@@ -1,6 +1,7 @@
 import classes from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   return (
@@ -32,7 +33,9 @@ const Header = (props) => {
             kids
           </NavLink>
         </div>
-        <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
+        <Link to="/home">
+          <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
+        </Link>
         <div className={classes.payment}>
           <p>
             <FontAwesomeIcon icon="fa-dollar-sign" className={classes.dollar} />
