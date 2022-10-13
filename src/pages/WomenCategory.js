@@ -1,9 +1,20 @@
+import ClothItem from "../components/ClothItem";
 import classes from "./WomenCategory.module.css";
 
 const CategoryPage = () => {
   return (
     <div className={classes.body}>
-      <p>Category name</p>
+      <p>Women category</p>
+      <div className={classes.items}>
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+        <ClothItem />
+      </div>
     </div>
   );
 };
