@@ -28,7 +28,6 @@
   font-family: "Raleway", sans-serif;
   font-size: 1.4vh;
   padding: 2vh 2vh;
-  /* margin-right: 2vw; */
 }
 
 .header .categories .link:hover {
@@ -40,7 +39,6 @@
   text-decoration: none;
   font-family: "Raleway", sans-serif;
   font-size: 1.4vh;
-  /* margin-right: 2vw; */
   color: #52d67a;
   font-weight: 600;
   border-bottom: 2px solid #52d67a;
@@ -58,12 +56,12 @@
   align-items: center;
   width: 20vw;
   margin-right: 5vw;
-  line-height: 5vh;
   text-align: center;
 }
 
 .header .payment .dollar {
-  font-size: 1.4vh;
+  font-size: 1.5vh;
+  margin-bottom: 0.1vh;
 }
 
 .header .payment .down {
