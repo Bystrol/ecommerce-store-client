@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: gray;
+}
+
+.header .categories {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header .payment {
+  display: flex;
+  justify-content: space-around;
+}
