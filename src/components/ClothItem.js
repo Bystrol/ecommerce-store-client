@@ -1,21 +1,31 @@
 import classes from "./ClothItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
-const ClothItem = () => {
+const ClothItem = (props) => {
+  const navigate = useNavigate();
+
+  const isAvailable = props.isAvailable;
+
+  const openDetailHandler = (event) => {
+    navigate(`/women/${props.id}`);
+  };
+
   return (
     <div className={classes.item}>
-      <div className={classes.image}>
+      <div className={classes.image} onClick={openDetailHandler}>
+        {!isAvailable && <p>Out of stock</p>}
         <img
-          src="https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+          src={props.imageUrl}
           alt="Pink coat"
+          className={isAvailable ? classes.available : classes.notAvailable}
         />
       </div>
-      <Link to="/cart" className={classes.button}>
+      <div className={classes.button}>
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
-      </Link>
-      <p className={classes.name}>Pink coat</p>
-      <p className={classes.price}>$29.99</p>
+      </div>
+      <p className={classes.name}>{props.name}</p>
+      <p className={classes.price}>{props.price}</p>
     </div>
   );
 };
