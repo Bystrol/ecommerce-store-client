@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import ItemDetail from "../components/ItemDetail";
+import { categoryActions } from "../store/categorySlice";
 
 const Detail = () => {
   const itemId = useParams("id").id;
@@ -14,6 +15,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(fetchDetailData(category, itemId));
+    dispatch(categoryActions.clearArray());
   }, []);
 
   return (
