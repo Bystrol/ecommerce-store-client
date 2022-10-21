@@ -9,6 +9,9 @@ const categorySlice = createSlice({
     fetchData(state, action) {
       state.items = action.payload;
     },
+    clearArray(state) {
+      state.items = [];
+    },
   },
 });
 
