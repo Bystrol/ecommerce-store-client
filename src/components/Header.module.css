@@ -5,6 +5,7 @@
   height: 6vh;
   background-color: white;
   margin: 0 10vw;
+  font-size: 1.4vh;
 }
 
 .header p {
@@ -62,22 +63,23 @@
   text-align: center;
 }
 
-.header .payment .dollar {
-  font-size: 2.1vh;
-  margin-bottom: 0.1vh;
-}
-
 .header .payment .down {
   font-size: 1vh;
   margin-left: 0.3vw;
 }
 
 .header .payment .cart {
-  font-size: 2vh;
+  font-size: 1.4vh;
   margin-left: 1vw;
 }
 
-.header .payment p:hover {
+.header .payment .currency {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .payment .currency:hover {
   color: #52d67a;
   cursor: pointer;
 }
@@ -85,4 +87,37 @@
 .header .payment .cart:hover {
   color: #52d67a;
   cursor: pointer;
+}
+
+.header .container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  top: 6vh;
+  right: 9.2vw;
+  margin: 0;
+  padding: 0;
+  width: 5vw;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #fff;
+}
+
+.header .container li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  height: 3vh;
+  font-size: 1.4vh;
+}
+
+.header .container li:hover {
+  background-color: rgb(235, 229, 229);
+  cursor: pointer;
+}
+
+.header .container .sign {
+  margin-right: 0.2vw;
 }
