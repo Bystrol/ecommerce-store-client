@@ -1,19 +1,23 @@
 import classes from "./ClothItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const ClothItem = (props) => {
   const navigate = useNavigate();
+  const category = useParams("category").category;
 
   const isAvailable = props.isAvailable;
 
-  const openDetailHandler = (event) => {
-    navigate(`/women/${props.id}`);
+  const openDetailHandler = () => {
+    navigate(`/${category}/${props.id}`);
   };
 
   return (
     <div className={classes.item}>
-      <div className={classes.image} onClick={openDetailHandler}>
+      <div
+        className={classes.image}
+        onClick={isAvailable ? openDetailHandler : null}
+      >
         {!isAvailable && <p>Out of stock</p>}
         <img
           src={props.imageUrl}
