@@ -4,6 +4,8 @@ import {
   faAngleDown,
   faShirt,
   faDollarSign,
+  faEuroSign,
+  faSterlingSign,
 } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -12,7 +14,14 @@ import Category from "./pages/Category";
 import Home from "../src/pages/Home";
 import Detail from "./pages/Detail";
 
-library.add(faCartShopping, faAngleDown, faShirt, faDollarSign);
+library.add(
+  faCartShopping,
+  faAngleDown,
+  faShirt,
+  faDollarSign,
+  faEuroSign,
+  faSterlingSign
+);
 
 function App() {
   return (
