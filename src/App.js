@@ -8,8 +8,9 @@ import {
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import Header from "./components/Header";
-import WomenCategory from "../src/pages/WomenCategory";
+import Category from "./pages/Category";
 import Home from "../src/pages/Home";
+import Detail from "./pages/Detail";
 
 library.add(faCartShopping, faAngleDown, faShirt, faDollarSign);
 
@@ -19,12 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/women" element={<WomenCategory />} />
-        <Route path="/women/:id" />
-        <Route path="/men" />
-        <Route path="/men/:id" />
-        <Route path="/kids" />
-        <Route path="/kids/:id" />
+        <Route path="/:category" element={<Category />} />
+        <Route path="/:category/:id" element={<Detail />} />
         <Route path="/cart" />
       </Routes>
     </Header>
