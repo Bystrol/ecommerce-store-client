@@ -1,6 +1,35 @@
 import classes from "./ItemDetail.module.css";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ItemDetail = (props) => {
+  const currency = useSelector((state) => state.currency.currency);
+
+  const Price = () => {
+    if (currency === "EUR") {
+      return (
+        <>
+          <FontAwesomeIcon icon="fa-euro-sign" />
+          {(props.price * 1.025).toFixed(2)}
+        </>
+      );
+    } else if (currency === "GBP") {
+      return (
+        <>
+          <FontAwesomeIcon icon="fa-sterling-sign" />
+          {(props.price * 0.8985).toFixed(2)}
+        </>
+      );
+    }
+
+    return (
+      <>
+        <FontAwesomeIcon icon="fa-dollar-sign" />
+        {props.price}
+      </>
+    );
+  };
+
   return (
     <div className={classes.main}>
       <div className={classes.body}>
@@ -49,7 +78,7 @@ const ItemDetail = (props) => {
           </div>
           <div className={classes.price}>
             <p>price:</p>
-            <p>${props.price}</p>
+            {<Price />}
           </div>
           <button>add to cart</button>
           <p className={classes.description}>{props.description}</p>
