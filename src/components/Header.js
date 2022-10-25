@@ -4,9 +4,14 @@ import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyActions } from "../store/currencySlice";
+import Cart from "./Cart";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+
   const currency = useSelector((state) => state.currency.currency);
   const dispatch = useDispatch();
 
@@ -14,15 +19,35 @@ const Header = (props) => {
     setShowCurrencyList((state) => {
       return !state;
     });
+
+    setIsRotated((state) => {
+      return !state;
+    });
+
+    setShowCart(false);
+    setShowBackdrop(false);
   };
 
   const hideCurrencyListHandler = () => {
     setShowCurrencyList(false);
+    setIsRotated(false);
   };
 
   const setCurrencyHandler = (e) => {
     dispatch(currencyActions.setCurrency(e.target.textContent));
+  };
+
+  const toggleCartHandler = () => {
+    setShowCart((state) => {
+      return !state;
+    });
+
+    setShowBackdrop((state) => {
+      return !state;
+    });
+
     setShowCurrencyList(false);
+    setIsRotated(false);
   };
 
   const Sign = () => {
@@ -34,6 +59,8 @@ const Header = (props) => {
 
     return <FontAwesomeIcon icon="fa-dollar-sign" />;
   };
+
+  const angleDownClass = isRotated ? classes.rotated : classes.down;
 
   return (
     <>
@@ -70,12 +97,16 @@ const Header = (props) => {
         <div className={classes.payment}>
           <div className={classes.currency} onClick={toggleCurrencyListHandler}>
             {<Sign />}
-            <FontAwesomeIcon icon="angle-down" className={classes.down} />
+            <FontAwesomeIcon icon="angle-down" className={angleDownClass} />
           </div>
-          <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
+          <FontAwesomeIcon
+            icon="cart-shopping"
+            className={classes.cart}
+            onClick={toggleCartHandler}
+          />
         </div>
         {showCurrencyList && (
-          <ul className={classes.container}>
+          <ul className={classes.container} onClick={toggleCurrencyListHandler}>
             <li onClick={setCurrencyHandler}>
               <FontAwesomeIcon icon="fa-dollar-sign" className={classes.sign} />
               USD
@@ -93,10 +124,13 @@ const Header = (props) => {
             </li>
           </ul>
         )}
+        {showCart && <Cart onViewCart={toggleCartHandler} />}
       </div>
-      <main className={classes.main} onClick={hideCurrencyListHandler}>
-        {props.children}
-      </main>
+
+      <main onClick={hideCurrencyListHandler}>{props.children}</main>
+      {showBackdrop && (
+        <div className={classes.backdrop} onClick={toggleCartHandler} />
+      )}
     </>
   );
 };
