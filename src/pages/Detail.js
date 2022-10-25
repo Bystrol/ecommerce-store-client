@@ -1,4 +1,4 @@
-import { fetchDetailData } from "../store/fetchData";
+import { fetchDetailData } from "../api/getData";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
