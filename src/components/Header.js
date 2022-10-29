@@ -1,7 +1,7 @@
 import classes from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyActions } from "../store/currencySlice";
 import Cart from "./Cart";
@@ -11,9 +11,24 @@ const Header = (props) => {
   const [isRotated, setIsRotated] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
+  const [btnBump, setBtnBump] = useState(false);
 
   const currency = useSelector((state) => state.currency.currency);
+  const amount = useSelector((state) => state.cart.amount);
+  const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setBtnBump(true);
+
+    const timer = setTimeout(() => {
+      setBtnBump(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
 
   const toggleCurrencyListHandler = () => {
     setShowCurrencyList((state) => {
@@ -34,6 +49,7 @@ const Header = (props) => {
   };
 
   const setCurrencyHandler = (e) => {
+    localStorage.setItem("currency", e.target.textContent);
     dispatch(currencyActions.setCurrency(e.target.textContent));
   };
 
@@ -104,9 +120,12 @@ const Header = (props) => {
             className={classes.cart}
             onClick={toggleCartHandler}
           />
+          <div className={`${classes.amount} ${btnBump ? classes.bump : ""}`}>
+            {amount}
+          </div>
         </div>
         {showCurrencyList && (
-          <ul className={classes.container} onClick={toggleCurrencyListHandler}>
+          <ul className={classes.list} onClick={toggleCurrencyListHandler}>
             <li onClick={setCurrencyHandler}>
               <FontAwesomeIcon icon="fa-dollar-sign" className={classes.sign} />
               USD
