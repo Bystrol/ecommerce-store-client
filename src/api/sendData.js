@@ -16,5 +16,3 @@ export const sendCartData = async (item) => {
     alert("Could not add item to the cart!");
   }
 };
-
-export default sendData;
