@@ -1,9 +1,30 @@
 import classes from "./ItemDetail.module.css";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cartActions } from "../store/cartSlice";
+import { useState } from "react";
 
 const ItemDetail = (props) => {
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+
   const currency = useSelector((state) => state.currency.currency);
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(
+      cartActions.addItem({
+        id: props.id,
+        key: props.id,
+        name: props.name,
+        price: props.price,
+        imageUrl: props.imageUrl,
+        amount: 1,
+        size: size,
+        color: color,
+      })
+    );
+  };
 
   const Price = () => {
     if (currency === "EUR") {
@@ -54,33 +75,81 @@ const ItemDetail = (props) => {
           <div className={classes.size}>
             <p>size:</p>
             <div>
-              <input type="radio" name="size" id="xs"></input>
+              <input
+                type="radio"
+                name="size"
+                id="xs"
+                defaultChecked
+                onClick={() => {
+                  setSize("xs");
+                }}
+              ></input>
               <label htmlFor="xs">xs</label>
             </div>
             <div>
-              <input type="radio" name="size" id="s"></input>
+              <input
+                type="radio"
+                name="size"
+                id="s"
+                onClick={() => {
+                  setSize("s");
+                }}
+              ></input>
               <label htmlFor="s">s</label>
             </div>
             <div>
-              <input type="radio" name="size" id="m"></input>
+              <input
+                type="radio"
+                name="size"
+                id="m"
+                onClick={() => {
+                  setSize("m");
+                }}
+              ></input>
               <label htmlFor="m">m</label>
             </div>
             <div>
-              <input type="radio" name="size" id="l"></input>
+              <input
+                type="radio"
+                name="size"
+                id="l"
+                onClick={() => {
+                  setSize("l");
+                }}
+              ></input>
               <label htmlFor="l">l</label>
             </div>
           </div>
           <div className={classes.color}>
             <p>color:</p>
-            <input type="radio" name="color" />
-            <input type="radio" name="color" />
-            <input type="radio" name="color" />
+            <input
+              type="radio"
+              name="color"
+              defaultChecked
+              onClick={() => {
+                setColor("brown");
+              }}
+            />
+            <input
+              type="radio"
+              name="color"
+              onClick={() => {
+                setColor("gray");
+              }}
+            />
+            <input
+              type="radio"
+              name="color"
+              onClick={() => {
+                setColor("black");
+              }}
+            />
           </div>
           <div className={classes.price}>
             <p>price:</p>
             {<Price />}
           </div>
-          <button>add to cart</button>
+          <button onClick={addToCartHandler}>add to cart</button>
           <p className={classes.description}>{props.description}</p>
         </div>
       </div>
