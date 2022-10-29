@@ -56,6 +56,7 @@
 }
 
 .header .payment {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -97,7 +98,27 @@
   cursor: pointer;
 }
 
-.header .container {
+.header .payment .amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -75%;
+  right: -2.5%;
+  width: 1.4vh;
+  height: 1.4vh;
+  font-size: 1.2vh;
+  font-weight: 800;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.header .payment .bump {
+  animation: 500ms amountActive ease-out;
+}
+
+.header .list {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -111,7 +132,7 @@
   background-color: #fff;
 }
 
-.header .container li {
+.header .list li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,12 +142,12 @@
   font-size: 1.4vh;
 }
 
-.header .container li:hover {
+.header .list li:hover {
   background-color: rgb(235, 229, 229);
   cursor: pointer;
 }
 
-.header .container .sign {
+.header .list .sign {
   margin-right: 0.2vw;
 }
 
@@ -136,4 +157,19 @@
   width: 100%;
   height: 94vh;
   background-color: rgba(57, 55, 72, 0.22);
+}
+
+@keyframes amountActive {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
