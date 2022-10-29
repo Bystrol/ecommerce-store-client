@@ -13,6 +13,11 @@ import Header from "./components/Header";
 import Category from "./pages/Category";
 import Home from "../src/pages/Home";
 import Detail from "./pages/Detail";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sendCartData } from "./api/sendData";
+import { fetchCartData } from "./api/getData";
+import { currencyActions } from "./store/currencySlice";
 
 library.add(
   faCartShopping,
@@ -23,7 +28,27 @@ library.add(
   faSterlingSign
 );
 
+let isInitial = true;
+
 function App() {
+  const items = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+
+    const currency = localStorage.getItem("currency");
+    dispatch(currencyActions.setCurrency(currency));
+  }, []);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+    sendCartData(items);
+  }, [items]);
+
   return (
     <Header>
       <Routes>
