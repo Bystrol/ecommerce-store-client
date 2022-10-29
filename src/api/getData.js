@@ -1,5 +1,6 @@
 import { categoryActions } from "../store/categorySlice";
 import { detailActions } from "../store/detailSlice";
+import { cartActions } from "../store/cartSlice";
 
 export const fetchCategoryData = (category) => {
   return async (dispatch) => {
@@ -59,6 +60,8 @@ export const fetchCartData = () => {
       }
 
       const data = await response.json();
+
+      dispatch(cartActions.fetchItems(data || []));
     } catch {
       alert("Could not load the cart!");
     }
