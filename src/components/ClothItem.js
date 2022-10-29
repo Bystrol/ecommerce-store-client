@@ -1,16 +1,33 @@
 import classes from "./ClothItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from "react-router";
-import { useSelector } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { cartActions } from "../store/cartSlice";
 
 const ClothItem = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const category = useParams("category").category;
   const currency = useSelector((state) => state.currency.currency);
   const isAvailable = props.isAvailable;
 
   const openDetailHandler = () => {
     navigate(`/${category}/${props.id}`);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(
+      cartActions.addItem({
+        id: props.id,
+        key: props.id,
+        name: props.name,
+        price: props.price,
+        imageUrl: props.imageUrl,
+        amount: 1,
+        size: "xs",
+        color: "brown",
+      })
+    );
   };
 
   const Price = () => {
@@ -51,7 +68,7 @@ const ClothItem = (props) => {
           className={isAvailable ? classes.available : classes.notAvailable}
         />
       </div>
-      <div className={classes.button}>
+      <div className={classes.button} onClick={addToCartHandler}>
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </div>
       <p className={classes.name}>{props.name}</p>
