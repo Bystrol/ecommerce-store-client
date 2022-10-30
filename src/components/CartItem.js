@@ -2,7 +2,7 @@ import classes from "./CartItem.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cartActions } from "../store/cartSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const CartItem = (props) => {
   const [size, setSize] = useState(props.size);
