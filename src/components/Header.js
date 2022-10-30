@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyActions } from "../store/currencySlice";
-import Cart from "./Cart";
+import MiniCart from "./MiniCart";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);
@@ -143,7 +143,7 @@ const Header = (props) => {
             </li>
           </ul>
         )}
-        {showCart && <Cart onViewCart={toggleCartHandler} />}
+        {showCart && <MiniCart onViewCart={toggleCartHandler} />}
       </div>
 
       <main onClick={hideCurrencyListHandler}>{props.children}</main>
