@@ -1,0 +1,178 @@
+.item {
+  width: 100%;
+  min-height: 20vh;
+  height: 20vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vh 0;
+  border-bottom: 2px solid rgb(237, 221, 221);
+}
+
+.item:last-child {
+  border: none;
+}
+
+.item p {
+  margin: 0 0 0.6vh 0;
+  width: 100%;
+}
+
+.item .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 14%;
+  height: 100%;
+}
+
+.item .details .name {
+  font-size: 2.6vh;
+}
+
+.item .details .price {
+  font-weight: 600;
+  font-size: 1.6vh;
+}
+
+.item .details .size {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item .details .size div {
+  height: 3.4vh;
+  position: relative;
+}
+
+.item .details .size p {
+  font-size: 1.2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.item .details .size input {
+  appearance: none;
+  width: 5vh;
+  height: 3.4vh;
+  margin: 0;
+  border: 1px solid black;
+  color: #000;
+}
+
+.item .details .size input:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.item .details .size input:checked {
+  background-color: #1d1f22;
+}
+
+.item .details .size input:checked ~ .size-p {
+  color: white;
+}
+
+.item .details .size .size-p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1.2vh;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.item .details .color {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item .details .color p {
+  font-size: 1.2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.item .details .color input {
+  appearance: none;
+  width: 2.6vh;
+  height: 2.6vh;
+  margin: 0 0.4vw 0 0;
+}
+
+.item .details .color input:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.item .details .color input:nth-child(2) {
+  background-color: #80482f;
+}
+
+.item .details .color input:nth-child(3) {
+  background-color: #8d877d;
+}
+
+.item .details .color input:nth-child(4) {
+  background-color: #2a2324;
+}
+
+.item .details .color input:checked {
+  border: 2px solid #000;
+}
+
+.item .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 14%;
+}
+
+.item .right .amount {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.item .right .amount button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.6vh;
+  height: 3.6vh;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  font-size: 4vh;
+  font-weight: 400;
+}
+
+.item .right .amount button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.item .right .amount p {
+  margin: 0;
+  font-size: 2vh;
+}
+
+.item .right .image {
+  width: 75%;
+  height: 100%;
+}
