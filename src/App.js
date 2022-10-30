@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Category from "./pages/Category";
 import Home from "../src/pages/Home";
 import Detail from "./pages/Detail";
+import Cart from "./pages/Cart";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendCartData } from "./api/sendData";
@@ -56,7 +57,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/:category" element={<Category />} />
         <Route path="/:category/:id" element={<Detail />} />
-        <Route path="/cart" />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Header>
   );
