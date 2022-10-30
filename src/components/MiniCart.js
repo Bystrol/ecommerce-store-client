@@ -1,11 +1,16 @@
 import classes from "./MiniCart.module.css";
 import CartItem from "./CartItem";
+import { cartActions } from "../store/cartSlice";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MiniCart = (props) => {
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const amount = useSelector((state) => state.cart.amount);
   const total = useSelector((state) => state.cart.total);
   const currency = useSelector((state) => state.currency.currency);
@@ -43,6 +48,21 @@ const MiniCart = (props) => {
     );
   };
 
+  const checkoutHandler = () => {
+    setShowModal(true);
+
+    const timer = setTimeout(() => {
+      setShowModal(false);
+      dispatch(cartActions.clearArray());
+      props.onCheckout();
+      navigate("/home");
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  };
+
   return (
     <>
       {!itemsArrayIsEmpty && (
@@ -74,13 +94,22 @@ const MiniCart = (props) => {
           </div>
           <div className={classes.buttons}>
             <button onClick={openCartPageHandler}>view cart</button>
-            <button>check out</button>
+            <button onClick={checkoutHandler}>check out</button>
           </div>
         </div>
       )}
       {itemsArrayIsEmpty && (
         <div className={classes.empty}>
           <p>Your cart is empty!</p>
+        </div>
+      )}
+      {showModal && (
+        <div className={classes.backdrop}>
+          <div
+            className={`${classes.modal} ${showModal ? classes.active : ""}`}
+          >
+            <p>Your order was sent successfully!</p>
+          </div>
         </div>
       )}
     </>
