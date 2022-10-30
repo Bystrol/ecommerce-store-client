@@ -5,8 +5,8 @@ import { cartActions } from "../store/cartSlice";
 import { useState } from "react";
 
 const ItemDetail = (props) => {
-  const [size, setSize] = useState("");
-  const [color, setColor] = useState("");
+  const [size, setSize] = useState("xs");
+  const [color, setColor] = useState("brown");
 
   const currency = useSelector((state) => state.currency.currency);
   const dispatch = useDispatch();
