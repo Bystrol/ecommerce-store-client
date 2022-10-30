@@ -4,18 +4,19 @@ import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyActions } from "../store/currencySlice";
+import { cartActions } from "../store/cartSlice";
 import MiniCart from "./MiniCart";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [btnBump, setBtnBump] = useState(false);
 
   const currency = useSelector((state) => state.currency.currency);
   const amount = useSelector((state) => state.cart.amount);
   const items = useSelector((state) => state.cart.items);
+  const isVisible = useSelector((state) => state.cart.isVisible);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Header = (props) => {
       return !state;
     });
 
-    setShowCart(false);
+    dispatch(cartActions.hideCart());
     setShowBackdrop(false);
   };
 
@@ -54,9 +55,7 @@ const Header = (props) => {
   };
 
   const toggleCartHandler = () => {
-    setShowCart((state) => {
-      return !state;
-    });
+    dispatch(cartActions.toggleCart());
 
     setShowBackdrop((state) => {
       return !state;
@@ -143,7 +142,12 @@ const Header = (props) => {
             </li>
           </ul>
         )}
-        {showCart && <MiniCart onViewCart={toggleCartHandler} />}
+        {isVisible && (
+          <MiniCart
+            onViewCart={toggleCartHandler}
+            onCheckout={toggleCartHandler}
+          />
+        )}
       </div>
 
       <main onClick={hideCurrencyListHandler}>{props.children}</main>
