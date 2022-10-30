@@ -6,6 +6,7 @@ const cartSlice = createSlice({
     items: [],
     amount: 0,
     total: 0,
+    isVisible: false,
   },
   reducers: {
     addItem(state, action) {
@@ -45,6 +46,17 @@ const cartSlice = createSlice({
         state.total += item.price * item.amount;
         state.amount += item.amount;
       });
+    },
+    clearArray(state) {
+      state.items = [];
+      state.amount = 0;
+      state.total = 0;
+    },
+    toggleCart(state) {
+      state.isVisible = !state.isVisible;
+    },
+    hideCart(state) {
+      state.isVisible = false;
     },
   },
 });
