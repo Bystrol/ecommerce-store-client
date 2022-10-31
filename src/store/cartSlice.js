@@ -40,6 +40,20 @@ const cartSlice = createSlice({
       state.amount--;
       state.total = state.total - action.payload.price;
     },
+    changeSize(state, action) {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      existingItem.size = action.payload.size;
+    },
+    changeColor(state, action) {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      existingItem.color = action.payload.color;
+    },
     fetchItems(state, action) {
       state.items = action.payload;
       state.items.forEach((item) => {
