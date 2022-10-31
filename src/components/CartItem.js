@@ -5,8 +5,8 @@ import { cartActions } from "../store/cartSlice";
 import { useState } from "react";
 
 const CartItem = (props) => {
-  const [size, setSize] = useState(props.size);
-  const [color, setColor] = useState(props.color);
+  const size = props.size;
+  const color = props.color;
 
   const dispatch = useDispatch();
   const currency = useSelector((state) => state.currency.currency);
@@ -29,6 +29,36 @@ const CartItem = (props) => {
       cartActions.removeItem({
         id: props.id,
         price: props.price,
+      })
+    );
+  };
+
+  const changeSizeHandler = (btnSize) => {
+    dispatch(
+      cartActions.changeSize({
+        id: props.id,
+        key: props.id,
+        name: props.name,
+        price: props.price,
+        imageUrl: props.imageUrl,
+        amount: 1,
+        size: btnSize,
+        color: color,
+      })
+    );
+  };
+
+  const changeColorHandler = (btnColor) => {
+    dispatch(
+      cartActions.changeColor({
+        id: props.id,
+        key: props.id,
+        name: props.name,
+        price: props.price,
+        imageUrl: props.imageUrl,
+        amount: 1,
+        size: size,
+        color: btnColor,
       })
     );
   };
@@ -71,7 +101,7 @@ const CartItem = (props) => {
               name={props.id}
               id="xs"
               onClick={() => {
-                setSize("xs");
+                changeSizeHandler("xs");
               }}
               defaultChecked={size === "xs" ? true : false}
             ></input>
@@ -83,7 +113,7 @@ const CartItem = (props) => {
               name={props.id}
               id="s"
               onClick={() => {
-                setSize("s");
+                changeSizeHandler("s");
               }}
               defaultChecked={size === "s" ? true : false}
             ></input>
@@ -95,7 +125,7 @@ const CartItem = (props) => {
               name={props.id}
               id="m"
               onClick={() => {
-                setSize("m");
+                changeSizeHandler("m");
               }}
               defaultChecked={size === "m" ? true : false}
             ></input>
@@ -107,7 +137,7 @@ const CartItem = (props) => {
               name={props.id}
               id="l"
               onClick={() => {
-                setSize("l");
+                changeSizeHandler("l");
               }}
               defaultChecked={size === "l" ? true : false}
             ></input>
@@ -121,7 +151,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "brown" ? true : false}
             onClick={() => {
-              setColor("brown");
+              changeColorHandler("brown");
             }}
           />
           <input
@@ -129,7 +159,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "gray" ? true : false}
             onClick={() => {
-              setColor("gray");
+              changeColorHandler("gray");
             }}
           />
           <input
@@ -137,7 +167,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "black" ? true : false}
             onClick={() => {
-              setColor("black");
+              changeColorHandler("black");
             }}
           />
         </div>
