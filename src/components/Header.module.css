@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+.header .bar {
+  display: none;
+}
+
 .header .categories {
   display: flex;
   justify-content: flex-start;
@@ -64,13 +68,13 @@
   text-align: center;
 }
 
-.header .payment .down {
+.header .payment .currency .down {
   font-size: 1vh;
   margin-left: 0.3vw;
   transition: transform 0.2s linear;
 }
 
-.header .payment .rotated {
+.header .payment .currency .rotated {
   font-size: 1vh;
   margin-left: 0.3vw;
   transform: rotate(180deg);
@@ -122,7 +126,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 6vh;
   right: 9.2vw;
   margin: 0;
@@ -171,5 +175,63 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media (orientation: portrait) {
+  .header {
+    margin: 0 5vw;
+  }
+
+  .header .categories {
+    display: none;
+  }
+
+  .header .bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20vw;
+    font-size: 3vh;
+  }
+
+  .header .logo {
+    font-size: 3vh;
+  }
+
+  .header .payment .currency .sign {
+    font-size: 3vh;
+  }
+
+  .header .payment .currency .down {
+    font-size: 2vh;
+  }
+  .header .payment .currency .rotated {
+    font-size: 2vh;
+  }
+  .header .payment .cart {
+    font-size: 3vh;
+    margin-left: 3vw;
+  }
+  .header .payment .amount {
+    top: -35%;
+    right: -8%;
+    width: 2vh;
+    height: 2vh;
+    font-size: 1.8vh;
+  }
+  .header .list {
+    justify-content: center;
+    left: 0;
+    width: 100vw;
+    height: 94vh;
+  }
+  .header .list li {
+    height: 6vh;
+    font-size: 5vh;
+    margin-bottom: 4vh;
+  }
+  .header .list .sign {
+    margin-right: 2vw;
   }
 }
