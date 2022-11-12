@@ -6,6 +6,7 @@ import {
   faDollarSign,
   faEuroSign,
   faSterlingSign,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -26,7 +27,8 @@ library.add(
   faShirt,
   faDollarSign,
   faEuroSign,
-  faSterlingSign
+  faSterlingSign,
+  faBars
 );
 
 let isInitial = true;

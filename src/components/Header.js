@@ -67,12 +67,14 @@ const Header = (props) => {
 
   const Sign = () => {
     if (currency === "EUR") {
-      return <FontAwesomeIcon icon="fa-euro-sign" />;
+      return <FontAwesomeIcon icon="fa-euro-sign" className={classes.sign} />;
     } else if (currency === "GBP") {
-      return <FontAwesomeIcon icon="fa-sterling-sign" />;
+      return (
+        <FontAwesomeIcon icon="fa-sterling-sign" className={classes.sign} />
+      );
     }
 
-    return <FontAwesomeIcon icon="fa-dollar-sign" />;
+    return <FontAwesomeIcon icon="fa-dollar-sign" className={classes.sign} />;
   };
 
   const angleDownClass = isRotated ? classes.rotated : classes.down;
@@ -80,6 +82,9 @@ const Header = (props) => {
   return (
     <>
       <div className={classes.header}>
+        <div className={classes.bar}>
+          <FontAwesomeIcon icon="fa-solid fa-bars" />
+        </div>
         <div className={classes.categories}>
           <NavLink
             to="/women"

@@ -38,6 +38,7 @@
 }
 
 .item .details .size div {
+  position: relative;
   height: 2.4vh;
 }
 
@@ -79,10 +80,6 @@
   font-size: 1vh;
   font-weight: 600;
   pointer-events: none;
-}
-
-.item .details .size div {
-  position: relative;
 }
 
 .item .details .color {
@@ -155,4 +152,46 @@
 .item .image {
   width: 40%;
   height: 100%;
+}
+
+@media (orientation: portrait) {
+  .item {
+    height: 30vh;
+    min-height: 30vh;
+    width: calc(100% - 10vw);
+    margin: 2vh 5vw 0 5vw;
+  }
+  .item p {
+    font-size: 3vh;
+  }
+  .item .details .size div {
+    height: 4vh;
+  }
+  .item .details .size p {
+    font-size: 2.4vh;
+  }
+
+  .item .details .size input {
+    width: 4vh;
+    height: 4vh;
+  }
+  .item .details .size .size-p {
+    font-size: 2vh;
+  }
+  .item .details .color p {
+    font-size: 2.4vh;
+  }
+  .item .details .color input {
+    width: 3vh;
+    height: 3vh;
+    margin: 0 3vw 0 0;
+  }
+  .item .amount button {
+    width: 5vh;
+    height: 5vh;
+    font-size: 3vh;
+  }
+  .item .amount p {
+    font-size: 3vh;
+  }
 }
