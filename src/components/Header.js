@@ -44,6 +44,7 @@ const Header = (props) => {
 
     dispatch(cartActions.hideCart());
     setShowBackdrop(false);
+    setShowNav(false);
   };
 
   const hideCurrencyListHandler = () => {
@@ -65,12 +66,17 @@ const Header = (props) => {
 
     setShowCurrencyList(false);
     setIsRotated(false);
+    setShowNav(false);
   };
 
   const toggleNavHandler = () => {
     setShowNav((state) => {
       return !state;
     });
+    dispatch(cartActions.hideCart());
+    setShowBackdrop(false);
+    setShowCurrencyList(false);
+    setIsRotated(false);
   };
 
   const hideNavHandler = () => {
