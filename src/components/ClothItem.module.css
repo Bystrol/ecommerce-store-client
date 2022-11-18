@@ -29,6 +29,7 @@
   font-size: 2vh;
   font-weight: 600;
   text-transform: uppercase;
+  text-align: center;
   color: gray;
   margin: 0;
   top: 50%;
@@ -48,6 +49,9 @@
 }
 
 .item .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   align-self: flex-end;
   transform: translate(-30%, -50%);
   background-color: #52d67a;
@@ -65,6 +69,10 @@
   cursor: pointer;
 }
 
+.item .button .cart {
+  font-size: 2vh;
+}
+
 .item .name {
   align-self: flex-start;
   font-size: 1.6vh;
@@ -76,4 +84,27 @@
   font-size: 1.4vh;
   font-weight: 600;
   margin: 0;
+}
+
+@media (orientation: portrait) {
+  .item {
+    width: 90vw;
+    height: 90vw;
+  }
+  .item .image p {
+    font-size: 3.4vh;
+  }
+  .item .button {
+    width: 6vh;
+    height: 6vh;
+  }
+  .item .button .cart {
+    font-size: 3vh;
+  }
+  .item .name {
+    font-size: 3.2vh;
+  }
+  .item .price {
+    font-size: 2.4vh;
+  }
 }
