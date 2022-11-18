@@ -15,3 +15,16 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+@media (orientation: portrait) {
+  .body {
+    margin: 0;
+    padding: 0 5vw;
+    height: 92vh;
+    overflow: auto;
+  }
+  .body .items {
+    flex-direction: column;
+    align-items: center;
+  }
+}
