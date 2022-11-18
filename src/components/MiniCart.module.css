@@ -172,12 +172,12 @@
   }
   .cart .list {
     position: absolute;
-    top: 11vh;
+    top: 8vh;
     max-height: 62vh;
   }
   .cart .total {
     position: absolute;
-    bottom: 10vh;
+    bottom: 16vh;
   }
   .cart .total p {
     font-size: 3vh;
@@ -185,7 +185,7 @@
   }
   .cart .buttons {
     justify-content: space-between;
-    margin-bottom: 3vh;
+    margin-bottom: 10vh;
   }
   .cart .buttons button {
     width: 40%;
