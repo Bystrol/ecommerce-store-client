@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { currencyActions } from "../store/currencySlice";
 import { cartActions } from "../store/cartSlice";
 import MiniCart from "./MiniCart";
+import Navigation from "./Navigation";
+import { navigationActions } from "../store/navigationSlice";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);
@@ -65,6 +67,10 @@ const Header = (props) => {
     setIsRotated(false);
   };
 
+  const toggleNavHandler = () => {
+    dispatch(navigationActions.toggleNav());
+  };
+
   const Sign = () => {
     if (currency === "EUR") {
       return <FontAwesomeIcon icon="fa-euro-sign" className={classes.sign} />;
@@ -82,9 +88,10 @@ const Header = (props) => {
   return (
     <>
       <div className={classes.header}>
-        <div className={classes.bar}>
+        <div className={classes.bar} onClick={toggleNavHandler}>
           <FontAwesomeIcon icon="fa-solid fa-bars" />
         </div>
+        <Navigation />
         <div className={classes.categories}>
           <NavLink
             to="/women"
