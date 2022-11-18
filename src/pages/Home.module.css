@@ -32,6 +32,12 @@
 }
 
 @media (orientation: portrait) {
+  .body .background {
+    height: 92vh;
+  }
+  .body .layer {
+    height: 92vh;
+  }
   .body p {
     font-size: 5vh;
     text-shadow: 2px 2px #000;
