@@ -68,7 +68,10 @@ const ClothItem = (props) => {
           className={isAvailable ? classes.available : classes.notAvailable}
         />
       </div>
-      <div className={classes.button} onClick={addToCartHandler}>
+      <div
+        className={classes.button}
+        onClick={isAvailable ? addToCartHandler : null}
+      >
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </div>
       <p className={classes.name}>{props.name}</p>
