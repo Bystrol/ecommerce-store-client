@@ -152,12 +152,14 @@
 
 @media (orientation: portrait) {
   .empty {
+    top: 8vh;
     left: 0;
     width: 100vw;
     height: 94vh;
     font-size: 4vh;
   }
   .cart {
+    top: 8vh;
     left: 0;
     width: 100vw;
     height: 94vh;

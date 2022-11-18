@@ -181,6 +181,7 @@
 @media (orientation: portrait) {
   .header {
     margin: 0 5vw;
+    height: 8vh;
   }
 
   .header .categories {
@@ -192,39 +193,40 @@
     justify-content: flex-start;
     align-items: center;
     width: 20vw;
-    font-size: 3vh;
+    font-size: 5vh;
   }
 
   .header .logo {
-    font-size: 3vh;
+    font-size: 5vh;
   }
 
   .header .payment .currency .sign {
-    font-size: 3vh;
+    font-size: 5vh;
   }
 
   .header .payment .currency .down {
-    font-size: 2vh;
+    font-size: 3vh;
   }
   .header .payment .currency .rotated {
-    font-size: 2vh;
+    font-size: 3vh;
   }
   .header .payment .cart {
-    font-size: 3vh;
-    margin-left: 3vw;
+    font-size: 5vh;
+    margin-left: 4vw;
   }
   .header .payment .amount {
-    top: -35%;
-    right: -8%;
-    width: 2vh;
-    height: 2vh;
-    font-size: 1.8vh;
+    top: -25%;
+    right: -10%;
+    width: 3vh;
+    height: 3vh;
+    font-size: 2.4vh;
   }
   .header .list {
     justify-content: center;
+    top: 8vh;
     left: 0;
     width: 100vw;
-    height: 94vh;
+    height: 92vh;
   }
   .header .list li {
     height: 6vh;
@@ -233,5 +235,8 @@
   }
   .header .list .sign {
     margin-right: 2vw;
+  }
+  .backdrop {
+    display: none;
   }
 }
