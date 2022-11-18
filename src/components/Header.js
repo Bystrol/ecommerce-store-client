@@ -7,13 +7,13 @@ import { currencyActions } from "../store/currencySlice";
 import { cartActions } from "../store/cartSlice";
 import MiniCart from "./MiniCart";
 import Navigation from "./Navigation";
-import { navigationActions } from "../store/navigationSlice";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [btnBump, setBtnBump] = useState(false);
+  const [showNav, setShowNav] = useState(false);
 
   const currency = useSelector((state) => state.currency.currency);
   const amount = useSelector((state) => state.cart.amount);
@@ -68,7 +68,13 @@ const Header = (props) => {
   };
 
   const toggleNavHandler = () => {
-    dispatch(navigationActions.toggleNav());
+    setShowNav((state) => {
+      return !state;
+    });
+  };
+
+  const hideNavHandler = () => {
+    setShowNav(false);
   };
 
   const Sign = () => {
@@ -91,7 +97,7 @@ const Header = (props) => {
         <div className={classes.bar} onClick={toggleNavHandler}>
           <FontAwesomeIcon icon="fa-solid fa-bars" />
         </div>
-        <Navigation />
+        <Navigation show={showNav} onHide={hideNavHandler} />
         <div className={classes.categories}>
           <NavLink
             to="/women"

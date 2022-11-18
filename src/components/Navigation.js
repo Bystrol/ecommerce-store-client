@@ -1,20 +1,15 @@
 import classes from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { navigationActions } from "../store/navigationSlice";
 
 const Navigation = (props) => {
-  const navIsVisible = useSelector((state) => state.navigation.isVisible);
-  const dispatch = useDispatch();
-
   const hideNavHandler = () => {
-    dispatch(navigationActions.hideNav());
+    props.onHide();
   };
 
   return (
     <nav
       className={`${classes.navigation} ${
-        navIsVisible ? classes["nav-active"] : ""
+        props.show ? classes["nav-active"] : ""
       }`}
     >
       <ul>
