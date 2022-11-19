@@ -83,6 +83,14 @@ const Header = (props) => {
     setShowNav(false);
   };
 
+  const hideAllHandler = () => {
+    dispatch(cartActions.hideCart());
+    setShowBackdrop(false);
+    setShowCurrencyList(false);
+    setIsRotated(false);
+    setShowNav(false);
+  };
+
   const Sign = () => {
     if (currency === "EUR") {
       return <FontAwesomeIcon icon="fa-euro-sign" className={classes.sign} />;
@@ -100,8 +108,8 @@ const Header = (props) => {
   return (
     <>
       <div className={classes.header}>
-        <div className={classes.bar} onClick={toggleNavHandler}>
-          <FontAwesomeIcon icon="fa-solid fa-bars" />
+        <div className={classes.bar}>
+          <FontAwesomeIcon icon="fa-solid fa-bars" onClick={toggleNavHandler} />
         </div>
         <Navigation show={showNav} onHide={hideNavHandler} />
         <div className={classes.categories}>
@@ -131,7 +139,11 @@ const Header = (props) => {
           </NavLink>
         </div>
         <Link to="/home">
-          <FontAwesomeIcon icon="fa-shirt" className={classes.logo} />
+          <FontAwesomeIcon
+            icon="fa-shirt"
+            className={classes.logo}
+            onClick={hideAllHandler}
+          />
         </Link>
         <div className={classes.payment}>
           <div className={classes.currency} onClick={toggleCurrencyListHandler}>
