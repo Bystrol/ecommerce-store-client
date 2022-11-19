@@ -185,3 +185,88 @@
   text-transform: none;
   line-height: 2.4vh;
 }
+
+@media (orientation: portrait) {
+  .body {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 5vw;
+    margin-top: 3vh;
+    height: 0;
+  }
+  .main {
+    height: 0;
+  }
+  .body .images {
+    display: flex;
+    flex-direction: column;
+  }
+  .body .leftSection {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    margin-bottom: 3vh;
+  }
+  .body .leftSection .image {
+    width: 25vw;
+    height: 25vw;
+  }
+  .body .centerSection {
+    width: 90vw;
+    height: 90vw;
+  }
+  .body .rightSection {
+    width: 60vw;
+    height: 0;
+  }
+  .body .rightSection p {
+    font-size: 2vh;
+  }
+  .body .rightSection .name {
+    font-size: 4vh;
+    margin: 3vh 0;
+  }
+  .body .rightSection .size {
+    margin-bottom: 3vh;
+  }
+
+  .body .rightSection .size input {
+    width: 12vw;
+    height: 5vh;
+  }
+  .body .rightSection .size label {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vh;
+  }
+  .body .rightSection .size div {
+    position: relative;
+    width: 12vw;
+    height: 5vh;
+  }
+  .body .rightSection .color {
+    margin-bottom: 3vh;
+  }
+  .body .rightSection .color input {
+    width: 5vh;
+    height: 5vh;
+    margin: 0 4vw 0 0;
+  }
+  .body .rightSection .price {
+    font-size: 2.6vh;
+    margin-bottom: 3vh;
+  }
+  .body .rightSection button {
+    width: calc(15vh + 8vw);
+    height: 7vh;
+    font-size: 2vh;
+    padding: 2vh 0;
+    margin-bottom: 3vh;
+  }
+  .body .rightSection .description {
+    font-size: 2vh;
+    width: 90vw;
+    padding-bottom: 3vh;
+  }
+}
