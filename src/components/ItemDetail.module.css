@@ -187,6 +187,10 @@
 }
 
 @media (orientation: portrait) {
+  .main {
+    height: 92vh;
+    overflow: auto;
+  }
   .body {
     flex-direction: column;
     width: 100%;
@@ -194,9 +198,7 @@
     margin-top: 3vh;
     height: 0;
   }
-  .main {
-    height: 0;
-  }
+
   .body .images {
     display: flex;
     flex-direction: column;
