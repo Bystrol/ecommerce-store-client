@@ -152,6 +152,7 @@
 
 @media (orientation: portrait) {
   .cart {
+    position: absolute;
     top: 8vh;
     left: 0;
     width: 100vw;
