@@ -91,12 +91,27 @@
     width: 90vw;
     height: 90vw;
   }
+  .item:hover {
+    box-shadow: none;
+    scale: 1;
+  }
+  .item:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    scale: 1.01;
+  }
   .item .image p {
     font-size: 3.4vh;
   }
   .item .button {
     width: 6vh;
     height: 6vh;
+  }
+  .item .button:hover {
+    scale: 1;
+  }
+  .item .button:active {
+    scale: 1.2;
+    cursor: pointer;
   }
   .item .button .cart {
     font-size: 3vh;

@@ -175,6 +175,12 @@
     width: 4vh;
     height: 4vh;
   }
+  .item .details .size input:hover {
+    box-shadow: none;
+  }
+  .item .details .size input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   .item .details .size .size-p {
     font-size: 2vh;
   }
@@ -186,10 +192,22 @@
     height: 3vh;
     margin: 0 3vw 0 0;
   }
+  .item .details .color input:hover {
+    box-shadow: none;
+  }
+  .item .details .color input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   .item .amount button {
     width: 5vh;
     height: 5vh;
     font-size: 3vh;
+  }
+  .item .amount button:hover {
+    box-shadow: none;
+  }
+  .item .amount button:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .item .amount p {
     font-size: 3vh;

@@ -195,9 +195,18 @@
     width: 20vw;
     font-size: 5vh;
   }
+  .header .bar:active {
+    color: #52d67a;
+  }
 
   .header .logo {
     font-size: 5vh;
+  }
+  .header .logo:hover {
+    scale: 1;
+  }
+  .header .logo:active {
+    scale: 1.4;
   }
 
   .header .payment .currency .sign {
@@ -210,9 +219,22 @@
   .header .payment .currency .rotated {
     font-size: 3vh;
   }
+  .header .payment .currency:hover {
+    color: #000;
+  }
+  .header .payment .currency:active {
+    color: #52d67a;
+  }
   .header .payment .cart {
     font-size: 5vh;
     margin-left: 4vw;
+  }
+  .header .payment .cart:hover {
+    color: #000;
+  }
+  .header .payment .cart:active {
+    color: #52d67a;
+    cursor: pointer;
   }
   .header .payment .amount {
     top: -25%;
@@ -232,6 +254,12 @@
     height: 6vh;
     font-size: 5vh;
     margin-bottom: 4vh;
+  }
+  .header .list li:hover {
+    background-color: #fff;
+  }
+  .header .list li:active {
+    background-color: rgb(235, 229, 229);
   }
   .header .list .sign {
     margin-right: 2vw;

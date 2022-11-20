@@ -213,6 +213,14 @@
     width: 25vw;
     height: 25vw;
   }
+  .body .leftSection .image:hover {
+    scale: 1;
+    box-shadow: none;
+  }
+  .body .leftSection .image:active {
+    scale: 1.05;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   .body .centerSection {
     width: 90vw;
     height: 90vw;
@@ -236,6 +244,12 @@
     width: 12vw;
     height: 5vh;
   }
+  .body .rightSection .size input:hover {
+    box-shadow: none;
+  }
+  .body .rightSection .size input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   .body .rightSection .size label {
     top: 50%;
     left: 50%;
@@ -255,6 +269,12 @@
     height: 5vh;
     margin: 0 4vw 0 0;
   }
+  .body .rightSection .color input:hover {
+    box-shadow: none;
+  }
+  .body .rightSection .color input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   .body .rightSection .price {
     font-size: 2.6vh;
     margin-bottom: 3vh;
@@ -265,6 +285,12 @@
     font-size: 2vh;
     padding: 2vh 0;
     margin-bottom: 3vh;
+  }
+  .body .rightSection button:hover {
+    box-shadow: none;
+  }
+  .body .rightSection button:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .body .rightSection .description {
     font-size: 2vh;
