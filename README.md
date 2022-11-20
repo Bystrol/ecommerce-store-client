@@ -1,5 +1,3 @@
-# PROJECT IS STILL IN PRODUCTION
-
 # Online clothing store
 
 ## Description
