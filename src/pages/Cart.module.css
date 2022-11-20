@@ -1,6 +1,5 @@
 .cart {
   box-sizing: border-box;
-  /* height: 72vh; */
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -165,5 +164,40 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media (orientation: portrait) {
+  .cart {
+    margin: 0 5vw;
+  }
+  .cart .list::-webkit-scrollbar {
+    width: 2vw;
+  }
+  .cart .summary p {
+    font-size: 2vh;
+  }
+  .cart .summary .values {
+    margin-left: 2vw;
+  }
+  .cart button {
+    width: 50%;
+    height: 4vh;
+    font-size: 1.4vh;
+  }
+  .cart button:hover {
+    box-shadow: none;
+  }
+  .cart button:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .emptyCart {
+    height: 92vh;
+    margin: 0 5vw;
+  }
+  .modal {
+    width: 70%;
+    text-align: center;
+    padding: 0 5vw;
   }
 }

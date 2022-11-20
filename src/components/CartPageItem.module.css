@@ -176,3 +176,48 @@
   width: 75%;
   height: 100%;
 }
+
+@media (orientation: portrait) {
+  .item .details {
+    width: 55%;
+  }
+  .item .details .price {
+    font-size: 2vh;
+  }
+  .item .details .size p {
+    font-size: 1.6vh;
+  }
+  .item .details .size input:hover {
+    box-shadow: none;
+  }
+  .item .details .size input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .item .details .color p {
+    font-size: 1.6vh;
+  }
+  .item .details .color input {
+    width: 3vh;
+    height: 3vh;
+    margin: 0 3vw 0 0;
+  }
+
+  .item .details .color input:hover {
+    box-shadow: none;
+  }
+  .item .details .color input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .item .right {
+    width: 35%;
+  }
+  .item .right .amount button:hover {
+    box-shadow: none;
+  }
+  .item .right .amount button:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .item .right .amount p {
+    font-size: 2.4vh;
+  }
+}
