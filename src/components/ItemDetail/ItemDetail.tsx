@@ -1,7 +1,7 @@
 import classes from "./ItemDetail.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cartActions } from "../store/cartSlice";
+import { cartActions } from "../../store/cartSlice";
 import { useState } from "react";
 
 const ItemDetail = (props) => {

@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { currencyActions } from "../store/currencySlice";
-import { cartActions } from "../store/cartSlice";
-import MiniCart from "./MiniCart";
-import Navigation from "./Navigation";
+import { currencyActions } from "../../store/currencySlice";
+import { cartActions } from "../../store/cartSlice";
+import MiniCart from "../MiniCart/MiniCart";
+import Navigation from "../Navigation/Navigation";
 
 const Header = (props) => {
   const [showCurrencyList, setShowCurrencyList] = useState(false);

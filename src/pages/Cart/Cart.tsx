@@ -3,7 +3,7 @@ import CartPageItem from "../components/CartPageItem";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { cartActions } from "../store/cartSlice";
+import { cartActions } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
