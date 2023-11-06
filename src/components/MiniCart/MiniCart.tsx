@@ -1,6 +1,6 @@
 import classes from "./MiniCart.module.css";
 import CartItem from "./CartItem";
-import { cartActions } from "../store/cartSlice";
+import { cartActions } from "../../store/cartSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux/es/exports";

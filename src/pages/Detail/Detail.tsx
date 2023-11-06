@@ -1,9 +1,9 @@
-import { fetchDetailData } from "../api/getData";
+import { fetchDetailData } from "../../api/getData";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import ItemDetail from "../components/ItemDetail";
-import { categoryActions } from "../store/categorySlice";
+import { categoryActions } from "../../store/categorySlice";
 
 const Detail = () => {
   const itemId = useParams("id").id;

@@ -2,7 +2,7 @@ import classes from "./ClothItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { cartActions } from "../store/cartSlice";
+import { cartActions } from "../../store/cartSlice";
 
 const ClothItem = (props) => {
   const navigate = useNavigate();

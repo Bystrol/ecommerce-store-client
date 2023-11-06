@@ -10,11 +10,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes, Navigate } from "react-router-dom";
 
-import Header from "./components/Header";
-import Category from "./pages/Category";
-import Home from "../src/pages/Home";
-import Detail from "./pages/Detail";
-import Cart from "./pages/Cart";
+import Header from "./components/Header/Header";
+import Category from "./pages/Category/Category";
+import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
+import Cart from "./pages/Cart/Cart";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendCartData } from "./api/sendData";
