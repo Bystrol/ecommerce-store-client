@@ -1,115 +1,123 @@
-import classes from "./Header.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { currencyActions } from "../../store/currencySlice";
-import { cartActions } from "../../store/cartSlice";
-import MiniCart from "../MiniCart/MiniCart";
-import Navigation from "../Navigation/Navigation";
+import classes from "./Header.module.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { NavLink, Link } from "react-router-dom"
+import { PropsWithChildren, useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { currencyActions } from "../../store/currencySlice"
+import { cartActions } from "../../store/cartSlice"
+import MiniCart from "../MiniCart/MiniCart"
+import Navigation from "../Navigation/Navigation"
 
-const Header = (props) => {
-  const [showCurrencyList, setShowCurrencyList] = useState(false);
-  const [isRotated, setIsRotated] = useState(false);
-  const [showBackdrop, setShowBackdrop] = useState(false);
-  const [btnBump, setBtnBump] = useState(false);
-  const [showNav, setShowNav] = useState(false);
+const Header = (props: PropsWithChildren) => {
+  const [showCurrencyList, setShowCurrencyList] = useState<boolean>(false)
+  const [isRotated, setIsRotated] = useState<boolean>(false)
+  const [showBackdrop, setShowBackdrop] = useState<boolean>(false)
+  const [btnBump, setBtnBump] = useState<boolean>(false)
+  const [showNav, setShowNav] = useState<boolean>(false)
 
-  const currency = useSelector((state) => state.currency.currency);
-  const amount = useSelector((state) => state.cart.amount);
-  const items = useSelector((state) => state.cart.items);
-  const isVisible = useSelector((state) => state.cart.isVisible);
-  const dispatch = useDispatch();
+  const currency = useAppSelector((state) => state.currency.currency)
+  const amount = useAppSelector((state) => state.cart.amount)
+  const items = useAppSelector((state) => state.cart.items)
+  const isVisible = useAppSelector((state) => state.cart.isVisible)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    setBtnBump(true);
+    setBtnBump(true)
 
     const timer = setTimeout(() => {
-      setBtnBump(false);
-    }, 500);
+      setBtnBump(false)
+    }, 500)
 
     return () => {
-      clearTimeout(timer);
-    };
-  }, [items]);
+      clearTimeout(timer)
+    }
+  }, [items])
 
   const toggleCurrencyListHandler = () => {
     setShowCurrencyList((state) => {
-      return !state;
-    });
+      return !state
+    })
 
     setIsRotated((state) => {
-      return !state;
-    });
+      return !state
+    })
 
-    dispatch(cartActions.hideCart());
-    setShowBackdrop(false);
-    setShowNav(false);
-  };
+    dispatch(cartActions.hideCart())
+    setShowBackdrop(false)
+    setShowNav(false)
+  }
 
   const hideCurrencyListHandler = () => {
-    setShowCurrencyList(false);
-    setIsRotated(false);
-  };
+    setShowCurrencyList(false)
+    setIsRotated(false)
+  }
 
-  const setCurrencyHandler = (e) => {
-    localStorage.setItem("currency", e.target.textContent);
-    dispatch(currencyActions.setCurrency(e.target.textContent));
-  };
+  const setCurrencyHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    const target = e.target as HTMLLIElement
+    localStorage.setItem("currency", target.textContent || "")
+    dispatch(currencyActions.setCurrency(target.textContent || ""))
+  }
 
   const toggleCartHandler = () => {
-    dispatch(cartActions.toggleCart());
+    dispatch(cartActions.toggleCart())
 
     setShowBackdrop((state) => {
-      return !state;
-    });
+      return !state
+    })
 
-    setShowCurrencyList(false);
-    setIsRotated(false);
-    setShowNav(false);
-  };
+    setShowCurrencyList(false)
+    setIsRotated(false)
+    setShowNav(false)
+  }
 
   const toggleNavHandler = () => {
     setShowNav((state) => {
-      return !state;
-    });
-    dispatch(cartActions.hideCart());
-    setShowBackdrop(false);
-    setShowCurrencyList(false);
-    setIsRotated(false);
-  };
+      return !state
+    })
+    dispatch(cartActions.hideCart())
+    setShowBackdrop(false)
+    setShowCurrencyList(false)
+    setIsRotated(false)
+  }
 
   const hideNavHandler = () => {
-    setShowNav(false);
-  };
+    setShowNav(false)
+  }
 
   const hideAllHandler = () => {
-    dispatch(cartActions.hideCart());
-    setShowBackdrop(false);
-    setShowCurrencyList(false);
-    setIsRotated(false);
-    setShowNav(false);
-  };
+    dispatch(cartActions.hideCart())
+    setShowBackdrop(false)
+    setShowCurrencyList(false)
+    setIsRotated(false)
+    setShowNav(false)
+  }
 
   const Sign = () => {
     if (currency === "EUR") {
-      return <FontAwesomeIcon icon="fa-euro-sign" className={classes.sign} />;
+      return (
+        <FontAwesomeIcon icon={["fas", "euro-sign"]} className={classes.sign} />
+      )
     } else if (currency === "GBP") {
       return (
-        <FontAwesomeIcon icon="fa-sterling-sign" className={classes.sign} />
-      );
+        <FontAwesomeIcon
+          icon={["fas", "sterling-sign"]}
+          className={classes.sign}
+        />
+      )
     }
 
-    return <FontAwesomeIcon icon="fa-dollar-sign" className={classes.sign} />;
-  };
+    return (
+      <FontAwesomeIcon icon={["fas", "dollar-sign"]} className={classes.sign} />
+    )
+  }
 
-  const angleDownClass = isRotated ? classes.rotated : classes.down;
+  const angleDownClass = isRotated ? classes.rotated : classes.down
 
   return (
     <>
       <div className={classes.header}>
         <div className={classes.bar}>
-          <FontAwesomeIcon icon="fa-solid fa-bars" onClick={toggleNavHandler} />
+          <FontAwesomeIcon icon={["fas", "bars"]} onClick={toggleNavHandler} />
         </div>
         <Navigation show={showNav} onHide={hideNavHandler} />
         <div className={classes.categories}>
@@ -140,7 +148,7 @@ const Header = (props) => {
         </div>
         <Link to="/home">
           <FontAwesomeIcon
-            icon="fa-shirt"
+            icon={["fas", "shirt"]}
             className={classes.logo}
             onClick={hideAllHandler}
           />
@@ -162,16 +170,22 @@ const Header = (props) => {
         {showCurrencyList && (
           <ul className={classes.list} onClick={toggleCurrencyListHandler}>
             <li onClick={setCurrencyHandler}>
-              <FontAwesomeIcon icon="fa-dollar-sign" className={classes.sign} />
+              <FontAwesomeIcon
+                icon={["fas", "dollar-sign"]}
+                className={classes.sign}
+              />
               USD
             </li>
             <li onClick={setCurrencyHandler}>
-              <FontAwesomeIcon icon="fa-euro-sign" className={classes.sign} />
+              <FontAwesomeIcon
+                icon={["fas", "euro-sign"]}
+                className={classes.sign}
+              />
               EUR
             </li>
             <li onClick={setCurrencyHandler}>
               <FontAwesomeIcon
-                icon="fa-sterling-sign"
+                icon={["fas", "sterling-sign"]}
                 className={classes.sign}
               />
               GBP
@@ -191,7 +205,7 @@ const Header = (props) => {
         <div className={classes.backdrop} onClick={toggleCartHandler} />
       )}
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

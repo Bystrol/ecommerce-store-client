@@ -1,22 +1,22 @@
-import { fetchDetailData } from "../../api/getData";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import ItemDetail from "../components/ItemDetail";
-import { categoryActions } from "../../store/categorySlice";
+import { fetchDetailData } from "../../api/getData"
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useParams } from "react-router"
+import ItemDetail from "../../components/ItemDetail/ItemDetail"
+import { categoryActions } from "../../store/categorySlice"
 
 const Detail = () => {
-  const itemId = useParams("id").id;
-  const category = useParams("category").category;
+  const itemId = useParams().id || ""
+  const category = useParams().category || ""
 
-  const clickedItem = useSelector((state) => state.detail.item);
+  const clickedItem = useAppSelector((state) => state.detail.item)
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchDetailData(category, itemId));
-    dispatch(categoryActions.clearArray());
-  }, []);
+    dispatch(fetchDetailData(category, itemId))
+    dispatch(categoryActions.clearArray())
+  }, [category, dispatch, itemId])
 
   return (
     <>
@@ -30,10 +30,10 @@ const Detail = () => {
             price={item.price}
             description={item.description}
           />
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail
