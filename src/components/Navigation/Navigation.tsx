@@ -1,10 +1,15 @@
-import classes from "./Navigation.module.css";
-import { NavLink } from "react-router-dom";
+import classes from "./Navigation.module.css"
+import { NavLink } from "react-router-dom"
 
-const Navigation = (props) => {
+type NavigationProps = {
+  show: boolean
+  onHide: () => void
+}
+
+const Navigation = (props: NavigationProps) => {
   const hideNavHandler = () => {
-    props.onHide();
-  };
+    props.onHide()
+  }
 
   return (
     <nav
@@ -45,7 +50,7 @@ const Navigation = (props) => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

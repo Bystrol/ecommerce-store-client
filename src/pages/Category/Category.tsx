@@ -1,21 +1,21 @@
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import ClothItem from "../components/ClothItem";
-import classes from "./Category.module.css";
-import { fetchCategoryData } from "../../api/getData";
-import { detailActions } from "../../store/detailSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useEffect } from "react"
+import { useParams } from "react-router"
+import ClothItem from "../../components/ClothItem/ClothItem"
+import classes from "./Category.module.css"
+import { fetchCategoryData } from "../../api/getData"
+import { detailActions } from "../../store/detailSlice"
 
 const Category = () => {
-  const items = useSelector((state) => state.category.items);
-  const category = useParams("category").category;
+  const items = useAppSelector((state) => state.category.items)
+  const category = useParams().category || ""
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchCategoryData(category));
-    dispatch(detailActions.clearArray());
-  }, [category]);
+    dispatch(fetchCategoryData(category))
+    dispatch(detailActions.clearArray())
+  }, [category, dispatch])
 
   return (
     <div className={classes.body}>
@@ -30,12 +30,13 @@ const Category = () => {
               name={item.name}
               price={item.price}
               isAvailable={item.isAvailable}
+              description={item.description}
             />
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

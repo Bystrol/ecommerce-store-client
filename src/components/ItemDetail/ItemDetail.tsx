@@ -1,15 +1,24 @@
-import classes from "./ItemDetail.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cartActions } from "../../store/cartSlice";
-import { useState } from "react";
+import classes from "./ItemDetail.module.css"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { cartActions } from "../../store/cartSlice"
+import { useState } from "react"
 
-const ItemDetail = (props) => {
-  const [size, setSize] = useState("xs");
-  const [color, setColor] = useState("brown");
+type ItemDetailProps = {
+  key: string
+  id: string
+  imageUrl: string
+  name: string
+  price: number
+  description: string
+}
 
-  const currency = useSelector((state) => state.currency.currency);
-  const dispatch = useDispatch();
+const ItemDetail = (props: ItemDetailProps) => {
+  const [size, setSize] = useState<string>("xs")
+  const [color, setColor] = useState<string>("brown")
+
+  const currency = useAppSelector((state) => state.currency.currency)
+  const dispatch = useAppDispatch()
 
   const addToCartHandler = () => {
     dispatch(
@@ -23,33 +32,33 @@ const ItemDetail = (props) => {
         size: size,
         color: color,
       })
-    );
-  };
+    )
+  }
 
   const Price = () => {
     if (currency === "EUR") {
       return (
         <>
-          <FontAwesomeIcon icon="fa-euro-sign" />
+          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
           {(props.price * 1.025).toFixed(2)}
         </>
-      );
+      )
     } else if (currency === "GBP") {
       return (
         <>
-          <FontAwesomeIcon icon="fa-sterling-sign" />
+          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
           {(props.price * 0.8985).toFixed(2)}
         </>
-      );
+      )
     }
 
     return (
       <>
-        <FontAwesomeIcon icon="fa-dollar-sign" />
+        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
         {props.price}
       </>
-    );
-  };
+    )
+  }
 
   return (
     <div className={classes.main}>
@@ -81,7 +90,7 @@ const ItemDetail = (props) => {
                 id="xs"
                 defaultChecked
                 onClick={() => {
-                  setSize("xs");
+                  setSize("xs")
                 }}
               ></input>
               <label htmlFor="xs">xs</label>
@@ -92,7 +101,7 @@ const ItemDetail = (props) => {
                 name="size"
                 id="s"
                 onClick={() => {
-                  setSize("s");
+                  setSize("s")
                 }}
               ></input>
               <label htmlFor="s">s</label>
@@ -103,7 +112,7 @@ const ItemDetail = (props) => {
                 name="size"
                 id="m"
                 onClick={() => {
-                  setSize("m");
+                  setSize("m")
                 }}
               ></input>
               <label htmlFor="m">m</label>
@@ -114,7 +123,7 @@ const ItemDetail = (props) => {
                 name="size"
                 id="l"
                 onClick={() => {
-                  setSize("l");
+                  setSize("l")
                 }}
               ></input>
               <label htmlFor="l">l</label>
@@ -127,21 +136,21 @@ const ItemDetail = (props) => {
               name="color"
               defaultChecked
               onClick={() => {
-                setColor("brown");
+                setColor("brown")
               }}
             />
             <input
               type="radio"
               name="color"
               onClick={() => {
-                setColor("gray");
+                setColor("gray")
               }}
             />
             <input
               type="radio"
               name="color"
               onClick={() => {
-                setColor("black");
+                setColor("black")
               }}
             />
           </div>
@@ -154,7 +163,7 @@ const ItemDetail = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ItemDetail;
+export default ItemDetail

@@ -1,19 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
+import { DetailItem } from "../types/product"
+
+type InitialStateData = {
+  item: DetailItem[]
+}
+
+const initialState: InitialStateData = {
+  item: [],
+}
 
 const detailSlice = createSlice({
   name: "detail",
-  initialState: {
-    item: [],
-  },
+  initialState,
   reducers: {
     setItem(state, action) {
-      state.item = action.payload;
+      state.item = action.payload
     },
     clearArray(state) {
-      state.item = [];
+      state.item = []
     },
   },
-});
+})
 
-export default detailSlice;
-export const detailActions = detailSlice.actions;
+export default detailSlice
+export const detailActions = detailSlice.actions

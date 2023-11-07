@@ -1,67 +1,72 @@
-import classes from "./MiniCart.module.css";
-import CartItem from "./CartItem";
-import { cartActions } from "../../store/cartSlice";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classes from "./MiniCart.module.css"
+import CartItem from "../CartItem/CartItem"
+import { cartActions } from "../../store/cartSlice"
+import { useState } from "react"
+import { useNavigate } from "react-router"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const MiniCart = (props) => {
-  const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+type MiniCartProps = {
+  onViewCart: () => void
+  onCheckout: () => void
+}
 
-  const amount = useSelector((state) => state.cart.amount);
-  const total = useSelector((state) => state.cart.total);
-  const currency = useSelector((state) => state.currency.currency);
-  const items = useSelector((state) => state.cart.items);
+const MiniCart = (props: MiniCartProps) => {
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-  const itemsArrayIsEmpty = items.length === 0;
+  const amount = useAppSelector((state) => state.cart.amount)
+  const total = useAppSelector((state) => state.cart.total)
+  const currency = useAppSelector((state) => state.currency.currency)
+  const items = useAppSelector((state) => state.cart.items)
+
+  const itemsArrayIsEmpty = items.length === 0
 
   const openCartPageHandler = () => {
-    navigate("/cart");
-    props.onViewCart();
-  };
+    navigate("/cart")
+    props.onViewCart()
+  }
 
   const Total = () => {
     if (currency === "EUR") {
       return (
         <>
-          <FontAwesomeIcon icon="fa-euro-sign" />
+          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
           {(total * 1.025).toFixed(2)}
         </>
-      );
+      )
     } else if (currency === "GBP") {
       return (
         <>
-          <FontAwesomeIcon icon="fa-sterling-sign" />
+          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
           {(total * 0.8985).toFixed(2)}
         </>
-      );
+      )
     }
 
     return (
       <>
-        <FontAwesomeIcon icon="fa-dollar-sign" />
+        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
         {total.toFixed(2)}
       </>
-    );
-  };
+    )
+  }
 
   const checkoutHandler = () => {
-    setShowModal(true);
+    setShowModal(true)
 
     const timer = setTimeout(() => {
-      setShowModal(false);
-      dispatch(cartActions.clearArray());
-      props.onCheckout();
-      navigate("/home");
-    }, 3000);
+      setShowModal(false)
+      dispatch(cartActions.clearArray())
+      props.onCheckout()
+      navigate("/home")
+    }, 3000)
 
     return () => {
-      clearTimeout(timer);
-    };
-  };
+      clearTimeout(timer)
+    }
+  }
 
   return (
     <>
@@ -85,7 +90,7 @@ const MiniCart = (props) => {
                   size={item.size}
                   color={item.color}
                 />
-              );
+              )
             })}
           </ul>
           <div className={classes.total}>
@@ -113,7 +118,7 @@ const MiniCart = (props) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default MiniCart;
+export default MiniCart

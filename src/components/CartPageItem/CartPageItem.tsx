@@ -1,15 +1,17 @@
-import classes from "./CartPageItem.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cartActions } from "../../store/cartSlice";
-import { useState } from "react";
+import classes from "./CartPageItem.module.css"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { cartActions } from "../../store/cartSlice"
+import { useState } from "react"
+import { CartItem } from "../../types/product"
 
-const CartItem = (props) => {
-  const [size, setSize] = useState(props.size);
-  const [color, setColor] = useState(props.color);
+type CartPageItemProps = CartItem
 
-  const dispatch = useDispatch();
-  const currency = useSelector((state) => state.currency.currency);
+const CartPageItem = (props: CartPageItemProps) => {
+  const [size, setSize] = useState<string>(props.size)
+  const [color, setColor] = useState<string>(props.color)
+
+  const dispatch = useAppDispatch()
+  const currency = useAppSelector((state) => state.currency.currency)
 
   const addToCartHandler = () => {
     dispatch(
@@ -21,8 +23,8 @@ const CartItem = (props) => {
         imageUrl: props.imageUrl,
         amount: 1,
       })
-    );
-  };
+    )
+  }
 
   const removeFromCartHandler = () => {
     dispatch(
@@ -30,39 +32,21 @@ const CartItem = (props) => {
         id: props.id,
         price: props.price,
       })
-    );
-  };
+    )
+  }
 
-  const Price = () => {
-    if (currency === "EUR") {
-      return (
-        <>
-          <FontAwesomeIcon icon="fa-euro-sign" />
-          {(props.price * 1.025).toFixed(2)}
-        </>
-      );
-    } else if (currency === "GBP") {
-      return (
-        <>
-          <FontAwesomeIcon icon="fa-sterling-sign" />
-          {(props.price * 0.8985).toFixed(2)}
-        </>
-      );
-    }
-
-    return (
-      <>
-        <FontAwesomeIcon icon="fa-dollar-sign" />
-        {props.price}
-      </>
-    );
-  };
+  const price =
+    currency === "EUR"
+      ? `€${(props.price * 1.025).toFixed(2)}`
+      : currency === "GBP"
+      ? `£${(props.price * 0.8985).toFixed(2)}`
+      : `$${props.price}`
 
   return (
     <li className={classes.item}>
       <div className={classes.details}>
         <p className={classes.name}>{props.name}</p>
-        <p className={classes.price}>{<Price />}</p>
+        <p className={classes.price}>{price}</p>
         <div className={classes.size}>
           <p>Size:</p>
           <div>
@@ -71,7 +55,7 @@ const CartItem = (props) => {
               name={props.id}
               id="xs"
               onClick={() => {
-                setSize("xs");
+                setSize("xs")
               }}
               defaultChecked={size === "xs" ? true : false}
             ></input>
@@ -83,7 +67,7 @@ const CartItem = (props) => {
               name={props.id}
               id="s"
               onClick={() => {
-                setSize("s");
+                setSize("s")
               }}
               defaultChecked={size === "s" ? true : false}
             ></input>
@@ -95,7 +79,7 @@ const CartItem = (props) => {
               name={props.id}
               id="m"
               onClick={() => {
-                setSize("m");
+                setSize("m")
               }}
               defaultChecked={size === "m" ? true : false}
             ></input>
@@ -107,7 +91,7 @@ const CartItem = (props) => {
               name={props.id}
               id="l"
               onClick={() => {
-                setSize("l");
+                setSize("l")
               }}
               defaultChecked={size === "l" ? true : false}
             ></input>
@@ -121,7 +105,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "brown" ? true : false}
             onClick={() => {
-              setColor("brown");
+              setColor("brown")
             }}
           />
           <input
@@ -129,7 +113,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "gray" ? true : false}
             onClick={() => {
-              setColor("gray");
+              setColor("gray")
             }}
           />
           <input
@@ -137,7 +121,7 @@ const CartItem = (props) => {
             name={props.name}
             defaultChecked={color === "black" ? true : false}
             onClick={() => {
-              setColor("black");
+              setColor("black")
             }}
           />
         </div>
@@ -161,7 +145,7 @@ const CartItem = (props) => {
         ></div>
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartPageItem
