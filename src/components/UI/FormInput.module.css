@@ -1,0 +1,29 @@
+.label {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.input {
+  all: unset;
+  height: 3.4vh;
+  border: 1px solid #52d67a;
+  border-radius: 8px;
+  padding: 1px 10px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-width: 2px;
+}
+
+.input--invalid {
+  border-color: rgb(164, 13, 13);
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.p {
+  margin: 0;
+  font-size: 12px;
+  color: rgb(164, 13, 13);
+}
