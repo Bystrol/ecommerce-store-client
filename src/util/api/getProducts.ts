@@ -1,8 +1,8 @@
-import { categoryActions } from "../store/categorySlice"
-import { detailActions } from "../store/detailSlice"
-import { cartActions } from "../store/cartSlice"
-import { AppDispatch } from "../store"
-import { CartItem, CategoryItem, DetailItem } from "../types/product"
+import { categoryActions } from "../../store/categorySlice"
+import { detailActions } from "../../store/detailSlice"
+import { cartActions } from "../../store/cartSlice"
+import { AppDispatch } from "../../store"
+import { CartItem, CategoryItem, DetailItem } from "../../types/product"
 
 export const fetchCategoryData = (category: string) => {
   return async (dispatch: AppDispatch) => {
