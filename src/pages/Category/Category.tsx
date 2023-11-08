@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router"
 import ClothItem from "../../components/ClothItem/ClothItem"
 import classes from "./Category.module.css"
-import { fetchCategoryData } from "../../api/getData"
+import { fetchCategoryData } from "../../util/api/getProducts"
 import { detailActions } from "../../store/detailSlice"
 
 const Category = () => {
