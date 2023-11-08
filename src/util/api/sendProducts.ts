@@ -1,4 +1,4 @@
-import { CartItem } from "../types/product"
+import { CartItem } from "../../types/product"
 
 export const sendCartData = async (items: CartItem[]) => {
   try {
