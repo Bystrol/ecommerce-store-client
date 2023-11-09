@@ -1,28 +1,38 @@
-export type FormData = {
-  username: string
+export type LoginFormData = {
   email: string
   password: string
-  confirmPassword: string
   isInvalid: {
-    username: boolean
     email: boolean
     password: boolean
-    confirmPassword: boolean
   }
   inputTouched: {
     [key: string]: boolean
-    username: boolean
     email: boolean
     password: boolean
-    confirmPassword: boolean
   }
   isFormValid: boolean
 }
 
-export type UpdatedInvalid = {
+export type RegisterFormData = LoginFormData & {
+  username: string
+  confirmPassword: string
+  isInvalid: {
+    username: boolean
+    confirmPassword: boolean
+  }
+  inputTouched: {
+    username: boolean
+    confirmPassword: boolean
+  }
+}
+
+export type UpdatedLoginInvalid = {
   [key: string]: boolean
-  username: boolean
   email: boolean
   password: boolean
+}
+
+export type UpdatedRegisterInvalid = UpdatedLoginInvalid & {
+  username: boolean
   confirmPassword: boolean
 }
