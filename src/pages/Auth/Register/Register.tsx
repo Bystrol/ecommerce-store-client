@@ -16,7 +16,7 @@ const Register = () => {
     setIsPending(true)
 
     if (formData.isFormValid) {
-      await register({
+      const response = await register({
         username: formData.username,
         email: formData.email,
         password: formData.password,
@@ -24,7 +24,10 @@ const Register = () => {
       })
 
       setIsPending(false)
-      navigate("/auth/login")
+
+      if (response && response.status === 201) {
+        navigate("/auth/login")
+      }
     }
   }
 
