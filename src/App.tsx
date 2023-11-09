@@ -21,6 +21,7 @@ import { currencyActions } from "./store/currencySlice"
 import { CartItem } from "./types/product"
 import Register from "./pages/Auth/Register/Register"
 import Layout from "./components/Layout/Layout"
+import Login from "./pages/Auth/Login/Login"
 
 library.add(
   faCartShopping,
@@ -62,6 +63,7 @@ function App() {
         <Route path="/:category/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/auth/register" element={<Register />} />
+        <Route path="/auth/login" element={<Login />} />
       </Routes>
     </Layout>
   )
