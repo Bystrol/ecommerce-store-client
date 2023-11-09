@@ -1,15 +1,15 @@
-import { FormData, UpdatedInvalid } from "../../types/form"
+import { RegisterFormData, UpdatedRegisterInvalid } from "../../types/form"
 import { isRegisterFormValid } from "./isRegisterFormValid"
 import { validateInput } from "./validateInput"
 
-export const handleInputEvent = (
+export const handleRegisterInputEvent = (
   event: React.ChangeEvent<HTMLInputElement>,
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>
+  setFormData: React.Dispatch<React.SetStateAction<RegisterFormData>>
 ) => {
   const { id, value } = event.target
 
   setFormData((prevFormData) => {
-    const updatedInvalid: UpdatedInvalid = {
+    const updatedInvalid: UpdatedRegisterInvalid = {
       username: prevFormData.isInvalid.username,
       email: prevFormData.isInvalid.email,
       password: prevFormData.isInvalid.password,

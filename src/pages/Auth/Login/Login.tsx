@@ -1,32 +1,34 @@
 import FormInput from "../../../components/UI/FormInput"
-import styles from "./Register.module.css"
-import { useRegisterFormData } from "../../../hooks/useRegisterFormData"
+import styles from "./Login.module.css"
+import { useLoginFormData } from "../../../hooks/useLoginFormData"
 import { Link, useNavigate } from "react-router-dom"
 import { FormEvent, useState } from "react"
-import { register } from "../../../util/api/register"
+import { login } from "../../../util/api/login"
 import { ClipLoader } from "react-spinners"
 
-const Register = () => {
+const Login = () => {
   const [isPending, setIsPending] = useState<boolean>(false)
-  const { inputsData, formData } = useRegisterFormData()
+  const { inputsData, formData } = useLoginFormData()
   const navigate = useNavigate()
 
-  const registerHandler = async (e: FormEvent<HTMLFormElement>) => {
+  const loginHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsPending(true)
 
     if (formData.isFormValid) {
-      const response = await register({
-        username: formData.username,
+      const response = await login({
         email: formData.email,
         password: formData.password,
-        confirmPassword: formData.confirmPassword,
       })
-
       setIsPending(false)
+      console.log(response)
 
-      if (response && response.status === 201) {
-        navigate("/auth/login")
+      if (response && response.authToken) {
+        localStorage.setItem("authToken", response.authToken)
+      }
+
+      if (response && response.status === 200) {
+        navigate("/")
       }
     }
   }
@@ -34,13 +36,13 @@ const Register = () => {
   const buttonContent = isPending ? (
     <ClipLoader color="#fff" size={20} />
   ) : (
-    "Register"
+    "Log in"
   )
 
   return (
     <div className={styles.container}>
-      <h1>Create new account</h1>
-      <form className={styles.form} onSubmit={registerHandler}>
+      <h1>Log in to your account</h1>
+      <form className={styles.form} onSubmit={loginHandler}>
         {inputsData.map((input) => {
           return (
             <FormInput
@@ -63,13 +65,13 @@ const Register = () => {
         </button>
       </form>
       <p>
-        Already have an account?{" "}
-        <Link to="/auth/login" className={styles.link}>
-          Log in
+        Don't have an account?{" "}
+        <Link to="/auth/register" className={styles.link}>
+          Register
         </Link>
       </p>
     </div>
   )
 }
 
-export default Register
+export default Login
