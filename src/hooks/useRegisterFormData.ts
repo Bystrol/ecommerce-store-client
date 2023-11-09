@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { FormData } from "../types/form"
-import { handleInputEvent } from "../util/form/handleInputEvent"
+import { RegisterFormData } from "../types/form"
+import { handleRegisterInputEvent } from "../util/form/handleRegisterInputEvent"
 
 export const useRegisterFormData = () => {
-  const initialFormData: FormData = {
+  const initialFormData: RegisterFormData = {
     username: "",
     email: "",
     password: "",
@@ -23,7 +23,7 @@ export const useRegisterFormData = () => {
     isFormValid: false,
   }
 
-  const [formData, setFormData] = useState<FormData>(initialFormData)
+  const [formData, setFormData] = useState<RegisterFormData>(initialFormData)
 
   const registerFormInputsData = [
     {
@@ -33,9 +33,9 @@ export const useRegisterFormData = () => {
       isInvalid: formData.isInvalid.username,
       validationText: "Username must consist of minimum 3 characters",
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
     },
     {
       name: "email",
@@ -44,9 +44,9 @@ export const useRegisterFormData = () => {
       isInvalid: formData.isInvalid.email,
       validationText: "E-mail must be valid e-mail adress",
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
     },
     {
       name: "password",
@@ -55,9 +55,9 @@ export const useRegisterFormData = () => {
       isInvalid: formData.isInvalid.password,
       validationText: "Password must consist of minimum 5 characters",
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
     },
     {
       name: "confirmPassword",
@@ -66,9 +66,9 @@ export const useRegisterFormData = () => {
       isInvalid: formData.isInvalid.confirmPassword,
       validationText: "Passwords must match",
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) =>
-        handleInputEvent(e, setFormData),
+        handleRegisterInputEvent(e, setFormData),
     },
   ]
 
