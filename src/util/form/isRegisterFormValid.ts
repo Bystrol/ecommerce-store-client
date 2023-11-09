@@ -1,6 +1,6 @@
-import { FormData } from "../../types/form"
+import { RegisterFormData } from "../../types/form"
 
-export const isRegisterFormValid = (formData: FormData) => {
+export const isRegisterFormValid = (formData: RegisterFormData) => {
   if (
     formData.username &&
     formData.inputTouched.username &&
