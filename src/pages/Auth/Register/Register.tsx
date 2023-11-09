@@ -16,7 +16,7 @@ const Register = () => {
     setIsPending(true)
 
     if (formData.isFormValid) {
-      const response = await register({
+      await register({
         username: formData.username,
         email: formData.email,
         password: formData.password,
