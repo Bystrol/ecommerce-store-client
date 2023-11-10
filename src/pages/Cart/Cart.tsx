@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { cartActions } from "../../store/cartSlice"
 import { useNavigate } from "react-router-dom"
+import { isUserAuthenticated } from "../../util/api/isUserAuthenticated"
 
 const Cart = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -68,17 +69,19 @@ const Cart = () => {
     )
   }
 
-  const checkoutHandler = () => {
-    setShowModal(true)
+  const checkoutHandler = async () => {
+    if (await isUserAuthenticated()) {
+      setShowModal(true)
 
-    const timer = setTimeout(() => {
-      setShowModal(false)
-      dispatch(cartActions.clearArray())
-      navigate("/home")
-    }, 3000)
+      const timer = setTimeout(() => {
+        setShowModal(false)
+        dispatch(cartActions.clearArray())
+        navigate("/home")
+      }, 3000)
 
-    return () => {
-      clearTimeout(timer)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }
 

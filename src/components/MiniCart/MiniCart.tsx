@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { isUserAuthenticated } from "../../util/api/isUserAuthenticated"
 
 type MiniCartProps = {
   onViewCart: () => void
@@ -53,18 +54,20 @@ const MiniCart = (props: MiniCartProps) => {
     )
   }
 
-  const checkoutHandler = () => {
-    setShowModal(true)
+  const checkoutHandler = async () => {
+    if (await isUserAuthenticated()) {
+      setShowModal(true)
 
-    const timer = setTimeout(() => {
-      setShowModal(false)
-      dispatch(cartActions.clearArray())
-      props.onCheckout()
-      navigate("/home")
-    }, 3000)
+      const timer = setTimeout(() => {
+        setShowModal(false)
+        dispatch(cartActions.clearArray())
+        props.onCheckout()
+        navigate("/home")
+      }, 3000)
 
-    return () => {
-      clearTimeout(timer)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }
 
