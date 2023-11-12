@@ -1,4 +1,4 @@
-import classes from "./Home.module.css";
+import classes from "./Home.module.css"
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <div className={classes.layer} />
       <div className={classes.background} />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
