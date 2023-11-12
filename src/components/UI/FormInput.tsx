@@ -4,10 +4,11 @@ type FormInputProps = {
   name: string
   labelText: string
   type: string
-  isInvalid: boolean
-  validationText: string
+  isInvalid?: boolean
+  validationText?: string
+  value?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FormInput = (props: FormInputProps) => {
@@ -25,6 +26,7 @@ const FormInput = (props: FormInputProps) => {
             ? `${styles.input} ${styles["input--invalid"]}`
             : styles.input
         }
+        value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}
       />
