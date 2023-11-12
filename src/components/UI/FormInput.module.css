@@ -4,7 +4,6 @@
 }
 
 .input {
-  all: unset;
   height: 3.4vh;
   border: 1px solid #52d67a;
   border-radius: 8px;
@@ -15,6 +14,10 @@
 
 .input:focus {
   border-width: 2px;
+}
+
+.input:focus-visible {
+  outline: none;
 }
 
 .input--invalid {
