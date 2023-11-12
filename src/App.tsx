@@ -22,6 +22,7 @@ import { CartItem } from "./types/product"
 import Register from "./pages/Auth/Register/Register"
 import Layout from "./components/Layout/Layout"
 import Login from "./pages/Auth/Login/Login"
+import AddProduct from "./pages/Admin/AddProduct"
 
 library.add(
   faCartShopping,
@@ -59,11 +60,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/:category" element={<Category />} />
-        <Route path="/:category/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
+        <Route path="/:category" element={<Category />} />
+        <Route path="/:category/:id" element={<Detail />} />
       </Routes>
     </Layout>
   )
