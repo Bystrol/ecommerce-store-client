@@ -66,14 +66,14 @@ const cartSlice = createSlice({
         existingItem.color = action.payload.color
       }
     },
-    fetchItems(state, action) {
+    setItems(state, action) {
       state.items = action.payload
       state.items.forEach((item) => {
         state.total += item.price * item.amount
         state.amount += item.amount
       })
     },
-    clearArray(state) {
+    clearItems(state) {
       state.items = []
       state.amount = 0
       state.total = 0

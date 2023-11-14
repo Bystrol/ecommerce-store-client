@@ -1,4 +1,4 @@
-import { FormEvent, ChangeEvent, useEffect } from "react"
+import { FormEvent, ChangeEvent } from "react"
 import styles from "./AddProduct.module.css"
 import { useAddProductFormData } from "../../hooks/useAddProductFormData"
 import FormInput from "../../components/UI/FormInput"

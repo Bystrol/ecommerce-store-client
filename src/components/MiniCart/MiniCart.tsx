@@ -60,7 +60,7 @@ const MiniCart = (props: MiniCartProps) => {
 
       const timer = setTimeout(() => {
         setShowModal(false)
-        dispatch(cartActions.clearArray())
+        dispatch(cartActions.clearItems())
         props.onCheckout()
         navigate("/home")
       }, 3000)
