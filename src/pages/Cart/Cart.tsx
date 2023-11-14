@@ -75,7 +75,7 @@ const Cart = () => {
 
       const timer = setTimeout(() => {
         setShowModal(false)
-        dispatch(cartActions.clearArray())
+        dispatch(cartActions.clearItems())
         navigate("/home")
       }, 3000)
 
