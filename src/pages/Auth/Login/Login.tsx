@@ -21,7 +21,6 @@ const Login = () => {
         password: formData.password,
       })
       setIsPending(false)
-      console.log(response)
 
       if (response && response.authToken) {
         localStorage.setItem("authToken", response.authToken)
