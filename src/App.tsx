@@ -13,16 +13,11 @@ import Category from "./pages/Category/Category"
 import Home from "./pages/Home/Home"
 import Detail from "./pages/Detail/Detail"
 import Cart from "./pages/Cart/Cart"
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "./hooks/redux"
-import { sendCartData } from "./util/api/sendProducts"
-import { fetchCartData } from "./util/api/getProducts"
-import { currencyActions } from "./store/currencySlice"
-import { CartItem } from "./types/product"
 import Register from "./pages/Auth/Register/Register"
 import Layout from "./components/Layout/Layout"
 import Login from "./pages/Auth/Login/Login"
 import AddProduct from "./pages/Admin/AddProduct"
+import { useInitialUserData } from "./hooks/user/useInitialUserData"
 
 library.add(
   faCartShopping,
@@ -34,26 +29,8 @@ library.add(
   faBars
 )
 
-let isInitial = true
-
 function App() {
-  const items: CartItem[] = useAppSelector((state) => state.cart.items)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchCartData())
-
-    const currency = localStorage.getItem("currency")
-    dispatch(currencyActions.setCurrency(currency))
-  }, [dispatch])
-
-  useEffect(() => {
-    if (isInitial) {
-      isInitial = false
-      return
-    }
-    sendCartData(items)
-  }, [items])
+  useInitialUserData()
 
   return (
     <Layout>
