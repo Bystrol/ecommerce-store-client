@@ -1,9 +1,9 @@
 import { FormEvent, ChangeEvent } from "react"
 import styles from "./AddProduct.module.css"
-import { useAddProductFormData } from "../../hooks/useAddProductFormData"
+import { useAddProductFormData } from "../../hooks/form/useAddProductFormData"
 import FormInput from "../../components/UI/FormInput"
 import { addNewProduct } from "../../util/api/addNewProduct"
-import { useUserRole } from "../../hooks/useUserRole"
+import { useUserRole } from "../../hooks/user/useUserRole"
 
 const AddProduct = () => {
   const { productFormData, setProductFormData, addProductFormInputsData } =

@@ -1,6 +1,6 @@
 import FormInput from "../../../components/UI/FormInput"
 import styles from "./Login.module.css"
-import { useLoginFormData } from "../../../hooks/useLoginFormData"
+import { useLoginFormData } from "../../../hooks/form/useLoginFormData"
 import { Link, useNavigate } from "react-router-dom"
 import { FormEvent, useState } from "react"
 import { login } from "../../../util/api/login"

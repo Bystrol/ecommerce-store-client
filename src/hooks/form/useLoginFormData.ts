@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { LoginFormData } from "../types/form"
-import { handleLoginInputEvent } from "../util/form/handleLoginInputEvent"
+import { LoginFormData } from "../../types/form"
+import { handleLoginInputEvent } from "../../util/form/handleLoginInputEvent"
 
 export const useLoginFormData = () => {
   const initialFormData: LoginFormData = {
