@@ -1,6 +1,6 @@
 import FormInput from "../../../components/UI/FormInput"
 import styles from "./Register.module.css"
-import { useRegisterFormData } from "../../../hooks/useRegisterFormData"
+import { useRegisterFormData } from "../../../hooks/form/useRegisterFormData"
 import { Link, useNavigate } from "react-router-dom"
 import { FormEvent, useState } from "react"
 import { register } from "../../../util/api/register"

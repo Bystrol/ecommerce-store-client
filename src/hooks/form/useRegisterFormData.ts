@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { RegisterFormData } from "../types/form"
-import { handleRegisterInputEvent } from "../util/form/handleRegisterInputEvent"
+import { RegisterFormData } from "../../types/form"
+import { handleRegisterInputEvent } from "../../util/form/handleRegisterInputEvent"
 
 export const useRegisterFormData = () => {
   const initialFormData: RegisterFormData = {
