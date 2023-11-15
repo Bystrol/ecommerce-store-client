@@ -1,12 +1,13 @@
 import classes from "./Header.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useNavigate } from "react-router-dom"
 import { PropsWithChildren, useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { currencyActions } from "../../store/currencySlice"
 import { cartActions } from "../../store/cartSlice"
 import MiniCart from "../MiniCart/MiniCart"
 import Navigation from "../Navigation/Navigation"
+import { useUserRole } from "../../hooks/user/useUserRole"
 
 const Header = (props: PropsWithChildren) => {
   const [showCurrencyList, setShowCurrencyList] = useState<boolean>(false)
@@ -20,6 +21,10 @@ const Header = (props: PropsWithChildren) => {
   const items = useAppSelector((state) => state.cart.items)
   const isVisible = useAppSelector((state) => state.cart.isVisible)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const { isUserAdmin } = useUserRole()
+  let isUserLoggedIn = localStorage.getItem("authToken") !== null
 
   useEffect(() => {
     setBtnBump(true)
@@ -92,6 +97,15 @@ const Header = (props: PropsWithChildren) => {
     setShowNav(false)
   }
 
+  const logHandler = () => {
+    if (isUserLoggedIn) {
+      localStorage.removeItem("authToken")
+      window.location.reload()
+    } else {
+      navigate("/auth/login")
+    }
+  }
+
   const Sign = () => {
     if (currency === "EUR") {
       return (
@@ -145,6 +159,16 @@ const Header = (props: PropsWithChildren) => {
           >
             kids
           </NavLink>
+          {isUserAdmin && (
+            <NavLink
+              to="/admin/add-product"
+              className={(navData) =>
+                navData.isActive ? classes.active : classes.link
+              }
+            >
+              add product
+            </NavLink>
+          )}
         </div>
         <Link to="/home">
           <FontAwesomeIcon
@@ -154,6 +178,11 @@ const Header = (props: PropsWithChildren) => {
           />
         </Link>
         <div className={classes.payment}>
+          <FontAwesomeIcon
+            icon={isUserLoggedIn ? "right-from-bracket" : "user"}
+            className={classes.user}
+            onClick={logHandler}
+          />
           <div className={classes.currency} onClick={toggleCurrencyListHandler}>
             {<Sign />}
             <FontAwesomeIcon icon="angle-down" className={angleDownClass} />
