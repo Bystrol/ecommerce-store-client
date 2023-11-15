@@ -7,6 +7,8 @@ import {
   faEuroSign,
   faSterlingSign,
   faBars,
+  faUser,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons"
 import { Route, Routes, Navigate } from "react-router-dom"
 import Category from "./pages/Category/Category"
@@ -26,7 +28,9 @@ library.add(
   faDollarSign,
   faEuroSign,
   faSterlingSign,
-  faBars
+  faBars,
+  faUser,
+  faRightFromBracket
 )
 
 function App() {

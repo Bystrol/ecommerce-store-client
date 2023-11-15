@@ -81,6 +81,11 @@
   transition: transform 0.2s linear;
 }
 
+.header .payment .user:hover {
+  color: #52d67a;
+  cursor: pointer;
+}
+
 .header .payment .cart {
   font-size: 1.4vh;
   margin-left: 1vw;
@@ -90,6 +95,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 1.4vw;
 }
 
 .header .payment .currency:hover {
