@@ -26,7 +26,6 @@ export const login = async (params: LoginParams) => {
   return {
     message: data.message,
     authToken: data.authToken,
-    userRole: data.userRole,
     status: response.status,
   }
 }

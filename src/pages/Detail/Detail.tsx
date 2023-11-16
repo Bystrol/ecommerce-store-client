@@ -1,38 +1,25 @@
-import { fetchDetailData } from "../../util/api/getProducts"
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useParams } from "react-router"
+import useProductsData from "../../hooks/products/useProductsData"
 import ItemDetail from "../../components/ItemDetail/ItemDetail"
-import { categoryActions } from "../../store/categorySlice"
+import { Product } from "../../types/product"
 
 const Detail = () => {
   const itemId = useParams().id || ""
-  const category = useParams().category || ""
+  const { data } = useProductsData()
 
-  const clickedItem = useAppSelector((state) => state.detail.item)
-
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchDetailData(category, itemId))
-    dispatch(categoryActions.clearArray())
-  }, [category, dispatch, itemId])
+  const product = data.products.find(
+    (product: Product) => product._id === itemId
+  )
 
   return (
-    <>
-      {clickedItem.map((item) => {
-        return (
-          <ItemDetail
-            key={item.id}
-            id={item.id}
-            imageUrl={item.imageUrl}
-            name={item.name}
-            price={item.price}
-            description={item.description}
-          />
-        )
-      })}
-    </>
+    <ItemDetail
+      key={product._id}
+      id={product._id}
+      imageUrl={product.imageUrl}
+      name={product.name}
+      price={product.price}
+      description={product.description}
+    />
   )
 }
 

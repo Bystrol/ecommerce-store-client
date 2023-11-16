@@ -3,9 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useNavigate, useParams } from "react-router"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
-import { CategoryItem } from "../../types/product"
 
-type ClothItemProps = CategoryItem
+type ClothItemProps = {
+  description: string
+  id: string
+  imageUrl: string
+  isAvailable: boolean
+  name: string
+  price: number
+}
 
 const ClothItem = (props: ClothItemProps) => {
   const navigate = useNavigate()

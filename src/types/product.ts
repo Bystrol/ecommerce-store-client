@@ -1,13 +1,12 @@
-export type CategoryItem = {
+export type Product = {
   description: string
-  id: string
+  _id: string
   imageUrl: string
   isAvailable: boolean
   name: string
   price: number
+  category: string
 }
-
-export type DetailItem = CategoryItem
 
 export type CartItem = {
   amount: number
