@@ -10,7 +10,7 @@ import {
   faUser,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons"
-import { Route, Routes, Navigate } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Category from "./pages/Category/Category"
 import Home from "./pages/Home/Home"
 import Detail from "./pages/Detail/Detail"
@@ -39,8 +39,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
