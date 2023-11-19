@@ -1,21 +1,22 @@
+import { useState } from "react"
 import classes from "./Cart.module.css"
 import CartPageItem from "../../components/CartPageItem/CartPageItem"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useAppSelector } from "../../hooks/redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react"
-import { cartActions } from "../../store/cartSlice"
-import { useNavigate } from "react-router-dom"
-import { isUserAuthenticated } from "../../util/api/isUserAuthenticated"
+import checkout from "../../util/api/checkout"
+import { ClipLoader } from "react-spinners"
 
 const Cart = () => {
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const amount = useAppSelector((state) => state.cart.amount)
   const total = useAppSelector((state) => state.cart.total)
   const currency = useAppSelector((state) => state.currency.currency)
   const items = useAppSelector((state) => state.cart.items)
+
+  const checkoutHandler = async () => {
+    await checkout({ setIsLoading, currency, items })
+  }
 
   const itemsArrayIsEmpty = items.length === 0
 
@@ -69,21 +70,11 @@ const Cart = () => {
     )
   }
 
-  const checkoutHandler = async () => {
-    if (await isUserAuthenticated()) {
-      setShowModal(true)
-
-      const timer = setTimeout(() => {
-        setShowModal(false)
-        dispatch(cartActions.clearItems())
-        navigate("/home")
-      }, 3000)
-
-      return () => {
-        clearTimeout(timer)
-      }
-    }
-  }
+  const checkoutBtnContent = isLoading ? (
+    <ClipLoader color="#fff" size={20} />
+  ) : (
+    "Checkout"
+  )
 
   return (
     <>
@@ -120,7 +111,7 @@ const Cart = () => {
               <p>{<Total />}</p>
             </div>
           </div>
-          <button onClick={checkoutHandler}>order</button>
+          <button onClick={checkoutHandler}>{checkoutBtnContent}</button>
         </div>
       )}
       {itemsArrayIsEmpty && (
@@ -130,15 +121,6 @@ const Cart = () => {
           </div>
           <div className={classes.empty}>
             <p>Your cart is empty!</p>
-          </div>
-        </div>
-      )}
-      {showModal && (
-        <div className={classes.backdrop}>
-          <div
-            className={`${classes.modal} ${showModal ? classes.active : ""}`}
-          >
-            <p>Your order was sent successfully!</p>
           </div>
         </div>
       )}
