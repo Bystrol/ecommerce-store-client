@@ -21,6 +21,7 @@ export const useInitialUserData = () => {
 
     if (currentDateInMs > sessionExpDate) {
       localStorage.removeItem("cart")
+      localStorage.removeItem("authToken")
     }
   }
 

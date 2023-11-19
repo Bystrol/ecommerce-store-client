@@ -1,11 +1,11 @@
 import classes from "./MiniCart.module.css"
 import CartItem from "../CartItem/CartItem"
-import { cartActions } from "../../store/cartSlice"
+import { ClipLoader } from "react-spinners"
 import { useState } from "react"
 import { useNavigate } from "react-router"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useAppSelector } from "../../hooks/redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { isUserAuthenticated } from "../../util/api/isUserAuthenticated"
+import checkout from "../../util/api/checkout"
 
 type MiniCartProps = {
   onViewCart: () => void
@@ -13,8 +13,7 @@ type MiniCartProps = {
 }
 
 const MiniCart = (props: MiniCartProps) => {
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const dispatch = useAppDispatch()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const navigate = useNavigate()
 
   const amount = useAppSelector((state) => state.cart.amount)
@@ -27,6 +26,10 @@ const MiniCart = (props: MiniCartProps) => {
   const openCartPageHandler = () => {
     navigate("/cart")
     props.onViewCart()
+  }
+
+  const checkoutHandler = async () => {
+    await checkout({ setIsLoading, currency, items })
   }
 
   const Total = () => {
@@ -54,26 +57,15 @@ const MiniCart = (props: MiniCartProps) => {
     )
   }
 
-  const checkoutHandler = async () => {
-    if (await isUserAuthenticated()) {
-      setShowModal(true)
-
-      const timer = setTimeout(() => {
-        setShowModal(false)
-        dispatch(cartActions.clearItems())
-        props.onCheckout()
-        navigate("/home")
-      }, 3000)
-
-      return () => {
-        clearTimeout(timer)
-      }
-    }
-  }
+  const checkoutBtnContent = isLoading ? (
+    <ClipLoader color="#fff" size={20} />
+  ) : (
+    "Checkout"
+  )
 
   return (
     <>
-      {!itemsArrayIsEmpty && (
+      {!itemsArrayIsEmpty ? (
         <div className={classes.cart}>
           <div className={classes.title}>
             <p>
@@ -102,22 +94,12 @@ const MiniCart = (props: MiniCartProps) => {
           </div>
           <div className={classes.buttons}>
             <button onClick={openCartPageHandler}>view cart</button>
-            <button onClick={checkoutHandler}>check out</button>
+            <button onClick={checkoutHandler}>{checkoutBtnContent}</button>
           </div>
         </div>
-      )}
-      {itemsArrayIsEmpty && (
+      ) : (
         <div className={classes.empty}>
           <p>Your cart is empty!</p>
-        </div>
-      )}
-      {showModal && (
-        <div className={classes.backdrop}>
-          <div
-            className={`${classes.modal} ${showModal ? classes.active : ""}`}
-          >
-            <p>Your order was sent successfully!</p>
-          </div>
         </div>
       )}
     </>

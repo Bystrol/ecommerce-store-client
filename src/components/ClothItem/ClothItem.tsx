@@ -34,7 +34,6 @@ const ClothItem = (props: ClothItemProps) => {
     dispatch(
       cartActions.addItem({
         id: props.id,
-        key: props.id,
         name: props.name,
         price: props.price,
         imageUrl: props.imageUrl,
