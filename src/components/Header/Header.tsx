@@ -170,7 +170,7 @@ const Header = (props: PropsWithChildren) => {
             </NavLink>
           )}
         </div>
-        <Link to="/home">
+        <Link to="/">
           <FontAwesomeIcon
             icon={["fas", "shirt"]}
             className={classes.logo}
