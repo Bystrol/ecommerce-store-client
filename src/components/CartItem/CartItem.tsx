@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
 import classes from "./CartItem.module.css"
 import { CartItem as CartItemTypes } from "../../types/product"
+import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 type CartItemProps = CartItemTypes
 
@@ -10,6 +11,8 @@ const CartItem = (props: CartItemProps) => {
 
   const dispatch = useAppDispatch()
   const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
+  const { data: rates } = useExchangeRate()
 
   const addToCartHandler = () => {
     dispatch(
@@ -64,17 +67,15 @@ const CartItem = (props: CartItemProps) => {
   }
 
   const price =
-    currency === "EUR"
-      ? `€${(props.price * 1.025).toFixed(2)}`
-      : currency === "GBP"
-      ? `£${(props.price * 0.8985).toFixed(2)}`
-      : `$${props.price}`
+    currency === "USD"
+      ? props.price
+      : (props.price * rates[currency]).toFixed(2)
 
   return (
     <li className={classes.item}>
       <div className={classes.details}>
         <p className={classes.name}>{props.name}</p>
-        <p className={classes.price}>{price}</p>
+        <p className={classes.price}>{currencySign + price}</p>
         <div className={classes.size}>
           <p>Size:</p>
           <div>

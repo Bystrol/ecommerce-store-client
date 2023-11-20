@@ -1,6 +1,5 @@
 import classes from "./ItemDetail.module.css"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { cartActions } from "../../store/cartSlice"
 import { useState } from "react"
 
@@ -17,7 +16,7 @@ const ItemDetail = (props: ItemDetailProps) => {
   const [size, setSize] = useState<string>("xs")
   const [color, setColor] = useState<string>("brown")
 
-  const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
   const dispatch = useAppDispatch()
 
   const addToCartHandler = () => {
@@ -32,31 +31,6 @@ const ItemDetail = (props: ItemDetailProps) => {
         size: size,
         color: color,
       })
-    )
-  }
-
-  const Price = () => {
-    if (currency === "EUR") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
-          {(props.price * 1.025).toFixed(2)}
-        </>
-      )
-    } else if (currency === "GBP") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
-          {(props.price * 0.8985).toFixed(2)}
-        </>
-      )
-    }
-
-    return (
-      <>
-        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
-        {props.price}
-      </>
     )
   }
 
@@ -156,7 +130,7 @@ const ItemDetail = (props: ItemDetailProps) => {
           </div>
           <div className={classes.price}>
             <p>price:</p>
-            {<Price />}
+            {currencySign + props.price.toFixed(2)}
           </div>
           <button onClick={addToCartHandler}>add to cart</button>
           <p className={classes.description}>{props.description}</p>

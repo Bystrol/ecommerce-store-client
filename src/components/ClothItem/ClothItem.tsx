@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useNavigate, useParams } from "react-router"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
+import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 type ClothItemProps = {
   description: string
@@ -18,6 +19,9 @@ const ClothItem = (props: ClothItemProps) => {
   const dispatch = useAppDispatch()
   const { category } = useParams() || ""
   const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
+  const { data: rates } = useExchangeRate()
+
   const isAvailable = props.isAvailable
 
   const openDetailHandler = () => {
@@ -45,11 +49,9 @@ const ClothItem = (props: ClothItemProps) => {
   }
 
   const price =
-    currency === "EUR"
-      ? `€${(props.price * 1.025).toFixed(2)}`
-      : currency === "GBP"
-      ? `£${(props.price * 0.8985).toFixed(2)}`
-      : `$${props.price}`
+    currency === "USD"
+      ? props.price
+      : (props.price * rates[currency]).toFixed(2)
 
   return (
     <div className={classes.item}>
@@ -65,7 +67,7 @@ const ClothItem = (props: ClothItemProps) => {
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </div>
       <p className={classes.name}>{props.name}</p>
-      <p className={classes.price}>{price}</p>
+      <p className={classes.price}>{currencySign + price}</p>
     </div>
   )
 }
