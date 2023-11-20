@@ -11,7 +11,7 @@ const CartPageItem = (props: CartPageItemProps) => {
   const [color, setColor] = useState<string>(props.color)
 
   const dispatch = useAppDispatch()
-  const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
 
   const addToCartHandler = () => {
     dispatch(
@@ -35,18 +35,11 @@ const CartPageItem = (props: CartPageItemProps) => {
     )
   }
 
-  const price =
-    currency === "EUR"
-      ? `€${(props.price * 1.025).toFixed(2)}`
-      : currency === "GBP"
-      ? `£${(props.price * 0.8985).toFixed(2)}`
-      : `$${props.price}`
-
   return (
     <li className={classes.item}>
       <div className={classes.details}>
         <p className={classes.name}>{props.name}</p>
-        <p className={classes.price}>{price}</p>
+        <p className={classes.price}>{currencySign + props.price.toFixed(2)}</p>
         <div className={classes.size}>
           <p>Size:</p>
           <div>

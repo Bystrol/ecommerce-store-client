@@ -2,12 +2,13 @@ import { useState } from "react"
 import classes from "./Cart.module.css"
 import CartPageItem from "../../components/CartPageItem/CartPageItem"
 import { useAppSelector } from "../../hooks/redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import checkout from "../../util/api/checkout"
 import { ClipLoader } from "react-spinners"
+import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { data: rates } = useExchangeRate()
 
   const amount = useAppSelector((state) => state.cart.amount)
   const total = useAppSelector((state) => state.cart.total)
@@ -15,60 +16,12 @@ const Cart = () => {
   const items = useAppSelector((state) => state.cart.items)
 
   const checkoutHandler = async () => {
-    await checkout({ setIsLoading, currency, items })
+    await checkout({ setIsLoading, currency, items, rates })
   }
 
   const itemsArrayIsEmpty = items.length === 0
 
-  const Total = () => {
-    if (currency === "EUR") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
-          {(total * 1.025).toFixed(2)}
-        </>
-      )
-    } else if (currency === "GBP") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
-          {(total * 0.8985).toFixed(2)}
-        </>
-      )
-    }
-
-    return (
-      <>
-        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
-        {total.toFixed(2)}
-      </>
-    )
-  }
-
-  const Tax = () => {
-    if (currency === "EUR") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
-          {(total * 1.025 * 0.21).toFixed(2)}
-        </>
-      )
-    } else if (currency === "GBP") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
-          {(total * 0.8985 * 0.21).toFixed(2)}
-        </>
-      )
-    }
-
-    return (
-      <>
-        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
-        {(total * 0.21).toFixed(2)}
-      </>
-    )
-  }
+  const currencySign = currency === "EUR" ? "€" : currency === "GBP" ? "£" : "$"
 
   const checkoutBtnContent = isLoading ? (
     <ClipLoader color="#fff" size={20} />
@@ -78,7 +31,7 @@ const Cart = () => {
 
   return (
     <>
-      {!itemsArrayIsEmpty && (
+      {!itemsArrayIsEmpty && rates && (
         <div className={classes.cart}>
           <div className={classes.title}>
             <p>cart</p>
@@ -90,7 +43,7 @@ const Cart = () => {
                   id={item.id}
                   key={item.id}
                   name={item.name}
-                  price={item.price}
+                  price={item.price * rates[currency]}
                   amount={item.amount}
                   imageUrl={item.imageUrl}
                   size={item.size}
@@ -106,9 +59,11 @@ const Cart = () => {
               <p>Total:</p>
             </div>
             <div className={classes.values}>
-              <p>{<Tax />}</p>
+              <p>
+                {currencySign + (total * rates[currency] * 0.21).toFixed(2)}
+              </p>
               <p>{amount}</p>
-              <p>{<Total />}</p>
+              <p>{currencySign + (total * rates[currency]).toFixed(2)}</p>
             </div>
           </div>
           <button onClick={checkoutHandler}>{checkoutBtnContent}</button>

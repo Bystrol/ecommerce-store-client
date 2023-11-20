@@ -4,8 +4,8 @@ import { ClipLoader } from "react-spinners"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useAppSelector } from "../../hooks/redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import checkout from "../../util/api/checkout"
+import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 type MiniCartProps = {
   onViewCart: () => void
@@ -15,10 +15,12 @@ type MiniCartProps = {
 const MiniCart = (props: MiniCartProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const navigate = useNavigate()
+  const { data: rates } = useExchangeRate()
 
   const amount = useAppSelector((state) => state.cart.amount)
   const total = useAppSelector((state) => state.cart.total)
   const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
   const items = useAppSelector((state) => state.cart.items)
 
   const itemsArrayIsEmpty = items.length === 0
@@ -29,32 +31,7 @@ const MiniCart = (props: MiniCartProps) => {
   }
 
   const checkoutHandler = async () => {
-    await checkout({ setIsLoading, currency, items })
-  }
-
-  const Total = () => {
-    if (currency === "EUR") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "euro-sign"]} />
-          {(total * 1.025).toFixed(2)}
-        </>
-      )
-    } else if (currency === "GBP") {
-      return (
-        <>
-          <FontAwesomeIcon icon={["fas", "sterling-sign"]} />
-          {(total * 0.8985).toFixed(2)}
-        </>
-      )
-    }
-
-    return (
-      <>
-        <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
-        {total.toFixed(2)}
-      </>
-    )
+    await checkout({ setIsLoading, currency, items, rates })
   }
 
   const checkoutBtnContent = isLoading ? (
@@ -65,7 +42,7 @@ const MiniCart = (props: MiniCartProps) => {
 
   return (
     <>
-      {!itemsArrayIsEmpty ? (
+      {!itemsArrayIsEmpty && rates ? (
         <div className={classes.cart}>
           <div className={classes.title}>
             <p>
@@ -90,7 +67,7 @@ const MiniCart = (props: MiniCartProps) => {
           </ul>
           <div className={classes.total}>
             <p>Total</p>
-            <p>{<Total />}</p>
+            <p>{currencySign + (total * rates[currency]).toFixed(2)}</p>
           </div>
           <div className={classes.buttons}>
             <button onClick={openCartPageHandler}>view cart</button>
