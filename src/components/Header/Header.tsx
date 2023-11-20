@@ -16,7 +16,7 @@ const Header = (props: PropsWithChildren) => {
   const [btnBump, setBtnBump] = useState<boolean>(false)
   const [showNav, setShowNav] = useState<boolean>(false)
 
-  const currency = useAppSelector((state) => state.currency.currency)
+  const currencySign = useAppSelector((state) => state.currency.sign)
   const amount = useAppSelector((state) => state.cart.amount)
   const items = useAppSelector((state) => state.cart.items)
   const isVisible = useAppSelector((state) => state.cart.isVisible)
@@ -106,25 +106,6 @@ const Header = (props: PropsWithChildren) => {
     }
   }
 
-  const Sign = () => {
-    if (currency === "EUR") {
-      return (
-        <FontAwesomeIcon icon={["fas", "euro-sign"]} className={classes.sign} />
-      )
-    } else if (currency === "GBP") {
-      return (
-        <FontAwesomeIcon
-          icon={["fas", "sterling-sign"]}
-          className={classes.sign}
-        />
-      )
-    }
-
-    return (
-      <FontAwesomeIcon icon={["fas", "dollar-sign"]} className={classes.sign} />
-    )
-  }
-
   const angleDownClass = isRotated ? classes.rotated : classes.down
 
   return (
@@ -184,7 +165,7 @@ const Header = (props: PropsWithChildren) => {
             onClick={logHandler}
           />
           <div className={classes.currency} onClick={toggleCurrencyListHandler}>
-            {<Sign />}
+            {currencySign}
             <FontAwesomeIcon icon="angle-down" className={angleDownClass} />
           </div>
           <FontAwesomeIcon
@@ -198,27 +179,9 @@ const Header = (props: PropsWithChildren) => {
         </div>
         {showCurrencyList && (
           <ul className={classes.list} onClick={toggleCurrencyListHandler}>
-            <li onClick={setCurrencyHandler}>
-              <FontAwesomeIcon
-                icon={["fas", "dollar-sign"]}
-                className={classes.sign}
-              />
-              USD
-            </li>
-            <li onClick={setCurrencyHandler}>
-              <FontAwesomeIcon
-                icon={["fas", "euro-sign"]}
-                className={classes.sign}
-              />
-              EUR
-            </li>
-            <li onClick={setCurrencyHandler}>
-              <FontAwesomeIcon
-                icon={["fas", "sterling-sign"]}
-                className={classes.sign}
-              />
-              GBP
-            </li>
+            <li onClick={setCurrencyHandler}>USD</li>
+            <li onClick={setCurrencyHandler}>EUR</li>
+            <li onClick={setCurrencyHandler}>GBP</li>
           </ul>
         )}
         {isVisible && (
