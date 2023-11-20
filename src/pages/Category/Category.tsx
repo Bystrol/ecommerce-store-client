@@ -4,10 +4,12 @@ import ClothItem from "../../components/ClothItem/ClothItem"
 import classes from "./Category.module.css"
 import useProductsData from "../../hooks/products/useProductsData"
 import { Product } from "../../types/product"
+import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 const Category = () => {
   const category = useParams().category || ""
   const { data, isPending, isError, isSuccess } = useProductsData()
+  const { data: rates } = useExchangeRate()
 
   let content
 
@@ -15,7 +17,7 @@ const Category = () => {
 
   if (isError) content = <p>Failed to get products</p>
 
-  if (isSuccess)
+  if (isSuccess && rates)
     content = data?.products.map((item: Product) => {
       return (
         <ClothItem
