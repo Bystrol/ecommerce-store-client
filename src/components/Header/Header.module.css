@@ -68,6 +68,12 @@
   text-align: center;
 }
 
+.header .payment .currency {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .header .payment .currency .down {
   font-size: 1vh;
   margin-left: 0.3vw;
@@ -96,6 +102,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 1.4vw;
+  font-family: "Raleway", sans-serif;
 }
 
 .header .payment .currency:hover {
@@ -140,6 +147,7 @@
   width: 5vw;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: #fff;
+  font-family: "Raleway", sans-serif;
 }
 
 .header .list li {
