@@ -1,15 +1,25 @@
-import { useParams } from "react-router"
+import { useParams, useNavigate } from "react-router"
 import { ClipLoader } from "react-spinners"
 import ClothItem from "../../components/ClothItem/ClothItem"
 import classes from "./Category.module.css"
 import useProductsData from "../../hooks/products/useProductsData"
 import { Product } from "../../types/product"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
+import { useEffect, useMemo } from "react"
 
 const Category = () => {
   const category = useParams().category || ""
+  const navigate = useNavigate()
   const { data, isPending, isError, isSuccess } = useProductsData()
   const { data: rates } = useExchangeRate()
+
+  const categories = useMemo(() => ["women", "men", "kids"], [])
+
+  useEffect(() => {
+    if (!categories.includes(category)) {
+      navigate("/404")
+    }
+  }, [category, categories, navigate])
 
   let content
 
