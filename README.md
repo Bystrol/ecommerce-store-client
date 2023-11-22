@@ -10,4 +10,4 @@ To start the application you have to download all the files, then:
 - type "npm start" to run the application.
 
 ## Preview
-You can preview this application by entering this link: https://clothingshopmb.netlify.app/
+You can preview this application by entering this link: https://ecommerce-store-client.onrender.com/
