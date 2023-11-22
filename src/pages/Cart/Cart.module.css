@@ -22,7 +22,6 @@
 .cart .title p {
   font-size: 3vh;
   font-weight: 600;
-  text-transform: uppercase;
   margin: 0;
 }
 
@@ -105,7 +104,6 @@
 .emptyCart .title p {
   font-size: 3vh;
   font-weight: 600;
-  text-transform: uppercase;
   margin: 0;
 }
 

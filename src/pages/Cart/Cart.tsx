@@ -34,7 +34,7 @@ const Cart = () => {
       {!itemsArrayIsEmpty && rates && (
         <div className={classes.cart}>
           <div className={classes.title}>
-            <p>cart</p>
+            <p>Cart</p>
           </div>
           <ul className={classes.list}>
             {items.map((item) => {
@@ -72,7 +72,7 @@ const Cart = () => {
       {itemsArrayIsEmpty && (
         <div className={classes.emptyCart}>
           <div className={classes.title}>
-            <p>cart</p>
+            <p>Cart</p>
           </div>
           <div className={classes.empty}>
             <p>Your cart is empty!</p>
