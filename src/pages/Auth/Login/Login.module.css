@@ -6,6 +6,10 @@
   flex-wrap: wrap;
 }
 
+.container h1 {
+  font-family: "Raleway", sans-serif;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -38,4 +42,10 @@
 .link:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media (orientation: portrait) {
+  .form {
+    width: 70%;
+  }
 }
