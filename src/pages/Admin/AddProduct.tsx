@@ -22,7 +22,11 @@ const AddProduct = () => {
   }
 
   if (!isUserAdmin) {
-    return <h1>You are not allowed to access this page</h1>
+    return (
+      <h1 className={styles.heading}>
+        You are not allowed to access this page
+      </h1>
+    )
   }
 
   return (

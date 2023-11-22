@@ -28,6 +28,7 @@ const Login = () => {
 
       if (response && response.status === 200) {
         navigate("/")
+        window.location.reload()
       }
     }
   }
