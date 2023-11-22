@@ -20,6 +20,7 @@ import Layout from "./components/Layout/Layout"
 import Login from "./pages/Auth/Login/Login"
 import AddProduct from "./pages/Admin/AddProduct"
 import { useInitialUserData } from "./hooks/user/useInitialUserData"
+import NotFound from "./pages/NotFound/NotFound"
 
 library.add(
   faCartShopping,
@@ -44,8 +45,9 @@ function App() {
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/admin/add-product" element={<AddProduct />} />
-        <Route path="/:category" element={<Category />} />
-        <Route path="/:category/:id" element={<Detail />} />
+        <Route path="/category/:category" element={<Category />} />
+        <Route path="/category/:category/:id" element={<Detail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   )
