@@ -17,9 +17,7 @@ export const login = async (params: LoginParams) => {
   const data: { message: string; authToken: string; userRole: string } =
     await response.json()
 
-  if (response.status === 200) {
-    toast.success(data.message)
-  } else {
+  if (response.status !== 200) {
     toast.error(data.message)
   }
 
