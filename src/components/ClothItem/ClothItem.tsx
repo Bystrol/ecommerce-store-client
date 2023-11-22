@@ -28,7 +28,7 @@ const ClothItem = (props: ClothItemProps) => {
     if (!isAvailable) {
       return
     }
-    navigate(`/${category}/${props.id}`)
+    navigate(`/category/${category}/${props.id}`)
   }
 
   const addToCartHandler = () => {

@@ -117,7 +117,7 @@ const Header = (props: PropsWithChildren) => {
         <Navigation show={showNav} onHide={hideNavHandler} />
         <div className={classes.categories}>
           <NavLink
-            to="/women"
+            to="/category/women"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }
@@ -125,7 +125,7 @@ const Header = (props: PropsWithChildren) => {
             women
           </NavLink>
           <NavLink
-            to="/men"
+            to="/category/men"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }
@@ -133,7 +133,7 @@ const Header = (props: PropsWithChildren) => {
             men
           </NavLink>
           <NavLink
-            to="/kids"
+            to="/category/kids"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }
