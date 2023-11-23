@@ -1,6 +1,6 @@
 import { CartItem } from "../../types/product"
 
-export const addOrder = async (cart: CartItem[]) => {
+export const addOrder = async (cart: CartItem[], currency: string) => {
   const authToken = localStorage.getItem("authToken")
 
   try {
@@ -12,7 +12,10 @@ export const addOrder = async (cart: CartItem[]) => {
           Authorization: "Bearer " + authToken,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cart),
+        body: JSON.stringify({
+          products: cart,
+          currency,
+        }),
       }
     )
 
