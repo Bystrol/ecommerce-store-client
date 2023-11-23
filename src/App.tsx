@@ -35,7 +35,7 @@ library.add(
   faBars,
   faUser,
   faRightFromBracket,
-  faTruck
+  faTruck,
   faX
 )
 
