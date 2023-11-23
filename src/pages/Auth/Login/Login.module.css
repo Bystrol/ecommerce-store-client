@@ -8,6 +8,8 @@
 
 .container h1 {
   font-family: "Raleway", sans-serif;
+  font-weight: normal;
+  padding: 0 20px;
 }
 
 .form {
