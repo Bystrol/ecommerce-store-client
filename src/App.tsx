@@ -9,6 +9,7 @@ import {
   faBars,
   faUser,
   faRightFromBracket,
+  faTruck,
 } from "@fortawesome/free-solid-svg-icons"
 import { Navigate, Route, Routes } from "react-router-dom"
 import Category from "./pages/Category/Category"
@@ -21,6 +22,7 @@ import Login from "./pages/Auth/Login/Login"
 import AddProduct from "./pages/Admin/AddProduct"
 import { useInitialUserData } from "./hooks/user/useInitialUserData"
 import NotFound from "./pages/NotFound/NotFound"
+import Orders from "./pages/Orders/Orders"
 
 library.add(
   faCartShopping,
@@ -31,7 +33,8 @@ library.add(
   faSterlingSign,
   faBars,
   faUser,
-  faRightFromBracket
+  faRightFromBracket,
+  faTruck
 )
 
 function App() {
@@ -47,6 +50,7 @@ function App() {
         <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="/category/:category" element={<Category />} />
         <Route path="/category/:category/:id" element={<Detail />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="404" />} />
       </Routes>
