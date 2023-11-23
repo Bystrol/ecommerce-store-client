@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  border-bottom: 1px solid #000;
+}
+
+.container:last-of-type {
+  border: none;
+}
+
+.container__info {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  margin-bottom: 4vh;
+}
+
+.container__image {
+  width: 50%;
+  height: auto;
+}
+
+@media (orientation: portrait) {
+  .container__info {
+    width: auto;
+  }
+}

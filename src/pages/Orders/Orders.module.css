@@ -1,0 +1,9 @@
+.container {
+  margin: 0 10vw;
+  font-family: "Raleway", sans-serif;
+}
+
+.container h1 {
+  font-size: 3.6vh;
+  font-weight: normal;
+}
