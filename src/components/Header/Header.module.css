@@ -59,7 +59,7 @@
   scale: 1.4;
 }
 
-.header .payment {
+.header .user-section {
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -68,54 +68,46 @@
   text-align: center;
 }
 
-.header .payment .currency {
+.header .user-section .currency {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: bold;
 }
 
-.header .payment .currency .down {
+.header .user-section .currency .down {
   font-size: 1vh;
   margin-left: 0.3vw;
   transition: transform 0.2s linear;
 }
 
-.header .payment .currency .rotated {
+.header .user-section .currency .rotated {
   font-size: 1vh;
   margin-left: 0.3vw;
   transform: rotate(180deg);
   transition: transform 0.2s linear;
 }
 
-.header .payment .user:hover {
+.header .user-section > *:not(.amount) {
+  margin-left: 20px;
+}
+
+.header .user-section > *:hover:not(.amount) {
   color: #52d67a;
   cursor: pointer;
 }
 
-.header .payment .cart {
+.header .user-section .cart {
   font-size: 1.4vh;
-  margin-left: 1vw;
 }
 
-.header .payment .currency {
+.header .user-section .currency {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 1.4vw;
   font-family: "Raleway", sans-serif;
 }
 
-.header .payment .currency:hover {
-  color: #52d67a;
-  cursor: pointer;
-}
-
-.header .payment .cart:hover {
-  color: #52d67a;
-  cursor: pointer;
-}
-
-.header .payment .amount {
+.header .user-section .amount {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,8 +123,16 @@
   background-color: #fff;
 }
 
-.header .payment .bump {
+.header .user-section .bump {
   animation: 500ms amountActive ease-out;
+}
+
+.header .user-section .link {
+  color: #000;
+}
+
+.header .user-section .active {
+  color: #52d67a;
 }
 
 .header .list {
@@ -223,34 +223,34 @@
     scale: 1.4;
   }
 
-  .header .payment .currency .sign {
+  .header .user-section .currency .sign {
     font-size: 5vh;
   }
 
-  .header .payment .currency .down {
+  .header .user-section .currency .down {
     font-size: 3vh;
   }
-  .header .payment .currency .rotated {
+  .header .user-section .currency .rotated {
     font-size: 3vh;
   }
-  .header .payment .currency:hover {
+  .header .user-section .currency:hover {
     color: #000;
   }
-  .header .payment .currency:active {
+  .header .user-section .currency:active {
     color: #52d67a;
   }
-  .header .payment .cart {
+  .header .user-section .cart {
     font-size: 5vh;
     margin-left: 4vw;
   }
-  .header .payment .cart:hover {
+  .header .user-section .cart:hover {
     color: #000;
   }
-  .header .payment .cart:active {
+  .header .user-section .cart:active {
     color: #52d67a;
     cursor: pointer;
   }
-  .header .payment .amount {
+  .header .user-section .amount {
     top: -25%;
     right: -10%;
     width: 3vh;
