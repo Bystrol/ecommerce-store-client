@@ -20,7 +20,7 @@ const Navigation = (props: NavigationProps) => {
       <ul>
         <li onClick={hideNavHandler}>
           <NavLink
-            to="/women"
+            to="/category/women"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }
@@ -30,7 +30,7 @@ const Navigation = (props: NavigationProps) => {
         </li>
         <li onClick={hideNavHandler}>
           <NavLink
-            to="/men"
+            to="/category/men"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }
@@ -40,7 +40,7 @@ const Navigation = (props: NavigationProps) => {
         </li>
         <li onClick={hideNavHandler}>
           <NavLink
-            to="/kids"
+            to="/category/kids"
             className={(navData) =>
               navData.isActive ? classes.active : classes.link
             }

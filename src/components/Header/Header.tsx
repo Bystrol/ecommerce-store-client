@@ -113,7 +113,10 @@ const Header = (props: PropsWithChildren) => {
     <>
       <div className={classes.header}>
         <div className={classes.bar}>
-          <FontAwesomeIcon icon={["fas", "bars"]} onClick={toggleNavHandler} />
+          <FontAwesomeIcon
+            icon={["fas", `${showNav ? "x" : "bars"}`]}
+            onClick={toggleNavHandler}
+          />
         </div>
         <Navigation show={showNav} onHide={hideNavHandler} />
         <div className={classes.categories}>

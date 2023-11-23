@@ -59,7 +59,7 @@
   scale: 1.4;
 }
 
-.header .user-section {
+.header .payment {
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -68,52 +68,60 @@
   text-align: center;
 }
 
-.header .user-section .currency {
+.header .payment .currency {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: bold;
 }
 
-.header .user-section .currency .down {
-  font-size: 1vh;
+.header .payment .currency .down {
+  font-size: 1.4vh;
   margin-left: 0.3vw;
   transition: transform 0.2s linear;
 }
 
-.header .user-section .currency .rotated {
-  font-size: 1vh;
+.header .payment .currency .rotated {
+  font-size: 1.4vh;
   margin-left: 0.3vw;
   transform: rotate(180deg);
   transition: transform 0.2s linear;
 }
 
-.header .user-section > *:not(.amount) {
-  margin-left: 20px;
-}
-
-.header .user-section > *:hover:not(.amount) {
+.header .payment .user:hover {
   color: #52d67a;
   cursor: pointer;
 }
 
-.header .user-section .cart {
+.header .payment .cart {
   font-size: 1.4vh;
+  margin-left: 1vw;
 }
 
-.header .user-section .currency {
+.header .payment .currency {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 1.4vw;
   font-family: "Raleway", sans-serif;
 }
 
-.header .user-section .amount {
+.header .payment .currency:hover {
+  color: #52d67a;
+  cursor: pointer;
+}
+
+.header .payment .cart:hover {
+  color: #52d67a;
+  cursor: pointer;
+}
+
+.header .payment .amount {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -75%;
-  right: -2.5%;
+  top: -40%;
+  right: -2%;
   width: 1.4vh;
   height: 1.4vh;
   font-size: 1.2vh;
@@ -123,16 +131,8 @@
   background-color: #fff;
 }
 
-.header .user-section .bump {
+.header .payment .bump {
   animation: 500ms amountActive ease-out;
-}
-
-.header .user-section .link {
-  color: #000;
-}
-
-.header .user-section .active {
-  color: #52d67a;
 }
 
 .header .list {
@@ -207,56 +207,56 @@
     justify-content: flex-start;
     align-items: center;
     width: 20vw;
-    font-size: 5vh;
+    font-size: 2.4vh;
   }
   .header .bar:active {
     color: #52d67a;
   }
 
   .header .logo {
-    font-size: 5vh;
+    font-size: 3.4vh;
   }
+
   .header .logo:hover {
     scale: 1;
   }
+
   .header .logo:active {
     scale: 1.4;
   }
 
-  .header .user-section .currency .sign {
-    font-size: 5vh;
+  .header .payment .user,
+  .header .payment .currency,
+  .header .payment .cart {
+    font-size: 2.4vh;
+    margin-left: 10px;
   }
 
-  .header .user-section .currency .down {
-    font-size: 3vh;
-  }
-  .header .user-section .currency .rotated {
-    font-size: 3vh;
-  }
-  .header .user-section .currency:hover {
+  .header .payment .currency:hover {
     color: #000;
   }
-  .header .user-section .currency:active {
+
+  .header .payment .currency:active {
     color: #52d67a;
   }
-  .header .user-section .cart {
-    font-size: 5vh;
-    margin-left: 4vw;
-  }
-  .header .user-section .cart:hover {
+
+  .header .payment .cart:hover {
     color: #000;
   }
-  .header .user-section .cart:active {
+
+  .header .payment .cart:active {
     color: #52d67a;
     cursor: pointer;
   }
-  .header .user-section .amount {
-    top: -25%;
+
+  .header .payment .amount {
+    top: -40%;
     right: -10%;
-    width: 3vh;
-    height: 3vh;
-    font-size: 2.4vh;
+    width: 2vh;
+    height: 2vh;
+    font-size: 1.8vh;
   }
+
   .header .list {
     justify-content: center;
     top: 8vh;
@@ -264,20 +264,25 @@
     width: 100vw;
     height: 92vh;
   }
+
   .header .list li {
     height: 6vh;
-    font-size: 5vh;
+    font-size: 3.4vh;
     margin-bottom: 4vh;
   }
+
   .header .list li:hover {
     background-color: #fff;
   }
+
   .header .list li:active {
     background-color: rgb(235, 229, 229);
   }
+
   .header .list .sign {
     margin-right: 2vw;
   }
+
   .backdrop {
     display: none;
   }

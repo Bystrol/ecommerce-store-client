@@ -10,6 +10,7 @@ import {
   faUser,
   faRightFromBracket,
   faTruck,
+  faX,
 } from "@fortawesome/free-solid-svg-icons"
 import { Navigate, Route, Routes } from "react-router-dom"
 import Category from "./pages/Category/Category"
@@ -35,6 +36,7 @@ library.add(
   faUser,
   faRightFromBracket,
   faTruck
+  faX
 )
 
 function App() {
