@@ -18,7 +18,7 @@ type OrderItemProps = {
 const OrderItem = (props: OrderItemProps) => {
   return (
     <div className={styles.container}>
-      <h2>Order #{props.id}</h2>
+      <h2 className={styles.container__heading}>Order #{props.id}</h2>
       {props.products.map((product) => {
         return (
           <div key={product._id} className={styles.container__info}>
