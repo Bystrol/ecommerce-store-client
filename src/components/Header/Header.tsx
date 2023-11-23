@@ -24,7 +24,7 @@ const Header = (props: PropsWithChildren) => {
   const navigate = useNavigate()
 
   const { isUserAdmin } = useUserRole()
-  let isUserLoggedIn = localStorage.getItem("authToken") !== null
+  const isUserLoggedIn = localStorage.getItem("authToken") !== null
 
   useEffect(() => {
     setBtnBump(true)
@@ -100,6 +100,7 @@ const Header = (props: PropsWithChildren) => {
   const logHandler = () => {
     if (isUserLoggedIn) {
       localStorage.removeItem("authToken")
+      navigate("/")
       window.location.reload()
     } else {
       navigate("/auth/login")
@@ -158,12 +159,22 @@ const Header = (props: PropsWithChildren) => {
             onClick={hideAllHandler}
           />
         </Link>
-        <div className={classes.payment}>
+        <div className={classes["user-section"]}>
           <FontAwesomeIcon
             icon={isUserLoggedIn ? "right-from-bracket" : "user"}
-            className={classes.user}
+            className={classes["log-btn"]}
             onClick={logHandler}
           />
+          {isUserLoggedIn && (
+            <NavLink
+              to="/orders"
+              className={(navData) =>
+                navData.isActive ? classes.active : classes.link
+              }
+            >
+              <FontAwesomeIcon icon="truck" className={classes.order} />
+            </NavLink>
+          )}
           <div className={classes.currency} onClick={toggleCurrencyListHandler}>
             {currencySign}
             <FontAwesomeIcon icon="angle-down" className={angleDownClass} />
