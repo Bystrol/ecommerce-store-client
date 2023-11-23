@@ -12,6 +12,7 @@ import { queryClient } from "../../providers/QueryProvider"
 
 type Order = {
   _id: string
+  currency: string
   products: [
     {
       _id: string
@@ -34,18 +35,19 @@ const Orders = () => {
   const success = searchParams.get("success")
   const canceled = searchParams.get("canceled")
   const cart = localStorage.getItem("cart") || ""
+  const currency = localStorage.getItem("currency") || ""
 
   useEffect(() => {
     const successHandler = async () => {
       toast.success("Thank you for your order!")
-      await addOrder(JSON.parse(cart))
+      await addOrder(JSON.parse(cart), currency)
       dispatch(cartActions.clearItems())
       queryClient.invalidateQueries({ queryKey: ["orders"] })
     }
     if (success) successHandler()
     if (canceled) toast.error("Your order was not completed! Try again.")
     setSearchParams([])
-  }, [canceled, cart, dispatch, setSearchParams, success])
+  }, [canceled, cart, dispatch, setSearchParams, success, currency])
 
   const isUserLoggedIn = localStorage.getItem("authToken") !== null
 
@@ -66,7 +68,12 @@ const Orders = () => {
   if (isSuccess && orders?.length !== 0)
     content = orders?.map((order: Order) => {
       return (
-        <OrderItem key={order._id} id={order._id} products={order.products} />
+        <OrderItem
+          key={order._id}
+          id={order._id}
+          products={order.products}
+          currency={order.currency}
+        />
       )
     })
 
