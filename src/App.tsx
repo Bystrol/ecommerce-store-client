@@ -53,8 +53,8 @@ function App() {
         <Route path="/category/:category" element={<Category />} />
         <Route path="/category/:category/:id" element={<Detail />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="404" element={<NotFound />} />
-        <Route path="*" element={<Navigate replace to="404" />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>
     </Layout>
   )
