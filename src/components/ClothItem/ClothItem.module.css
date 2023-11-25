@@ -60,6 +60,7 @@
   color: white;
   text-align: center;
   line-height: 4vh;
+  border: none;
   border-radius: 50%;
   transition: scale 0.2s;
 }

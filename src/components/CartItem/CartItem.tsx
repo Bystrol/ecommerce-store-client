@@ -132,6 +132,7 @@ const CartItem = (props: CartItemProps) => {
           <input
             type="radio"
             name={props.name}
+            id="brown"
             defaultChecked={color === "brown" ? true : false}
             onClick={() => {
               changeColorHandler("brown")
@@ -140,6 +141,7 @@ const CartItem = (props: CartItemProps) => {
           <input
             type="radio"
             name={props.name}
+            id="gray"
             defaultChecked={color === "gray" ? true : false}
             onClick={() => {
               changeColorHandler("gray")
@@ -148,6 +150,7 @@ const CartItem = (props: CartItemProps) => {
           <input
             type="radio"
             name={props.name}
+            id="black"
             defaultChecked={color === "black" ? true : false}
             onClick={() => {
               changeColorHandler("black")

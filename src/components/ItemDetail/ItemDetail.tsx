@@ -4,7 +4,6 @@ import { cartActions } from "../../store/cartSlice"
 import { useState } from "react"
 
 type ItemDetailProps = {
-  key: string
   id: string
   imageUrl: string
   name: string
@@ -108,6 +107,7 @@ const ItemDetail = (props: ItemDetailProps) => {
             <input
               type="radio"
               name="color"
+              id="brown"
               defaultChecked
               onClick={() => {
                 setColor("brown")
@@ -116,6 +116,7 @@ const ItemDetail = (props: ItemDetailProps) => {
             <input
               type="radio"
               name="color"
+              id="gray"
               onClick={() => {
                 setColor("gray")
               }}
@@ -123,6 +124,7 @@ const ItemDetail = (props: ItemDetailProps) => {
             <input
               type="radio"
               name="color"
+              id="black"
               onClick={() => {
                 setColor("black")
               }}

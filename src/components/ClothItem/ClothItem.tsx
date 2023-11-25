@@ -63,9 +63,9 @@ const ClothItem = (props: ClothItemProps) => {
           className={isAvailable ? classes.available : classes.notAvailable}
         />
       </div>
-      <div className={classes.button} onClick={addToCartHandler}>
+      <button className={classes.button} onClick={addToCartHandler}>
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
-      </div>
+      </button>
       <p className={classes.name}>{props.name}</p>
       <p className={classes.price}>{currencySign + price}</p>
     </div>
