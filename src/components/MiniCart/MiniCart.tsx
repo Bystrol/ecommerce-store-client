@@ -42,7 +42,7 @@ const MiniCart = (props: MiniCartProps) => {
 
   return (
     <>
-      {!itemsArrayIsEmpty && rates ? (
+      {!itemsArrayIsEmpty ? (
         <div className={classes.cart}>
           <div className={classes.title}>
             <p>
@@ -67,7 +67,9 @@ const MiniCart = (props: MiniCartProps) => {
           </ul>
           <div className={classes.total}>
             <p>Total</p>
-            <p>{currencySign + (total * rates[currency]).toFixed(2)}</p>
+            <p>
+              {rates && currencySign + (total * rates[currency]).toFixed(2)}
+            </p>
           </div>
           <div className={classes.buttons}>
             <button onClick={openCartPageHandler}>view cart</button>
