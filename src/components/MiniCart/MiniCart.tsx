@@ -68,7 +68,9 @@ const MiniCart = (props: MiniCartProps) => {
           <div className={classes.total}>
             <p>Total</p>
             <p>
-              {rates && currencySign + (total * rates[currency]).toFixed(2)}
+              {rates
+                ? currencySign + (total * rates[currency]).toFixed(2)
+                : currencySign + "...?"}
             </p>
           </div>
           <div className={classes.buttons}>

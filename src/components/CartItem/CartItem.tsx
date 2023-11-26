@@ -69,7 +69,9 @@ const CartItem = (props: CartItemProps) => {
   const price =
     currency === "USD"
       ? props.price
-      : (props.price * rates[currency]).toFixed(2)
+      : rates
+      ? (props.price * rates[currency]).toFixed(2)
+      : "...?"
 
   return (
     <li className={classes.item}>
