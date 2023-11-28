@@ -5,11 +5,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3vh;
+  padding: 10px 0;
+  border-bottom: 2px solid rgb(237, 221, 221);
 }
 
-.item:nth-child(1) {
-  margin-top: 0;
+.item:nth-last-of-type(1) {
+  border: none;
 }
 
 .item p {
@@ -22,7 +23,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  max-width: 40%;
   height: 100%;
 }
 
@@ -151,7 +152,17 @@
 }
 
 .item .image {
-  width: 40%;
+  min-width: 80px;
+  width: auto;
+  height: 100%;
+  margin-left: 8px;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.right-section {
+  display: flex;
   height: 100%;
 }
 
