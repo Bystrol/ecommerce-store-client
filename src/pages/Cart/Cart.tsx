@@ -31,6 +31,9 @@ const Cart = () => {
 
   return (
     <>
+      {!itemsArrayIsEmpty && !rates && (
+        <ClipLoader color="#000" size={30} className={classes.loader} />
+      )}
       {!itemsArrayIsEmpty && rates && (
         <div className={classes.cart}>
           <div className={classes.title}>
