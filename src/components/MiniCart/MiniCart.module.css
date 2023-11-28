@@ -14,10 +14,6 @@
   font-family: "Raleway", sans-serif;
 }
 
-.cart p {
-  font-size: 1.4vh;
-}
-
 .cart .title {
   width: 100%;
   height: 6vh;
@@ -156,14 +152,14 @@
     position: absolute;
     top: 8vh;
     left: 0;
-    width: 100vw;
+    width: 90vw;
     height: 92vh;
     font-size: 4vh;
     padding: 0;
+    margin: 0 5vw;
   }
   .cart .title p {
     font-size: 3vh;
-    margin: 0 5vw;
   }
   .cart .list {
     position: absolute;
@@ -176,7 +172,6 @@
   }
   .cart .total p {
     font-size: 3vh;
-    margin: 0 5vw;
   }
   .cart .buttons {
     justify-content: space-between;
@@ -186,7 +181,6 @@
     width: 40%;
     height: 5vh;
     font-size: 2vh;
-    margin: 0 5vw;
   }
   .cart .buttons button:hover {
     box-shadow: none;
