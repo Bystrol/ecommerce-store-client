@@ -1,10 +1,10 @@
 import { useState } from "react"
 import classes from "./Cart.module.css"
-import CartPageItem from "../../components/CartPageItem/CartPageItem"
 import { useAppSelector } from "../../hooks/redux"
 import checkout from "../../util/api/checkout"
 import { ClipLoader } from "react-spinners"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
+import CartItem from "../../components/CartItem/CartItem"
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -39,7 +39,7 @@ const Cart = () => {
           <ul className={classes.list}>
             {items.map((item) => {
               return (
-                <CartPageItem
+                <CartItem
                   id={item.id}
                   key={item.id}
                   name={item.name}
