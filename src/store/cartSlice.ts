@@ -38,17 +38,19 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       )
 
-      if (existingItem && existingItem.amount <= 1) {
-        const newArray = state.items.filter(
-          (item) => item.id !== action.payload.id
-        )
-        state.items = newArray
-      } else if (existingItem) {
-        existingItem.amount--
-      }
+      if (existingItem) {
+        if (existingItem.amount <= 1) {
+          const newArray = state.items.filter(
+            (item) => item.id !== action.payload.id
+          )
+          state.items = newArray
+        } else {
+          existingItem.amount--
+        }
 
-      state.amount--
-      state.total = state.total - action.payload.price
+        state.amount--
+        state.total = state.total - existingItem.price
+      }
     },
     changeSize(state, action) {
       const existingItem = state.items.find(
