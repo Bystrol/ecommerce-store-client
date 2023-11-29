@@ -1,6 +1,6 @@
 import classes from "./ClothItem.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useNavigate, useParams } from "react-router"
+import { useNavigate } from "react-router"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
@@ -17,7 +17,6 @@ type ClothItemProps = {
 const ClothItem = (props: ClothItemProps) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { category } = useParams() || ""
   const currency = useAppSelector((state) => state.currency.currency)
   const currencySign = useAppSelector((state) => state.currency.sign)
   const { data: rates } = useExchangeRate()
@@ -25,16 +24,12 @@ const ClothItem = (props: ClothItemProps) => {
   const isAvailable = props.isAvailable
 
   const openDetailHandler = () => {
-    if (!isAvailable) {
-      return
-    }
-    navigate(`/category/${category}/${props.id}`)
+    if (!isAvailable) return
+    navigate(`./${props.id}`)
   }
 
   const addToCartHandler = () => {
-    if (!isAvailable) {
-      return
-    }
+    if (!isAvailable) return
     dispatch(
       cartActions.addItem({
         id: props.id,
@@ -51,7 +46,9 @@ const ClothItem = (props: ClothItemProps) => {
   const price =
     currency === "USD"
       ? props.price
-      : (props.price * rates[currency]).toFixed(2)
+      : rates
+      ? (props.price * rates[currency]).toFixed(2)
+      : "...?"
 
   return (
     <div className={classes.item}>
@@ -60,10 +57,13 @@ const ClothItem = (props: ClothItemProps) => {
         <img
           src={props.imageUrl}
           alt="Pink coat"
-          className={isAvailable ? classes.available : classes.notAvailable}
+          className={!isAvailable ? classes["not-available"] : ""}
         />
       </div>
-      <button className={classes.button} onClick={addToCartHandler}>
+      <button
+        className={!isAvailable ? classes["not-available"] : ""}
+        onClick={addToCartHandler}
+      >
         <FontAwesomeIcon icon="cart-shopping" className={classes.cart} />
       </button>
       <p className={classes.name}>{props.name}</p>

@@ -37,18 +37,17 @@
   transform: translate(-50%, -50%);
 }
 
-.item .image .available {
+.item .image img {
   width: 100%;
   height: 100%;
 }
 
-.item .image .notAvailable {
-  width: 100%;
-  height: 100%;
+.item .image img.not-available {
   opacity: 0.3;
+  cursor: not-allowed;
 }
 
-.item .button {
+.item button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,14 +62,19 @@
   border: none;
   border-radius: 50%;
   transition: scale 0.2s;
-}
-
-.item .button:hover {
-  scale: 1.2;
   cursor: pointer;
 }
 
-.item .button .cart {
+.item button:hover {
+  scale: 1.2;
+}
+
+.item button.not-available {
+  scale: 1;
+  cursor: not-allowed;
+}
+
+.item button .cart {
   font-size: 2vh;
 }
 
@@ -103,18 +107,18 @@
   .item .image p {
     font-size: 3.4vh;
   }
-  .item .button {
+  .item button {
     width: 6vh;
     height: 6vh;
   }
-  .item .button:hover {
+  .item button:hover {
     scale: 1;
   }
-  .item .button:active {
+  .item button:active {
     scale: 1.2;
     cursor: pointer;
   }
-  .item .button .cart {
+  .item button .cart {
     font-size: 3vh;
   }
   .item .name {
