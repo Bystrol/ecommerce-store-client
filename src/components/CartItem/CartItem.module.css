@@ -173,6 +173,9 @@
   .item p {
     font-size: 3vh;
   }
+  .item .details {
+    margin-left: 5vw;
+  }
   .item .details .size div {
     height: 4vh;
   }
@@ -223,5 +226,8 @@
   }
   .item .image {
     min-width: 100px;
+  }
+  .right-section {
+    margin-right: 5vw;
   }
 }
