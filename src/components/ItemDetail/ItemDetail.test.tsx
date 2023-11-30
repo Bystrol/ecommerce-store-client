@@ -43,7 +43,7 @@ describe("ItemDetail component", () => {
       <QueryProvider>
         <Provider store={store}>
           <BrowserRouter>
-            <MiniCart onCheckout={jest.fn()} onViewCart={jest.fn()} />
+            <MiniCart onViewCart={jest.fn()} />
           </BrowserRouter>
         </Provider>
       </QueryProvider>
