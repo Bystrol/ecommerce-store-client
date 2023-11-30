@@ -24,7 +24,7 @@ const useDropdownClose = ({
       if (
         currencyListRef.current &&
         !currencyListRef.current.contains(targetElement) &&
-        !targetElement.classList.contains("Header_list__+JC2P")
+        !targetElement.classList.contains("Header_list__Ucifz")
       ) {
         setShowCurrencyList(false)
       }
@@ -32,7 +32,7 @@ const useDropdownClose = ({
       if (
         navRef.current &&
         !navRef.current.contains(targetElement) &&
-        !targetElement.classList.contains("Navigation_navigation__C+pyE")
+        !targetElement.classList.contains("Navigation_navigation__xIjqU")
       ) {
         setShowNav(false)
       }
@@ -40,8 +40,8 @@ const useDropdownClose = ({
       if (
         cartRef.current &&
         !cartRef.current.contains(targetElement) &&
-        !targetElement.closest(".MiniCart_cart__iPzp5") &&
-        !targetElement.closest(".MiniCart_empty__x3urS")
+        !targetElement.closest(".MiniCart_cart__gK8D5") &&
+        !targetElement.closest(".MiniCart_empty__G3vPK")
       ) {
         setShowCart(false)
       }
