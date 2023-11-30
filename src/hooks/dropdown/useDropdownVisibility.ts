@@ -1,22 +1,14 @@
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 
-type DropdownCloseParams = {
-  currencyListRef: React.RefObject<HTMLDivElement>
-  navRef: React.RefObject<HTMLDivElement>
-  cartRef: React.RefObject<SVGSVGElement>
-  setShowCurrencyList: React.Dispatch<React.SetStateAction<boolean>>
-  setShowNav: React.Dispatch<React.SetStateAction<boolean>>
-  setShowCart: React.Dispatch<React.SetStateAction<boolean>>
-}
+const useDropdownVisibility = () => {
+  const [showNav, setShowNav] = useState<boolean>(false)
+  const [showCurrencyList, setShowCurrencyList] = useState<boolean>(false)
+  const [showCart, setShowCart] = useState<boolean>(false)
 
-const useDropdownClose = ({
-  currencyListRef,
-  navRef,
-  cartRef,
-  setShowCurrencyList,
-  setShowNav,
-  setShowCart,
-}: DropdownCloseParams) => {
+  const navRef = useRef<HTMLDivElement>(null)
+  const currencyListRef = useRef<HTMLDivElement>(null)
+  const cartRef = useRef<SVGSVGElement>(null)
+
   useEffect(() => {
     const handleDropdownClose = (e: MouseEvent) => {
       const targetElement = e.target as Element
@@ -60,6 +52,18 @@ const useDropdownClose = ({
     setShowCurrencyList,
     setShowNav,
   ])
+
+  return {
+    showNav,
+    setShowNav,
+    showCurrencyList,
+    setShowCurrencyList,
+    showCart,
+    setShowCart,
+    navRef,
+    currencyListRef,
+    cartRef,
+  }
 }
 
-export default useDropdownClose
+export default useDropdownVisibility
