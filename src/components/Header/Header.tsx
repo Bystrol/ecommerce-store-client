@@ -1,37 +1,33 @@
 import classes from "./Header.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavLink, Link, useNavigate } from "react-router-dom"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { currencyActions } from "../../store/currencySlice"
 import MiniCart from "../MiniCart/MiniCart"
 import Navigation from "../Navigation/Navigation"
 import { useUserRole } from "../../hooks/user/useUserRole"
-import useDropdownClose from "../../hooks/dropdown/useDropdownClose"
+import useDropdownVisibility from "../../hooks/dropdown/useDropdownVisibility"
 
 const Header = () => {
-  const [showCurrencyList, setShowCurrencyList] = useState<boolean>(false)
   const [btnBump, setBtnBump] = useState<boolean>(false)
-  const [showNav, setShowNav] = useState<boolean>(false)
-  const [showCart, setShowCart] = useState<boolean>(false)
 
   const currencySign = useAppSelector((state) => state.currency.sign)
   const amount = useAppSelector((state) => state.cart.amount)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const navRef = useRef<HTMLDivElement>(null)
-  const currencyListRef = useRef<HTMLDivElement>(null)
-  const cartRef = useRef<SVGSVGElement>(null)
-
-  useDropdownClose({
-    currencyListRef,
-    navRef,
-    cartRef,
-    setShowCurrencyList,
+  const {
+    showNav,
     setShowNav,
+    showCurrencyList,
+    setShowCurrencyList,
+    showCart,
     setShowCart,
-  })
+    navRef,
+    currencyListRef,
+    cartRef,
+  } = useDropdownVisibility()
 
   const { isUserAdmin } = useUserRole()
   const isUserLoggedIn = localStorage.getItem("authToken") !== null
