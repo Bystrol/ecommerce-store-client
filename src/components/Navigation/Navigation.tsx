@@ -3,14 +3,9 @@ import { NavLink } from "react-router-dom"
 
 type NavigationProps = {
   show: boolean
-  onHide: () => void
 }
 
 const Navigation = (props: NavigationProps) => {
-  const hideNavHandler = () => {
-    props.onHide()
-  }
-
   return (
     <nav
       className={`${classes.navigation} ${
@@ -18,7 +13,7 @@ const Navigation = (props: NavigationProps) => {
       }`}
     >
       <ul>
-        <li onClick={hideNavHandler}>
+        <li>
           <NavLink
             to="/category/women"
             className={(navData) =>
@@ -28,7 +23,7 @@ const Navigation = (props: NavigationProps) => {
             women
           </NavLink>
         </li>
-        <li onClick={hideNavHandler}>
+        <li>
           <NavLink
             to="/category/men"
             className={(navData) =>
@@ -38,7 +33,7 @@ const Navigation = (props: NavigationProps) => {
             men
           </NavLink>
         </li>
-        <li onClick={hideNavHandler}>
+        <li>
           <NavLink
             to="/category/kids"
             className={(navData) =>

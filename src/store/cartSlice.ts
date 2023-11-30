@@ -5,14 +5,12 @@ type InitialStateData = {
   items: CartItem[]
   amount: number
   total: number
-  isVisible: boolean
 }
 
 const initialState: InitialStateData = {
   items: [],
   amount: 0,
   total: 0,
-  isVisible: false,
 }
 
 const cartSlice = createSlice({
@@ -79,12 +77,6 @@ const cartSlice = createSlice({
       state.items = []
       state.amount = 0
       state.total = 0
-    },
-    toggleCart(state) {
-      state.isVisible = !state.isVisible
-    },
-    hideCart(state) {
-      state.isVisible = false
     },
   },
 })

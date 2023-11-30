@@ -1,100 +1,57 @@
 import classes from "./Header.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavLink, Link, useNavigate } from "react-router-dom"
-import { PropsWithChildren, useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { currencyActions } from "../../store/currencySlice"
-import { cartActions } from "../../store/cartSlice"
 import MiniCart from "../MiniCart/MiniCart"
 import Navigation from "../Navigation/Navigation"
 import { useUserRole } from "../../hooks/user/useUserRole"
+import useDropdownClose from "../../hooks/dropdown/useDropdownClose"
 
-const Header = (props: PropsWithChildren) => {
+const Header = () => {
   const [showCurrencyList, setShowCurrencyList] = useState<boolean>(false)
-  const [isRotated, setIsRotated] = useState<boolean>(false)
-  const [showBackdrop, setShowBackdrop] = useState<boolean>(false)
   const [btnBump, setBtnBump] = useState<boolean>(false)
   const [showNav, setShowNav] = useState<boolean>(false)
+  const [showCart, setShowCart] = useState<boolean>(false)
 
   const currencySign = useAppSelector((state) => state.currency.sign)
   const amount = useAppSelector((state) => state.cart.amount)
-  const items = useAppSelector((state) => state.cart.items)
-  const isVisible = useAppSelector((state) => state.cart.isVisible)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  const navRef = useRef<HTMLDivElement>(null)
+  const currencyListRef = useRef<HTMLDivElement>(null)
+  const cartRef = useRef<SVGSVGElement>(null)
+
+  useDropdownClose({
+    currencyListRef,
+    navRef,
+    cartRef,
+    setShowCurrencyList,
+    setShowNav,
+    setShowCart,
+  })
 
   const { isUserAdmin } = useUserRole()
   const isUserLoggedIn = localStorage.getItem("authToken") !== null
 
-  useEffect(() => {
-    setBtnBump(true)
-
-    const timer = setTimeout(() => {
-      setBtnBump(false)
-    }, 500)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [items])
-
   const toggleCurrencyListHandler = () => {
-    setShowCurrencyList((state) => {
-      return !state
-    })
-
-    setIsRotated((state) => {
-      return !state
-    })
-
-    dispatch(cartActions.hideCart())
-    setShowBackdrop(false)
-    setShowNav(false)
-  }
-
-  const hideCurrencyListHandler = () => {
-    setShowCurrencyList(false)
-    setIsRotated(false)
+    setShowCurrencyList((state) => !state)
   }
 
   const setCurrencyHandler = (e: React.MouseEvent<HTMLLIElement>) => {
     const target = e.target as HTMLLIElement
-    localStorage.setItem("currency", target.textContent || "")
     dispatch(currencyActions.setCurrency(target.textContent || ""))
+    localStorage.setItem("currency", target.textContent || "")
   }
 
   const toggleCartHandler = () => {
-    dispatch(cartActions.toggleCart())
-
-    setShowBackdrop((state) => {
-      return !state
-    })
-
-    setShowCurrencyList(false)
-    setIsRotated(false)
-    setShowNav(false)
+    setShowCart((state) => !state)
   }
 
   const toggleNavHandler = () => {
-    setShowNav((state) => {
-      return !state
-    })
-    dispatch(cartActions.hideCart())
-    setShowBackdrop(false)
-    setShowCurrencyList(false)
-    setIsRotated(false)
-  }
-
-  const hideNavHandler = () => {
-    setShowNav(false)
-  }
-
-  const hideAllHandler = () => {
-    dispatch(cartActions.hideCart())
-    setShowBackdrop(false)
-    setShowCurrencyList(false)
-    setIsRotated(false)
-    setShowNav(false)
+    setShowNav((state) => !state)
   }
 
   const logHandler = () => {
@@ -107,60 +64,87 @@ const Header = (props: PropsWithChildren) => {
     }
   }
 
-  const angleDownClass = isRotated ? classes.rotated : classes.down
+  useEffect(() => {
+    setBtnBump(true)
+
+    const timer = setTimeout(() => {
+      setBtnBump(false)
+    }, 500)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [amount])
+
+  const navLinks: {
+    categoryName: string
+    path: string
+    canBeAccessed: boolean
+  }[] = [
+    {
+      categoryName: "women",
+      path: "/category/women",
+      canBeAccessed: true,
+    },
+    {
+      categoryName: "men",
+      path: "/category/men",
+      canBeAccessed: true,
+    },
+    {
+      categoryName: "kids",
+      path: "/category/kids",
+      canBeAccessed: true,
+    },
+    {
+      categoryName: "add product",
+      path: "/admin/add-product",
+      canBeAccessed: isUserAdmin,
+    },
+  ]
+
+  const currencies: { currency: string }[] = [
+    {
+      currency: "USD",
+    },
+    {
+      currency: "EUR",
+    },
+    {
+      currency: "GBP",
+    },
+  ]
 
   return (
     <>
-      <div className={classes.header}>
-        <div className={classes.bar}>
+      <header className={classes.header}>
+        <div className={classes.bar} ref={navRef}>
           <FontAwesomeIcon
             icon={["fas", `${showNav ? "x" : "bars"}`]}
             onClick={toggleNavHandler}
           />
         </div>
-        <Navigation show={showNav} onHide={hideNavHandler} />
+        <Navigation show={showNav} />
         <div className={classes.categories}>
-          <NavLink
-            to="/category/women"
-            className={(navData) =>
-              navData.isActive ? classes.active : classes.link
-            }
-          >
-            women
-          </NavLink>
-          <NavLink
-            to="/category/men"
-            className={(navData) =>
-              navData.isActive ? classes.active : classes.link
-            }
-          >
-            men
-          </NavLink>
-          <NavLink
-            to="/category/kids"
-            className={(navData) =>
-              navData.isActive ? classes.active : classes.link
-            }
-          >
-            kids
-          </NavLink>
-          {isUserAdmin && (
-            <NavLink
-              to="/admin/add-product"
-              className={(navData) =>
-                navData.isActive ? classes.active : classes.link
-              }
-            >
-              add product
-            </NavLink>
-          )}
+          {navLinks.map((link) => {
+            return (
+              <div key={link.categoryName}>
+                {link.canBeAccessed && (
+                  <NavLink
+                    to={link.path}
+                    className={(navData) =>
+                      navData.isActive ? classes.active : classes.link
+                    }
+                  >
+                    {link.categoryName}
+                  </NavLink>
+                )}
+              </div>
+            )
+          })}
         </div>
         <Link to="/">
-          <FontAwesomeIcon
-            icon={["fas", "shirt"]}
-            className={classes.logo}
-            onClick={hideAllHandler}
-          />
+          <FontAwesomeIcon icon={["fas", "shirt"]} className={classes.logo} />
         </Link>
         <div className={classes["user-section"]}>
           <FontAwesomeIcon
@@ -178,11 +162,19 @@ const Header = (props: PropsWithChildren) => {
               <FontAwesomeIcon icon="truck" className={classes.order} />
             </NavLink>
           )}
-          <div className={classes.currency} onClick={toggleCurrencyListHandler}>
+          <div
+            className={classes.currency}
+            onClick={toggleCurrencyListHandler}
+            ref={currencyListRef}
+          >
             {currencySign}
-            <FontAwesomeIcon icon="angle-down" className={angleDownClass} />
+            <FontAwesomeIcon
+              icon="angle-down"
+              className={showCurrencyList ? classes.rotated : classes.down}
+            />
           </div>
           <FontAwesomeIcon
+            ref={cartRef}
             icon="cart-shopping"
             className={classes.cart}
             onClick={toggleCartHandler}
@@ -192,24 +184,18 @@ const Header = (props: PropsWithChildren) => {
           </div>
         </div>
         {showCurrencyList && (
-          <ul className={classes.list} onClick={toggleCurrencyListHandler}>
-            <li onClick={setCurrencyHandler}>USD</li>
-            <li onClick={setCurrencyHandler}>EUR</li>
-            <li onClick={setCurrencyHandler}>GBP</li>
+          <ul className={classes.list}>
+            {currencies.map((item) => {
+              return (
+                <li key={item.currency} onClick={setCurrencyHandler}>
+                  {item.currency}
+                </li>
+              )
+            })}
           </ul>
         )}
-        {isVisible && (
-          <MiniCart
-            onViewCart={toggleCartHandler}
-            onCheckout={toggleCartHandler}
-          />
-        )}
-      </div>
-
-      <main onClick={hideCurrencyListHandler}>{props.children}</main>
-      {showBackdrop && (
-        <div className={classes.backdrop} onClick={toggleCartHandler} />
-      )}
+        {showCart && <MiniCart onViewCart={toggleCartHandler} />}
+      </header>
     </>
   )
 }
