@@ -9,7 +9,6 @@ import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
 
 type MiniCartProps = {
   onViewCart: () => void
-  onCheckout: () => void
 }
 
 const MiniCart = (props: MiniCartProps) => {
