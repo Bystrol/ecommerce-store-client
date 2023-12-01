@@ -14,7 +14,10 @@ const Detail = () => {
   const { data: rates } = useExchangeRate()
 
   useEffect(() => {
-    if (!data?.products?.find((product: Product) => product._id === itemId)) {
+    if (
+      data &&
+      !data?.products?.find((product: Product) => product._id === itemId)
+    ) {
       navigate("/404")
     }
   }, [data, itemId, navigate])
