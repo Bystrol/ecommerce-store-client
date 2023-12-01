@@ -45,7 +45,7 @@ const MiniCart = (props: MiniCartProps) => {
         <div className={classes.cart}>
           <div className={classes.title}>
             <p>
-              <b>My Cart</b>, {amount} items
+              <b>My Cart</b>, {amount} {amount === 1 ? "item" : "items"}
             </p>
           </div>
           <ul className={classes.list}>
