@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { currencyActions } from "../../store/currencySlice"
 import MiniCart from "../MiniCart/MiniCart"
 import Navigation from "../Navigation/Navigation"
-import { useUserRole } from "../../hooks/user/useUserRole"
 import useDropdownVisibility from "../../hooks/dropdown/useDropdownVisibility"
+import useNavigationLinks from "../../hooks/navigation/useNavigationLinks"
 
 const Header = () => {
   const [btnBump, setBtnBump] = useState<boolean>(false)
@@ -16,6 +16,8 @@ const Header = () => {
   const amount = useAppSelector((state) => state.cart.amount)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  const navLinks = useNavigationLinks()
 
   const {
     showNav,
@@ -29,7 +31,6 @@ const Header = () => {
     cartRef,
   } = useDropdownVisibility()
 
-  const { isUserAdmin } = useUserRole()
   const isUserLoggedIn = localStorage.getItem("authToken") !== null
 
   const toggleCurrencyListHandler = () => {
@@ -71,33 +72,6 @@ const Header = () => {
       clearTimeout(timer)
     }
   }, [amount])
-
-  const navLinks: {
-    categoryName: string
-    path: string
-    canBeAccessed: boolean
-  }[] = [
-    {
-      categoryName: "women",
-      path: "/category/women",
-      canBeAccessed: true,
-    },
-    {
-      categoryName: "men",
-      path: "/category/men",
-      canBeAccessed: true,
-    },
-    {
-      categoryName: "kids",
-      path: "/category/kids",
-      canBeAccessed: true,
-    },
-    {
-      categoryName: "add product",
-      path: "/admin/add-product",
-      canBeAccessed: isUserAdmin,
-    },
-  ]
 
   const currencies: { currency: string }[] = [
     {
