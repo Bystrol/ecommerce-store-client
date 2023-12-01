@@ -2,6 +2,7 @@ import classes from "./ItemDetail.module.css"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
 import { useState } from "react"
+import { sizeInputs, colorInputs } from "../../constants/inputs"
 
 type ItemDetailProps = {
   id: string
@@ -33,20 +34,20 @@ const ItemDetail = (props: ItemDetailProps) => {
     )
   }
 
+  const arrayOfThreeElements = new Array(3).fill(null)
+
   return (
     <div className={classes.main}>
       <div className={classes.body}>
         <div className={classes.images}>
           <div className={classes.leftSection}>
-            <div className={classes.image}>
-              <img src={props.imageUrl} alt={props.name} />
-            </div>
-            <div className={classes.image}>
-              <img src={props.imageUrl} alt={props.name} />
-            </div>
-            <div className={classes.image}>
-              <img src={props.imageUrl} alt={props.name} />
-            </div>
+            {arrayOfThreeElements.map((element, index) => {
+              return (
+                <div key={index} className={classes.image}>
+                  <img src={props.imageUrl} alt={props.name} />
+                </div>
+              )
+            })}
           </div>
           <div className={classes.centerSection}>
             <img src={props.imageUrl} alt={props.name} />
@@ -56,79 +57,35 @@ const ItemDetail = (props: ItemDetailProps) => {
           <h1 className={classes.name}>{props.name}</h1>
           <div className={classes.size}>
             <p>size:</p>
-            <div>
-              <input
-                type="radio"
-                name="size"
-                id="xs"
-                defaultChecked
-                onClick={() => {
-                  setSize("xs")
-                }}
-              ></input>
-              <label htmlFor="xs">xs</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="size"
-                id="s"
-                onClick={() => {
-                  setSize("s")
-                }}
-              ></input>
-              <label htmlFor="s">s</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="size"
-                id="m"
-                onClick={() => {
-                  setSize("m")
-                }}
-              ></input>
-              <label htmlFor="m">m</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="size"
-                id="l"
-                onClick={() => {
-                  setSize("l")
-                }}
-              ></input>
-              <label htmlFor="l">l</label>
-            </div>
+            {sizeInputs.map((input, index) => {
+              return (
+                <div key={index}>
+                  <input
+                    type="radio"
+                    name="size"
+                    id={input.size}
+                    defaultChecked={input.size === size}
+                    onClick={() => setSize(input.size)}
+                  />
+                  <label htmlFor={input.size}>{input.size}</label>
+                </div>
+              )
+            })}
           </div>
           <div className={classes.color}>
             <p>color:</p>
-            <input
-              type="radio"
-              name="color"
-              id="brown"
-              defaultChecked
-              onClick={() => {
-                setColor("brown")
-              }}
-            />
-            <input
-              type="radio"
-              name="color"
-              id="gray"
-              onClick={() => {
-                setColor("gray")
-              }}
-            />
-            <input
-              type="radio"
-              name="color"
-              id="black"
-              onClick={() => {
-                setColor("black")
-              }}
-            />
+            {colorInputs.map((input, index) => {
+              return (
+                <input
+                  key={index}
+                  type="radio"
+                  name="color"
+                  id={input.color}
+                  defaultChecked={input.color === color}
+                  onClick={() => setColor(input.color)}
+                />
+              )
+            })}
           </div>
           <div className={classes.price}>
             <p>price:</p>
