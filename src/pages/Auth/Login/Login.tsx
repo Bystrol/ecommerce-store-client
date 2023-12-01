@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { FormEvent, useState } from "react"
 import { login } from "../../../util/api/login"
 import { ClipLoader } from "react-spinners"
+import toast from "react-hot-toast"
 
 const Login = () => {
   const [isPending, setIsPending] = useState<boolean>(false)
@@ -13,9 +14,10 @@ const Login = () => {
 
   const loginHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsPending(true)
 
     if (formData.isFormValid) {
+      setIsPending(true)
+
       const response = await login({
         email: formData.email,
         password: formData.password,
@@ -30,6 +32,8 @@ const Login = () => {
         navigate("/")
         window.location.reload()
       }
+    } else {
+      toast.error("Invalid credentials")
     }
   }
 
@@ -57,12 +61,7 @@ const Login = () => {
             />
           )
         })}
-        <button
-          className={styles.form__button}
-          disabled={!formData.isFormValid}
-        >
-          {buttonContent}
-        </button>
+        <button className={styles.form__button}>{buttonContent}</button>
       </form>
       <p>
         Don't have an account?{" "}
