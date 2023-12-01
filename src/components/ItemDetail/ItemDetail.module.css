@@ -52,6 +52,7 @@
   width: 70vh;
   height: 60vh;
   overflow: hidden;
+  margin-right: 2vw;
 }
 
 .body .centerSection img {
