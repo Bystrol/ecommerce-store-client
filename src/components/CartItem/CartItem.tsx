@@ -3,6 +3,7 @@ import { cartActions } from "../../store/cartSlice"
 import classes from "./CartItem.module.css"
 import { CartItem as CartItemTypes } from "../../types/product"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
+import { sizeInputs, colorInputs } from "../../constants/inputs"
 
 type CartItemProps = CartItemTypes
 
@@ -59,33 +60,6 @@ const CartItem = (props: CartItemProps) => {
       : rates
       ? (props.price * rates[currency]).toFixed(2)
       : "...?"
-
-  const sizeInputs: { size: string }[] = [
-    {
-      size: "xs",
-    },
-    {
-      size: "s",
-    },
-    {
-      size: "m",
-    },
-    {
-      size: "l",
-    },
-  ]
-
-  const colorInputs: { color: string }[] = [
-    {
-      color: "brown",
-    },
-    {
-      color: "gray",
-    },
-    {
-      color: "black",
-    },
-  ]
 
   return (
     <li className={classes.item}>
