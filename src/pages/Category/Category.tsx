@@ -5,7 +5,8 @@ import classes from "./Category.module.css"
 import useProductsData from "../../hooks/products/useProductsData"
 import { Product } from "../../types/product"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
+import { categories } from "../../constants/categories"
 
 const Category = () => {
   const category = useParams().category || ""
@@ -13,13 +14,11 @@ const Category = () => {
   const { data, isPending, isError, isSuccess } = useProductsData()
   const { data: rates } = useExchangeRate()
 
-  const categories = useMemo(() => ["women", "men", "kids"], [])
-
   useEffect(() => {
     if (!categories.includes(category)) {
       navigate("/404")
     }
-  }, [category, categories, navigate])
+  }, [category, navigate])
 
   let content
 
