@@ -4,6 +4,7 @@ import { useAddProductFormData } from "../../hooks/form/useAddProductFormData"
 import FormInput from "../../components/UI/FormInput"
 import { addNewProduct } from "../../util/api/addNewProduct"
 import { useUserRole } from "../../hooks/user/useUserRole"
+import { categories } from "../../constants/categories"
 
 const AddProduct = () => {
   const { productFormData, setProductFormData, addProductFormInputsData } =
@@ -52,11 +53,15 @@ const AddProduct = () => {
           defaultValue=""
         >
           <option value="" disabled>
-            -- wybierz --
+            -- choose category --
           </option>
-          <option value="women">Women</option>
-          <option value="men">Men</option>
-          <option value="kids">Kids</option>
+          {categories.map((category, index) => {
+            return (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            )
+          })}
         </select>
         <button className={styles.form__button}>Add</button>
       </form>
