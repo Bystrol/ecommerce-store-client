@@ -16,7 +16,7 @@ const Detail = () => {
   useEffect(() => {
     if (
       data &&
-      !data?.products?.find((product: Product) => product._id === itemId)
+      !data.products.find((product: Product) => product._id === itemId)
     ) {
       navigate("/404")
     }
