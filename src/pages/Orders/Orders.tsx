@@ -1,4 +1,4 @@
-import { Navigate, useSearchParams } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import styles from "./Orders.module.css"
 import useOrdersData from "../../hooks/orders/useOrdersData"
@@ -9,28 +9,13 @@ import addOrder from "../../util/api/addOrder"
 import { useAppDispatch } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
 import { queryClient } from "../../providers/QueryProvider"
-
-type Order = {
-  _id: string
-  currency: string
-  products: [
-    {
-      _id: string
-      productId: string
-      name: string
-      color: string
-      imageUrl: string
-      amount: number
-      price: number
-      size: string
-    }
-  ]
-}
+import { Order } from "../../types/order"
 
 const Orders = () => {
   const { data: orders, isPending, isError, isSuccess } = useOrdersData()
-  let [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const success = searchParams.get("success")
   const canceled = searchParams.get("canceled")
@@ -52,7 +37,7 @@ const Orders = () => {
   const isUserLoggedIn = localStorage.getItem("authToken") !== null
 
   if (!isUserLoggedIn) {
-    return <Navigate to="/auth/login" />
+    navigate("/auth/login")
   }
 
   let content
@@ -66,7 +51,7 @@ const Orders = () => {
   }
 
   if (isSuccess && orders?.length !== 0)
-    content = orders?.map((order: Order) => {
+    content = orders.map((order: Order) => {
       return (
         <OrderItem
           key={order._id}
