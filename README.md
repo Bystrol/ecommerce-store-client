@@ -29,12 +29,12 @@ This is one of my old projects which I rewrited using TypeScript instead of Java
 ## Features
 
 - User authentication with JWT
+- User authorization based on roles
 - Choosing sizes and colors of the products
 - Adding products to the cart
 - Currency selection
 - Cart checkout integrated with Stripe
 - Browsing user's orders
-- Checking user's role
 
 ## Screenshots
 
