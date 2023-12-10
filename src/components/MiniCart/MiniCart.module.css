@@ -7,12 +7,16 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   z-index: 2;
   padding: 0 10px;
   font-family: "Raleway", sans-serif;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 24px;
+}
+
+.cart--empty {
+  justify-content: center;
 }
 
 .cart .title {
