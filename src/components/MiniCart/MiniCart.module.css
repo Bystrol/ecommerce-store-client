@@ -7,7 +7,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   z-index: 2;
   padding: 0 10px;
@@ -83,23 +83,6 @@
 .cart .buttons button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
-}
-
-.empty {
-  position: fixed;
-  top: 6vh;
-  right: 8vw;
-  width: 15vw;
-  height: 6vh;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  padding: 0 10px;
-  font-family: "Raleway", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 24px;
 }
 
 .modal {
@@ -192,14 +175,6 @@
   }
   .cart .buttons button:active {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .empty {
-    top: 8vh;
-    left: 0;
-    width: 100vw;
-    height: 92vh;
-    font-size: 4vh;
-    box-shadow: none;
   }
   .modal {
     width: 70%;
