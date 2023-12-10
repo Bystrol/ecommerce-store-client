@@ -40,11 +40,11 @@ const Cart = () => {
             <p>Cart</p>
           </div>
           <ul className={classes.list}>
-            {items.map((item) => {
+            {items.map((item, index) => {
               return (
                 <CartItem
                   id={item.id}
-                  key={item.id}
+                  key={index}
                   name={item.name}
                   price={item.price * rates[currency]}
                   amount={item.amount}
