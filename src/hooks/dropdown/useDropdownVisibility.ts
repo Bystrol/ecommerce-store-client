@@ -33,8 +33,7 @@ const useDropdownVisibility = () => {
         cartRef.current &&
         !cartRef.current.contains(targetElement) &&
         !targetElement.closest(".MiniCart_cart__gK8D5") &&
-        targetElement.textContent !== "+" &&
-        targetElement.textContent !== "-"
+        !targetElement.classList.contains("cart-button")
       ) {
         setShowCart(false)
       }
