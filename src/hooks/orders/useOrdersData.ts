@@ -6,9 +6,7 @@ const useOrdersData = () => {
 
   const sortOrdersByDate = (orders: Order[]) => {
     return orders.sort(
-      (objA, objB) =>
-        new Date(objB.createdAt).getMilliseconds() -
-        new Date(objA.createdAt).getMilliseconds()
+      (objA, objB) => Number(objB.createdAt) - Number(objA.createdAt)
     )
   }
 
@@ -24,9 +22,16 @@ const useOrdersData = () => {
 
     const data = await response.json()
 
-    sortOrdersByDate(data.orders)
+    const updatedOrders = data.orders.map((order: Order) => {
+      return {
+        ...order,
+        createdAt: new Date(order.createdAt),
+      }
+    })
 
-    return data.orders
+    sortOrdersByDate(updatedOrders)
+
+    return updatedOrders
   }
 
   return useQuery({
