@@ -10,7 +10,6 @@
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
-- [Project Status](#project-status)
 - [Copyright](#copyright)
 
 ## General Information
@@ -51,10 +50,6 @@ To get started with the project, follow the steps below:
 - Open the repository in some code editor, for example VSCode and type 'npm install' in the terminal
 - Add .env file with the following variables: 'REACT_APP_CLIENT_URL', 'REACT_APP_API_URL', 'REACT_APP_EXCHANGE_RATES_API_KEY' and fill them with your data
 - Type 'npm start' to run the app on your localhost
-
-## Project Status
-
-Project is: _finished_.
 
 ## Copyright
 
