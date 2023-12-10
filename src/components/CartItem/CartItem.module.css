@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  max-width: 90%;
 }
 
 .item .details .price {
@@ -172,6 +173,9 @@
   }
   .item p {
     font-size: 3vh;
+  }
+  .item .details {
+    max-width: 50%;
   }
   .item .details .size div {
     height: 4vh;
