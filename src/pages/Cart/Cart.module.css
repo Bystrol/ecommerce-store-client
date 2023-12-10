@@ -30,7 +30,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-height: calc(46vh + 2px);
+  max-height: 51.6vh;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
@@ -176,6 +176,9 @@
 @media (orientation: portrait) {
   .cart {
     margin: 0 5vw;
+  }
+  .cart .list {
+    max-height: 55vh;
   }
   .cart .list::-webkit-scrollbar {
     width: 2vw;
