@@ -32,8 +32,9 @@ const useDropdownVisibility = () => {
       if (
         cartRef.current &&
         !cartRef.current.contains(targetElement) &&
-        !targetElement.closest(".MiniCart_cart__gK8D5") &&
-        !targetElement.closest(".MiniCart_empty__G3vPK")
+        !targetElement.closest(".MiniCart_cart__iPzp5") &&
+        targetElement.textContent !== "+" &&
+        targetElement.textContent !== "-"
       ) {
         setShowCart(false)
       }
@@ -44,14 +45,7 @@ const useDropdownVisibility = () => {
     return () => {
       document.removeEventListener("click", handleDropdownClose)
     }
-  }, [
-    cartRef,
-    currencyListRef,
-    navRef,
-    setShowCart,
-    setShowCurrencyList,
-    setShowNav,
-  ])
+  }, [])
 
   return {
     showNav,
