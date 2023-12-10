@@ -57,7 +57,7 @@ describe("ItemDetail component", () => {
       (input) => input.id === "gray" && input.getAttribute("name") === "name"
     )
 
-    expect(expectedSizeInput).toBeChecked()
-    expect(expectedColorInput).toBeChecked()
+    expect(expectedSizeInput).toHaveClass("input--checked")
+    expect(expectedColorInput).toHaveClass("input--checked")
   })
 })
