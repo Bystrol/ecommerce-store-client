@@ -3,10 +3,10 @@ import { useState, useEffect } from "react"
 export const useUserRole = () => {
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false)
 
+  const authToken = localStorage.getItem("authToken")
+
   useEffect(() => {
     const checkUserRole = async () => {
-      const authToken = localStorage.getItem("authToken")
-
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/auth/check-role`,
         {
@@ -21,8 +21,8 @@ export const useUserRole = () => {
       }
     }
 
-    checkUserRole()
-  }, [])
+    authToken && checkUserRole()
+  }, [authToken])
 
   return {
     isUserAdmin,
