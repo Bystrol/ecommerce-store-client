@@ -40,9 +40,9 @@ const MiniCart = (props: MiniCartProps) => {
   )
 
   return (
-    <>
+    <div className={classes.cart}>
       {!itemsArrayIsEmpty ? (
-        <div className={classes.cart}>
+        <>
           <div className={classes.title}>
             <p>
               <b>My Cart</b>, {amount} {amount === 1 ? "item" : "items"}
@@ -76,13 +76,11 @@ const MiniCart = (props: MiniCartProps) => {
             <button onClick={openCartPageHandler}>view cart</button>
             <button onClick={checkoutHandler}>{checkoutBtnContent}</button>
           </div>
-        </div>
+        </>
       ) : (
-        <div className={classes.empty}>
-          <p>Your cart is empty!</p>
-        </div>
+        <p>Your cart is empty!</p>
       )}
-    </>
+    </div>
   )
 }
 
