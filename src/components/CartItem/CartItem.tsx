@@ -83,7 +83,9 @@ const CartItem = (props: CartItemProps) => {
                   name={props.id}
                   id={input.size}
                   className={
-                    size === input.size ? classes["input--checked"] : ""
+                    size === input.size
+                      ? `${classes["input--checked"]} cart-button`
+                      : "cart-button"
                   }
                   onClick={() => changeSizeHandler(input.size)}
                 />
@@ -102,7 +104,9 @@ const CartItem = (props: CartItemProps) => {
                 name={props.name}
                 id={input.color}
                 className={
-                  color === input.color ? classes["input--checked"] : ""
+                  color === input.color
+                    ? `${classes["input--checked"]} cart-button`
+                    : "cart-button"
                 }
                 onClick={() => changeColorHandler(input.color)}
               />
@@ -112,9 +116,13 @@ const CartItem = (props: CartItemProps) => {
       </section>
       <section className={classes["right-section"]}>
         <div className={classes.amount}>
-          <button onClick={addToCartHandler}>+</button>
+          <button className="cart-button" onClick={addToCartHandler}>
+            +
+          </button>
           <p>{props.amount}</p>
-          <button onClick={removeFromCartHandler}>-</button>
+          <button className="cart-button" onClick={removeFromCartHandler}>
+            -
+          </button>
         </div>
         <div
           className={classes.image}
