@@ -32,7 +32,7 @@ const useDropdownVisibility = () => {
       if (
         cartRef.current &&
         !cartRef.current.contains(targetElement) &&
-        !targetElement.closest(".MiniCart_cart__iPzp5") &&
+        !targetElement.closest(".MiniCart_cart__gK8D5") &&
         targetElement.textContent !== "+" &&
         targetElement.textContent !== "-"
       ) {
