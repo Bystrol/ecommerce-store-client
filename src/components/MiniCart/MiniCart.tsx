@@ -40,7 +40,13 @@ const MiniCart = (props: MiniCartProps) => {
   )
 
   return (
-    <div className={classes.cart}>
+    <div
+      className={
+        !itemsArrayIsEmpty
+          ? classes.cart
+          : `${classes.cart} ${classes["cart--empty"]}`
+      }
+    >
       {!itemsArrayIsEmpty ? (
         <>
           <div className={classes.title}>
