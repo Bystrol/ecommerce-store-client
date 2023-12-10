@@ -19,7 +19,10 @@ const cartSlice = createSlice({
   reducers: {
     addItem(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.color
       )
 
       if (existingItem) {
@@ -33,13 +36,19 @@ const cartSlice = createSlice({
     },
     removeItem(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.color
       )
 
       if (existingItem) {
         if (existingItem.amount <= 1) {
           const newArray = state.items.filter(
-            (item) => item.id !== action.payload.id
+            (item) =>
+              item.id !== action.payload.id ||
+              item.size !== action.payload.size ||
+              item.color !== action.payload.color
           )
           state.items = newArray
         } else {
@@ -52,18 +61,62 @@ const cartSlice = createSlice({
     },
     changeSize(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.existingSize &&
+          item.color === action.payload.color
       )
-      if (existingItem) {
-        existingItem.size = action.payload.size
+
+      const cloneItem = state.items.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.newSize &&
+          item.color === action.payload.color
+      )
+
+      if (action.payload.existingSize !== action.payload.newSize) {
+        if (cloneItem) {
+          cloneItem.amount++
+          const newArray = state.items.filter(
+            (item) =>
+              item.id !== action.payload.id ||
+              item.size !== action.payload.existingSize ||
+              item.color !== action.payload.color
+          )
+          state.items = newArray
+        } else if (existingItem) {
+          existingItem.size = action.payload.newSize
+        }
       }
     },
     changeColor(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.existingColor
       )
-      if (existingItem) {
-        existingItem.color = action.payload.color
+
+      const cloneItem = state.items.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.newColor
+      )
+
+      if (action.payload.existingColor !== action.payload.newColor) {
+        if (cloneItem) {
+          cloneItem.amount++
+          const newArray = state.items.filter(
+            (item) =>
+              item.id !== action.payload.id ||
+              item.size !== action.payload.size ||
+              item.color !== action.payload.existingColor
+          )
+          state.items = newArray
+        } else if (existingItem) {
+          existingItem.color = action.payload.newColor
+        }
       }
     },
     setItems(state, action) {

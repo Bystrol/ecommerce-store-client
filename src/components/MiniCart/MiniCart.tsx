@@ -49,11 +49,11 @@ const MiniCart = (props: MiniCartProps) => {
             </p>
           </div>
           <ul className={classes.list}>
-            {items.map((item) => {
+            {items.map((item, index) => {
               return (
                 <CartItem
+                  key={index}
                   id={item.id}
-                  key={item.id}
                   name={item.name}
                   price={item.price}
                   amount={item.amount}

@@ -19,11 +19,12 @@ const CartItem = (props: CartItemProps) => {
     dispatch(
       cartActions.addItem({
         id: props.id,
-        key: props.id,
         name: props.name,
         price: props.price,
         imageUrl: props.imageUrl,
         amount: 1,
+        size: size,
+        color: color,
       })
     )
   }
@@ -32,6 +33,8 @@ const CartItem = (props: CartItemProps) => {
     dispatch(
       cartActions.removeItem({
         id: props.id,
+        size: size,
+        color: color,
       })
     )
   }
@@ -40,7 +43,9 @@ const CartItem = (props: CartItemProps) => {
     dispatch(
       cartActions.changeSize({
         id: props.id,
-        size: btnSize,
+        existingSize: size,
+        newSize: btnSize,
+        color: color,
       })
     )
   }
@@ -49,7 +54,9 @@ const CartItem = (props: CartItemProps) => {
     dispatch(
       cartActions.changeColor({
         id: props.id,
-        color: btnColor,
+        existingColor: color,
+        newColor: btnColor,
+        size: size,
       })
     )
   }
@@ -68,15 +75,17 @@ const CartItem = (props: CartItemProps) => {
         <p className={classes.price}>{currencySign + price}</p>
         <div className={classes.size}>
           <p>Size:</p>
-          {sizeInputs.map((input) => {
+          {sizeInputs.map((input, index) => {
             return (
-              <div key={input.size}>
+              <div key={index}>
                 <input
                   type="radio"
                   name={props.id}
                   id={input.size}
+                  className={
+                    size === input.size ? classes["input--checked"] : ""
+                  }
                   onClick={() => changeSizeHandler(input.size)}
-                  defaultChecked={size === input.size}
                 />
                 <p className={classes["size-p"]}>{input.size}</p>
               </div>
@@ -85,14 +94,16 @@ const CartItem = (props: CartItemProps) => {
         </div>
         <div className={classes.color}>
           <p>Color:</p>
-          {colorInputs.map((input) => {
+          {colorInputs.map((input, index) => {
             return (
               <input
-                key={input.color}
+                key={index}
                 type="radio"
                 name={props.name}
                 id={input.color}
-                defaultChecked={color === input.color}
+                className={
+                  color === input.color ? classes["input--checked"] : ""
+                }
                 onClick={() => changeColorHandler(input.color)}
               />
             )
