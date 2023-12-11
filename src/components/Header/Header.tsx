@@ -94,7 +94,7 @@ const Header = () => {
             onClick={toggleNavHandler}
           />
         </div>
-        <Navigation show={showNav} />
+        <Navigation show={showNav} navLinks={navLinks} />
         <div className={classes.categories}>
           {navLinks.map((link) => {
             return (
