@@ -36,3 +36,14 @@ export type UpdatedRegisterInvalid = UpdatedLoginInvalid & {
   username: boolean
   confirmPassword: boolean
 }
+
+export type ProductFormData = {
+  [key: string]: string | boolean
+  name: string
+  description: string
+  imageUrl: string
+  price: string
+  isAvailable: boolean
+  category: string
+  type: string
+}
