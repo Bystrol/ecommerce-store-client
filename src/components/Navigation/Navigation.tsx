@@ -1,14 +1,16 @@
 import classes from "./Navigation.module.css"
 import { NavLink } from "react-router-dom"
-import useNavigationLinks from "../../hooks/navigation/useNavigationLinks"
 
 type NavigationProps = {
   show: boolean
+  navLinks: {
+    categoryName: string
+    path: string
+    canBeAccessed: boolean
+  }[]
 }
 
 const Navigation = (props: NavigationProps) => {
-  const navLinks = useNavigationLinks()
-
   return (
     <nav
       className={`${classes.navigation} ${
@@ -16,7 +18,7 @@ const Navigation = (props: NavigationProps) => {
       }`}
     >
       <ul>
-        {navLinks.map((link, index) => {
+        {props.navLinks.map((link, index) => {
           return (
             link.canBeAccessed && (
               <li key={index}>
