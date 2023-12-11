@@ -1,22 +1,14 @@
 import { useState, ChangeEvent } from "react"
-
-type ProductFormData = {
-  [key: string]: string
-  name: string
-  description: string
-  imageUrl: string
-  price: string
-  isAvailable: string
-  category: string
-}
+import { ProductFormData } from "../../types/form"
 
 const initialProductFormData: ProductFormData = {
   name: "",
   description: "",
   imageUrl: "",
   price: "",
-  isAvailable: "",
+  isAvailable: false,
   category: "",
+  type: "",
 }
 
 export const useAddProductFormData = () => {
@@ -26,6 +18,17 @@ export const useAddProductFormData = () => {
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
+
+    if (id === "isAvailable") {
+      setProductFormData((prevProductFormData) => {
+        return {
+          ...prevProductFormData,
+          isAvailable: e.target.checked,
+        }
+      })
+
+      return
+    }
 
     setProductFormData((prevProductFormData) => {
       return {
