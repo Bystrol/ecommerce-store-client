@@ -2,7 +2,7 @@ import classes from "./ItemDetail.module.css"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { cartActions } from "../../store/cartSlice"
 import { useState } from "react"
-import { sizeInputs, colorInputs } from "../../constants/inputs"
+import { clothSizes, colors, shoeSizes } from "../../constants/products"
 
 type ItemDetailProps = {
   id: string
@@ -10,10 +10,13 @@ type ItemDetailProps = {
   name: string
   price: number
   description: string
+  type: string
 }
 
 const ItemDetail = (props: ItemDetailProps) => {
-  const [size, setSize] = useState<string>("xs")
+  const sizes = props.type === "cloth" ? clothSizes : shoeSizes
+
+  const [size, setSize] = useState<string>(sizes[0].size)
   const [color, setColor] = useState<string>("brown")
 
   const currencySign = useAppSelector((state) => state.currency.sign)
@@ -29,6 +32,7 @@ const ItemDetail = (props: ItemDetailProps) => {
         amount: 1,
         size: size,
         color: color,
+        type: props.type,
       })
     )
   }
@@ -56,7 +60,7 @@ const ItemDetail = (props: ItemDetailProps) => {
           <h1 className={classes.name}>{props.name}</h1>
           <div className={classes.size}>
             <p>size:</p>
-            {sizeInputs.map((input, index) => {
+            {sizes.map((input, index) => {
               return (
                 <div key={index}>
                   <input
@@ -73,7 +77,7 @@ const ItemDetail = (props: ItemDetailProps) => {
           </div>
           <div className={classes.color}>
             <p>color:</p>
-            {colorInputs.map((input, index) => {
+            {colors.map((input, index) => {
               return (
                 <input
                   key={index}

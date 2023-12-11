@@ -3,11 +3,13 @@ import { cartActions } from "../../store/cartSlice"
 import classes from "./CartItem.module.css"
 import { CartItem as CartItemTypes } from "../../types/product"
 import useExchangeRate from "../../hooks/exchange-rate/useExchangeRate"
-import { sizeInputs, colorInputs } from "../../constants/inputs"
+import { clothSizes, shoeSizes, colors } from "../../constants/products"
 
 type CartItemProps = CartItemTypes
 
 const CartItem = (props: CartItemProps) => {
+  const sizes = props.type === "cloth" ? clothSizes : shoeSizes
+
   const { size, color } = props
 
   const dispatch = useAppDispatch()
@@ -75,7 +77,7 @@ const CartItem = (props: CartItemProps) => {
         <p className={classes.price}>{currencySign + price}</p>
         <div className={classes.size}>
           <p>Size:</p>
-          {sizeInputs.map((input, index) => {
+          {sizes.map((input, index) => {
             return (
               <div key={index}>
                 <input
@@ -96,7 +98,7 @@ const CartItem = (props: CartItemProps) => {
         </div>
         <div className={classes.color}>
           <p>Color:</p>
-          {colorInputs.map((input, index) => {
+          {colors.map((input, index) => {
             return (
               <input
                 key={index}
