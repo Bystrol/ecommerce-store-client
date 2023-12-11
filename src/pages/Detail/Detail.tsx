@@ -36,6 +36,7 @@ const Detail = () => {
         name={product.name}
         price={product.price * rates[currency]}
         description={product.description}
+        type={product.type}
       />
     )
   )

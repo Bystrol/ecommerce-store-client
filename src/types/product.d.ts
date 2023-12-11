@@ -6,6 +6,7 @@ export type Product = {
   name: string
   price: number
   category: string
+  type: string
 }
 
 export type CartItem = {
@@ -16,4 +17,5 @@ export type CartItem = {
   name: string
   price: number
   size: string
+  type: string
 }

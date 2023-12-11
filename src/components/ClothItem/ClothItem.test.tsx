@@ -29,6 +29,7 @@ describe("ClothItem component", () => {
               isAvailable
               name="name"
               price={20}
+              type="type"
             />
           </BrowserRouter>
         </Provider>

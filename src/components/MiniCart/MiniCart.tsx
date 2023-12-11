@@ -66,6 +66,7 @@ const MiniCart = (props: MiniCartProps) => {
                   imageUrl={item.imageUrl}
                   size={item.size}
                   color={item.color}
+                  type={item.type}
                 />
               )
             })}

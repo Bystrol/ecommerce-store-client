@@ -51,6 +51,7 @@ const Cart = () => {
                   imageUrl={item.imageUrl}
                   size={item.size}
                   color={item.color}
+                  type={item.type}
                 />
               )
             })}

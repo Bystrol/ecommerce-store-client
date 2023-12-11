@@ -37,6 +37,7 @@ const Category = () => {
           price={item.price}
           isAvailable={item.isAvailable}
           description={item.description}
+          type={item.type}
         />
       )
     })

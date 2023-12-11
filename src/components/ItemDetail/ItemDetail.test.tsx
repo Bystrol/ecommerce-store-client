@@ -26,6 +26,7 @@ describe("ItemDetail component", () => {
           name="name"
           price={20}
           description="description"
+          type="type"
         />
       </Provider>
     )

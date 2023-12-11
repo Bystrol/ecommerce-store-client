@@ -12,6 +12,7 @@ type ClothItemProps = {
   isAvailable: boolean
   name: string
   price: number
+  type: string
 }
 
 const ClothItem = (props: ClothItemProps) => {
@@ -37,8 +38,9 @@ const ClothItem = (props: ClothItemProps) => {
         price: props.price,
         imageUrl: props.imageUrl,
         amount: 1,
-        size: "xs",
+        size: props.type === "cloth" ? "xs" : "41",
         color: "brown",
+        type: props.type,
       })
     )
   }
