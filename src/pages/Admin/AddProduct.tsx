@@ -17,6 +17,12 @@ const AddProduct = () => {
     })
   }
 
+  const setTypeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setProductFormData((prevProductFormData) => {
+      return { ...prevProductFormData, type: e.target.value }
+    })
+  }
+
   const addProductHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     addNewProduct(productFormData)
@@ -29,6 +35,8 @@ const AddProduct = () => {
       </h1>
     )
   }
+
+  const productTypes = ["cloth", "shoe"]
 
   return (
     <div className={styles.container}>
@@ -59,6 +67,18 @@ const AddProduct = () => {
             return (
               <option key={index} value={category}>
                 {category}
+              </option>
+            )
+          })}
+        </select>
+        <select name="type" id="type" onChange={setTypeHandler} defaultValue="">
+          <option value="" disabled>
+            -- choose type --
+          </option>
+          {productTypes.map((type, index) => {
+            return (
+              <option key={index} value={type}>
+                {type}
               </option>
             )
           })}
