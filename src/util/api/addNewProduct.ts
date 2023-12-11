@@ -1,11 +1,4 @@
-type ProductFormData = {
-  [key: string]: string
-  name: string
-  description: string
-  imageUrl: string
-  price: string
-  isAvailable: string
-}
+import { ProductFormData } from "../../types/form"
 
 export const addNewProduct = async (productData: ProductFormData) => {
   const authToken = localStorage.getItem("authToken")
